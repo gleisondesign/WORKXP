@@ -1,0 +1,3605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorkXP | Ferramenta de produtividade gamificada com Pomodoro e cronômetro de foco</title>
+  <meta name="description" content="WorkXP é uma ferramenta gratuita de produtividade gamificada para criar fases, transformar tarefas em missões, usar cronômetro de foco online, planejar sessões Pomodoro, acompanhar XP e salvar tudo no navegador." />
+  <meta name="keywords" content="WorkXP, Pomodoro task manager, focus timer, task manager, focus session planner, timeboxing app, task timer, productivity timer, work session tracker, deep work planner, Pomodoro planner, focus task tracker, focus task manager, focus session manager, timeboxed task manager, deep work timer, task-based focus timer, gerenciador de tarefas com cronômetro de foco, ferramenta de produtividade gamificada, timer Pomodoro com tarefas, organizador de tarefas diário, organizador de tarefas semanal, organizador de tarefas mensal, cronômetro de foco online, plataforma gratuita de produtividade, tarefas gamificadas, missões de produtividade, foco total, gestão de tarefas online, controle de tempo e produtividade, produtividade gamificada, planejamento de foco, sessões de foco, gerenciamento de tarefas online" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="author" content="WorkXP" />
+  <meta name="application-name" content="WorkXP" />
+  <meta name="theme-color" content="#f97316" />
+  <meta name="classification" content="productivity, task manager, focus timer, Pomodoro, gamification" />
+  <meta name="subject" content="Ferramenta gratuita de produtividade, gestão de tarefas online, cronômetro de foco e Pomodoro task manager" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="WorkXP" />
+  <meta property="og:title" content="WorkXP - Transforme tarefas em missões" />
+  <meta property="og:description" content="Uma ferramenta de produtividade gamificada para criar tarefas, organizar fases, usar focus timer, planejar Pomodoro, acompanhar XP e salvar seus projetos no navegador." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WorkXP - Ferramenta de tarefas com foco, Pomodoro e XP" />
+  <meta name="twitter:description" content="Crie missões de produtividade, use cronômetro de foco online, acompanhe XP e exporte ou importe seus projetos em uma ferramenta gratuita de gestão de tarefas." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "WorkXP",
+        "alternateName": ["WorkXP Focus Timer", "WorkXP Pomodoro Task Manager"],
+        "applicationCategory": "ProductivityTool",
+        "operatingSystem": "Web browser",
+        "browserRequirements": "Requires a modern browser with localStorage enabled.",
+        "isAccessibleForFree": true,
+        "description": "WorkXP é uma ferramenta gratuita de produtividade gamificada para transformar tarefas em missões, planejar sessões de foco, usar cronômetro Pomodoro, acompanhar progresso com XP e salvar projetos no navegador.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+        "featureList": [
+          "Gerenciador de tarefas com fases e missões",
+          "Cronômetro de foco online e timer Pomodoro com tarefas",
+          "Planejamento de sessões de foco, timeboxing e deep work",
+          "XP, níveis, conquistas e progresso gamificado",
+          "Exportação e importação de projetos em JSON",
+          "Dados salvos localmente no navegador",
+          "Organizador de tarefas diário, semanal e mensal",
+          "Focus task manager, Pomodoro planner, work session tracker e task-based focus timer"
+        ],
+        "keywords": "Pomodoro task manager, focus timer, task manager, focus session planner, timeboxing app, task timer, productivity timer, work session tracker, deep work planner, Pomodoro planner, focus task tracker, focus task manager, focus session manager, timeboxed task manager, deep work timer, task-based focus timer, gerenciador de tarefas com cronômetro de foco, ferramenta de produtividade gamificada, timer Pomodoro com tarefas, cronômetro de foco online, tarefas gamificadas, missões de produtividade, gestão de tarefas online"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O que é o WorkXP?",
+            "acceptedAnswer": { "@type": "Answer", "text": "WorkXP é uma ferramenta de produtividade gamificada para criar fases, adicionar tarefas, transformar tarefas em missões, usar cronômetro de foco e acompanhar progresso com XP." }
+          },
+          {
+            "@type": "Question",
+            "name": "O WorkXP salva minhas tarefas?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sim. O WorkXP salva suas fases, tarefas, progresso e configurações localmente no navegador usando localStorage. Você também pode exportar e importar seus projetos em JSON." }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso usar o WorkXP como Pomodoro task manager?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sim. O WorkXP combina task manager, focus timer, task timer, timeboxing e planejamento de sessões de foco para apoiar Pomodoro, deep work e controle de tempo." }
+          },
+          {
+            "@type": "Question",
+            "name": "O WorkXP é gratuito?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sim. O WorkXP foi pensado como uma ferramenta gratuita de produtividade online para gestão de tarefas, foco total e missões gamificadas." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --card-soft: #f9fafb;
+      --line: #e5e7eb;
+      --line-strong: #d1d5db;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --muted-2: #9ca3af;
+      --accent: #e53935;
+      --accent2: #f97316;
+      --accent-soft: #fff1ed;
+      --good: #16a34a;
+      --good-soft: #ecfdf3;
+      --warn: #f59e0b;
+      --warn-soft: #fffbeb;
+      --bad: #e11d48;
+      --bad-soft: #fff1f2;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --shadow: 0 16px 45px rgba(17, 24, 39, 0.08);
+      --shadow-soft: 0 8px 24px rgba(17, 24, 39, 0.06);
+      --radius: 20px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+
+    body.dark-mode {
+      --bg: #0f172a;
+      --card: #111827;
+      --card-soft: #1f2937;
+      --line: #334155;
+      --line-strong: #475569;
+      --text: #f9fafb;
+      --muted: #cbd5e1;
+      --muted-2: #94a3b8;
+      --accent-soft: rgba(249, 115, 22, 0.16);
+      --good-soft: rgba(22, 163, 74, 0.16);
+      --warn-soft: rgba(245, 158, 11, 0.16);
+      --bad-soft: rgba(225, 29, 72, 0.16);
+      --blue-soft: rgba(37, 99, 235, 0.16);
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+      --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.28);
+    }
+
+    body.dark-mode {
+      background:
+        radial-gradient(circle at 12% 0%, rgba(249, 115, 22, 0.13), transparent 32%),
+        radial-gradient(circle at 88% 4%, rgba(229, 57, 53, 0.12), transparent 28%),
+        linear-gradient(180deg, #020617 0%, var(--bg) 48%, #111827 100%);
+    }
+
+    body.dark-mode .hero,
+    body.dark-mode .panel {
+      background: rgba(17, 24, 39, .92);
+    }
+
+    body.dark-mode .eyebrow,
+    body.dark-mode .focus-widget,
+    body.dark-mode .btn,
+    body.dark-mode .panel-header,
+    body.dark-mode .modal,
+    body.dark-mode .modal-header,
+    body.dark-mode .modal-footer,
+    body.dark-mode .phase-section,
+    body.dark-mode .task,
+    body.dark-mode .ach,
+    body.dark-mode .tab,
+    body.dark-mode .input,
+    body.dark-mode .select,
+    body.dark-mode .textarea,
+    body.dark-mode .toast-item,
+    body.dark-mode .intro-modal {
+      background: var(--card);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    body.dark-mode .phase-head,
+    body.dark-mode .phase-edit-box,
+    body.dark-mode .tag,
+    body.dark-mode .empty,
+    body.dark-mode .seo-card {
+      background: var(--card-soft);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    body.dark-mode .seo-section {
+      background: rgba(17, 24, 39, .92);
+      border-color: var(--line);
+    }
+
+    body.dark-mode .intro-backdrop {
+      background:
+        radial-gradient(circle at 16% 12%, rgba(249, 115, 22, .14), transparent 32%),
+        radial-gradient(circle at 84% 10%, rgba(229, 57, 53, .12), transparent 30%),
+        linear-gradient(180deg, #020617, #0f172a);
+    }
+
+    body.dark-mode .intro-pill,
+    body.dark-mode .intro-slider {
+      background: var(--card-soft);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    body.dark-mode .phase-add-btn {
+      background: var(--card);
+      color: var(--accent2);
+      border-color: var(--line);
+    }
+
+    body.dark-mode .btn:hover,
+    body.dark-mode .tab:hover,
+    body.dark-mode .icon-btn:hover {
+      background: var(--card-soft);
+      border-color: var(--line-strong);
+    }
+
+    body.dark-mode .btn.primary,
+    body.dark-mode .tab.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-color: transparent;
+    }
+
+    body.dark-mode .btn.good {
+      color: #fff;
+      background: var(--good);
+      border-color: transparent;
+    }
+
+    body.dark-mode .btn.danger {
+      color: #fb7185;
+      border-color: rgba(251, 113, 133, .38);
+      background: var(--card);
+    }
+
+    body.dark-mode .icon-btn,
+    body.dark-mode .check {
+      background: var(--card);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    body.dark-mode .focus-btn {
+      background: #fff;
+      color: var(--accent2);
+      border-color: rgba(249, 115, 22, .32);
+    }
+
+    body.dark-mode .focus-btn.play {
+      background: var(--accent2);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    body.dark-mode .progress-wrap {
+      background: #020617;
+      border-color: var(--line);
+    }
+
+    body.dark-mode .avatar {
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,.14), transparent 28%),
+        linear-gradient(135deg, rgba(249, 115, 22, .16), rgba(229, 57, 53, .18));
+      border-color: rgba(249,115,22,.28);
+    }
+
+    body.dark-mode .ach.unlocked {
+      background: rgba(249, 115, 22, .14);
+      border-color: rgba(249,115,22,.36);
+    }
+
+    body.dark-mode .task.completed {
+      background: var(--good-soft);
+      border-color: rgba(22, 163, 74, .38);
+    }
+
+    body.dark-mode .task.completed h3 {
+      color: rgba(249, 250, 251, .6);
+    }
+
+    body.dark-mode option {
+      background: #111827;
+      color: #f9fafb;
+    }
+
+    body.dark-mode .footer-note,
+    body.dark-mode .panel-subtitle,
+    body.dark-mode .phase-meta,
+    body.dark-mode .task p,
+    body.dark-mode .stat-note,
+    body.dark-mode .ach-desc,
+    body.dark-mode .stat-label {
+      color: var(--muted);
+    }
+
+    body.dark-mode .stat,
+    body.dark-mode .task,
+    body.dark-mode .phase-section {
+      box-shadow: var(--shadow-soft);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(249, 115, 22, 0.08), transparent 32%),
+        radial-gradient(circle at 88% 4%, rgba(229, 57, 53, 0.07), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 48%, #eef0f3 100%);
+      overflow-x: hidden;
+    }
+
+    body.intro-open {
+      overflow: hidden;
+      height: 100vh;
+      touch-action: none;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    button, input, textarea, select { font: inherit; }
+    button { border: 0; cursor: pointer; }
+
+    .app {
+      width: min(1440px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 22px 0 80px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 24px;
+      background: rgba(255,255,255,.86);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(249, 115, 22, 0.08);
+      right: -90px;
+      top: -120px;
+      filter: blur(4px);
+    }
+
+    .hero-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow,
+    .focus-widget {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: var(--card);
+      font-weight: 850;
+      letter-spacing: 0.01em;
+      font-size: 13px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .focus-widget {
+      padding: 5px 6px 5px 12px;
+      gap: 6px;
+      transition: background .18s ease, border-color .18s ease;
+    }
+
+    .editable-brand {
+      appearance: none;
+      text-align: left;
+    }
+
+    .editable-brand:hover {
+      transform: translateY(-1px);
+      border-color: var(--line-strong);
+      background: var(--card-soft);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin-top: 24px;
+      padding: 6px 2px 0;
+    }
+
+    .hero-kicker {
+      margin: 0 0 8px;
+      color: var(--accent2);
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-copy h1 {
+      margin: 0;
+      max-width: 820px;
+      color: var(--text);
+      font-size: clamp(34px, 6vw, 68px);
+      line-height: 0.96;
+      letter-spacing: -0.07em;
+    }
+
+    .hero-copy p {
+      margin: 13px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(15px, 2vw, 18px);
+      line-height: 1.55;
+    }
+
+    .keyword-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .keyword-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, .18);
+      background: var(--accent-soft);
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 850;
+    }
+
+    .focus-widget.urgent {
+      border-color: rgba(229, 57, 53, .48);
+    }
+
+    .focus-time {
+      min-width: 132px;
+      text-align: left;
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      padding: 7px 8px;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .focus-time.has-time {
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: .03em;
+    }
+
+    .focus-time.urgent {
+      color: var(--bad);
+    }
+
+    .focus-btn {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border-radius: 999px;
+      color: var(--accent2);
+      border: 1px solid rgba(249, 115, 22, .24);
+      background: #fff;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
+      font-size: 0;
+      line-height: 0;
+    }
+
+    .focus-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(249, 115, 22, .46);
+      background: #fff7ed;
+      box-shadow: 0 8px 18px rgba(249, 115, 22, .14);
+    }
+
+    .focus-btn.play {
+      color: #fff;
+      background: var(--accent2);
+      border-color: transparent;
+    }
+
+    .focus-btn.play:hover {
+      background: #ea580c;
+    }
+
+    .focus-icon {
+      width: 15px;
+      height: 15px;
+      display: block;
+      fill: currentColor;
+    }
+
+    .focus-icon-play {
+      width: 14px;
+      height: 14px;
+      margin-left: 2px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-width: 240px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      white-space: nowrap;
+      font-weight: 850;
+    }
+
+    .btn:hover,
+    label.btn:hover {
+      transform: translateY(-1px);
+      background: var(--card-soft);
+      border-color: var(--line-strong);
+    }
+
+    label.btn {
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-color: transparent;
+      color: white;
+      font-weight: 950;
+    }
+
+    .btn.good {
+      background: var(--good);
+      color: #fff;
+      border-color: transparent;
+      font-weight: 950;
+    }
+
+    .btn.danger {
+      background: #fff;
+      border-color: rgba(225, 29, 72, .28);
+      color: var(--bad);
+    }
+
+    .btn.small {
+      min-height: 34px;
+      padding: 8px 10px;
+      border-radius: 11px;
+      font-size: 13px;
+    }
+
+    .stats-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      min-height: 112px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--card);
+      padding: 18px;
+      display: grid;
+      align-content: space-between;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-value {
+      margin-top: 6px;
+      font-size: 32px;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    .stat-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 10px;
+      background: #eef0f3;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 11px;
+      border: 1px solid var(--line);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--good));
+      transition: width .45s ease;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 390px;
+      gap: 16px;
+      margin-top: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.9);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      background: #fff;
+    }
+
+    .map-tabs-header {
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .map-tabs-header .tabs {
+      flex: 1;
+      width: auto;
+      min-width: 0;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .panel-subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .panel-body { padding: 18px; }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr 160px 150px;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .input, .select, .textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 14px;
+      outline: none;
+      padding: 12px 13px;
+      transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    .input:focus, .select:focus, .textarea:focus {
+      border-color: rgba(249,115,22,.75);
+      box-shadow: 0 0 0 4px rgba(249,115,22,.12);
+    }
+
+    option { color: #111827; }
+
+    .phase-section {
+      margin: 14px 0;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .phase-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 16px;
+      background: var(--card-soft);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .phase-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .phase-badge {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(249, 115, 22, .18);
+      font-weight: 950;
+    }
+
+    .phase-title {
+      font-weight: 950;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .phase-meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .phase-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .phase-toggle {
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .phase-add-btn {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, .24);
+      background: #fff;
+      color: var(--accent2);
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 950;
+      box-shadow: var(--shadow-soft);
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+
+    .phase-add-btn:hover {
+      transform: translateY(-1px) scale(1.03);
+      background: #fff7ed;
+      border-color: rgba(249, 115, 22, .46);
+    }
+
+    .task-list {
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .task {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      gap: 12px;
+      align-items: start;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease, box-shadow .16s ease;
+    }
+
+    .task:hover {
+      transform: translateY(-1px);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .task.completed {
+      border-color: rgba(22, 163, 74, .28);
+      background: var(--good-soft);
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      color: transparent;
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+      margin-top: 2px;
+      transition: background .18s ease, color .18s ease, transform .18s ease;
+    }
+
+    .task.completed .check {
+      background: var(--good);
+      color: #fff;
+      transform: rotate(-4deg);
+      border-color: transparent;
+    }
+
+    .task h3 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--text);
+    }
+
+    .task.completed h3 {
+      text-decoration: line-through;
+      color: rgba(31,41,55,.58);
+    }
+
+    .task p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.48;
+      font-size: 13px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 850;
+      color: #4b5563;
+      background: var(--card-soft);
+      border: 1px solid var(--line);
+    }
+
+    .tag.good {
+      color: #166534;
+      border-color: rgba(22, 163, 74, .22);
+      background: var(--good-soft);
+    }
+
+    .tag.warn {
+      color: #92400e;
+      border-color: rgba(245, 158, 11, .25);
+      background: var(--warn-soft);
+    }
+
+    .tag.bad {
+      color: #9f1239;
+      border-color: rgba(225, 29, 72, .25);
+      background: var(--bad-soft);
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: #fff;
+      transition: background .16s ease, border-color .16s ease, transform .16s ease;
+    }
+
+    .icon-btn:hover {
+      background: var(--card-soft);
+      border-color: var(--line-strong);
+      transform: translateY(-1px);
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 16px;
+      position: sticky;
+      top: 14px;
+    }
+
+    .character {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 78px;
+      height: 78px;
+      flex: 0 0 auto;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,.42), transparent 28%),
+        linear-gradient(135deg, #fff1ed, #fed7aa);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(249,115,22,.16);
+    }
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .ach {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 11px;
+      background: #fff;
+      min-height: 86px;
+      display: grid;
+      align-content: start;
+      gap: 5px;
+      opacity: .48;
+      filter: grayscale(1);
+      transition: opacity .2s ease, filter .2s ease, transform .2s ease;
+    }
+
+    .ach.unlocked {
+      opacity: 1;
+      filter: none;
+      transform: translateY(-1px);
+      background: #fff7ed;
+      border-color: rgba(249,115,22,.22);
+    }
+
+    .ach-icon { font-size: 22px; }
+    .ach-title { font-weight: 950; font-size: 12px; color: var(--text); }
+    .ach-desc { color: var(--muted); font-size: 11px; line-height: 1.35; }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .tab-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .tab {
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: #fff;
+      border: 1px solid var(--line);
+      font-weight: 850;
+      font-size: 12px;
+      transition: background .16s ease, color .16s ease, border-color .16s ease, transform .16s ease;
+    }
+
+    .tab:hover {
+      transform: translateY(-1px);
+      border-color: var(--line-strong);
+      color: var(--text);
+    }
+
+    .tab.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-color: transparent;
+      padding-right: 28px;
+    }
+
+    .phase-delete-btn {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      color: #fff;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.24);
+      font-size: 0;
+      line-height: 0;
+      font-weight: 950;
+    }
+
+    .phase-delete-btn::before,
+    .phase-delete-btn::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 10px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transform-origin: center;
+    }
+
+    .phase-delete-btn::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .phase-delete-btn::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .phase-delete-btn:hover {
+      background: rgba(255,255,255,.35);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(17,24,39,.44);
+      backdrop-filter: blur(9px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      width: min(720px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-header, .modal-footer {
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .modal-footer {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+      justify-content: flex-end;
+    }
+
+    .modal-body { padding: 18px; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .span-2 { grid-column: span 2; }
+
+    .phase-edit-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card-soft);
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .phase-edit-row {
+      display: grid;
+      grid-template-columns: 84px 1fr auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+    }
+
+    .field label {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 850;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: grid;
+      gap: 9px;
+      z-index: 200;
+    }
+
+    .toast-item {
+      max-width: 360px;
+      padding: 13px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.96);
+      box-shadow: var(--shadow);
+      animation: slideIn .18s ease;
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .confetti {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      overflow: hidden;
+    }
+
+    .confetti span {
+      position: absolute;
+      top: -20px;
+      width: 8px;
+      height: 14px;
+      border-radius: 2px;
+      background: var(--accent2);
+      animation: fall 900ms linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(calc(100vh + 40px)) rotate(420deg);
+        opacity: .1;
+      }
+    }
+
+    .empty {
+      padding: 26px;
+      text-align: center;
+      border-radius: 18px;
+      border: 1px dashed var(--line-strong);
+      color: var(--muted);
+      background: var(--card-soft);
+    }
+
+    .seo-section {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.9);
+      box-shadow: var(--shadow-soft);
+      padding: 22px;
+    }
+
+    .seo-section h2,
+    .seo-section h3 {
+      color: var(--text);
+      letter-spacing: -0.03em;
+    }
+
+    .seo-section h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .seo-section h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .seo-section p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .seo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .seo-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      padding: 15px;
+    }
+
+
+
+    .intro-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: grid;
+      place-items: stretch;
+      min-height: 100vh;
+      padding: 0;
+      background:
+        radial-gradient(circle at 16% 12%, rgba(249, 115, 22, .16), transparent 32%),
+        radial-gradient(circle at 84% 10%, rgba(229, 57, 53, .10), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.98), rgba(246,247,249,.98));
+      backdrop-filter: blur(14px);
+    }
+
+
+    body.dark-mode .intro-modal {
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background:
+        radial-gradient(circle at 80% 18%, rgba(249,115,22,.15), transparent 30%),
+        radial-gradient(circle at 18% 82%, rgba(22,163,74,.08), transparent 30%),
+        linear-gradient(145deg, #020617, #0f172a);
+    }
+
+    .intro-backdrop.closed {
+      display: none;
+    }
+
+    .intro-modal {
+      width: 100%;
+      min-height: 100vh;
+      border: 0;
+      border-radius: 0;
+      background:
+        radial-gradient(circle at 80% 18%, rgba(249,115,22,.13), transparent 30%),
+        radial-gradient(circle at 18% 82%, rgba(22,163,74,.08), transparent 30%),
+        linear-gradient(145deg, rgba(255,255,255,.98), rgba(255,247,237,.82));
+      box-shadow: none;
+      padding: clamp(28px, 7vw, 84px);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      align-items: center;
+    }
+
+    .intro-modal::before,
+    .intro-modal::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: blur(2px);
+    }
+
+    .intro-modal::before {
+      width: 320px;
+      height: 320px;
+      right: -120px;
+      top: -130px;
+      background: rgba(249, 115, 22, .12);
+    }
+
+    .intro-modal::after {
+      width: 240px;
+      height: 240px;
+      left: -92px;
+      bottom: -110px;
+      background: rgba(22, 163, 74, .09);
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 1;
+      width: min(880px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .intro-kicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 25px;
+      margin: 0 0 16px;
+      padding: 6px 10px;
+      color: var(--accent2);
+      background: rgba(249, 115, 22, .1);
+      border: 1px solid rgba(249, 115, 22, .18);
+      border-radius: 999px;
+      font-size: 8px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+    }
+
+    .intro-modal h1 {
+      margin: 0 auto;
+      max-width: 860px;
+      color: var(--text);
+      font-size: clamp(25px, 5.1vw, 53px);
+      line-height: 1.08;
+      letter-spacing: -.015em;
+    }
+
+    .intro-modal p {
+      margin: 14px auto 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: clamp(10px, 1.2vw, 13px);
+      line-height: 1.72;
+    }
+
+    .intro-modal .intro-lead {
+      color: var(--text);
+      font-weight: 750;
+      font-size: clamp(11px, 1.4vw, 14px);
+    }
+
+    .intro-pills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .intro-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, .18);
+      background: var(--accent-soft);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .intro-slider {
+      position: relative;
+      width: min(520px, 100%);
+      height: 60px;
+      margin: 34px auto 0;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, .28);
+      background: rgba(255,255,255,.82);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 18px 46px rgba(249, 115, 22, .16);
+      outline: none;
+      overflow: hidden;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .intro-slider-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(229, 57, 53, .18), rgba(249, 115, 22, .26));
+      transition: width .12s linear;
+    }
+
+    .intro-slider-text {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding-left: 78px;
+      padding-right: 22px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .intro-slider-handle {
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      width: 118px;
+      height: 48px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 30px rgba(249, 115, 22, .28);
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      cursor: grab;
+      touch-action: none;
+      transform: translateX(0);
+      transition: transform .2s ease, box-shadow .18s ease;
+    }
+
+    .intro-slider:focus,
+    .intro-slider:focus-visible,
+    .intro-slider-handle:focus,
+    .intro-slider-handle:focus-visible {
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 18px 46px rgba(249, 115, 22, .16);
+    }
+
+    .intro-slider-handle:active {
+      cursor: grabbing;
+      box-shadow: 0 16px 36px rgba(249, 115, 22, .36);
+    }
+
+    .intro-slider-handle .arrow {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .intro-footnote {
+      margin-top: 18px !important;
+      color: var(--muted-2) !important;
+      font-size: 8px !important;
+      letter-spacing: .02em;
+    }
+
+    .standby-indicator {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: fit-content;
+      margin: 0 auto 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 158, 11, .28);
+      background: rgba(255, 251, 235, .78);
+      color: #92400e;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .standby-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--warn);
+      box-shadow: 0 0 0 0 rgba(245, 158, 11, .42);
+      animation: standbyPulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes standbyPulse {
+      0%, 100% { transform: scale(.82); box-shadow: 0 0 0 0 rgba(245, 158, 11, .35); opacity: .7; }
+      50% { transform: scale(1); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); opacity: 1; }
+    }
+
+
+
+    .standby-scene {
+      display: none;
+      position: relative;
+      width: min(250px, 72vw);
+      height: 112px;
+      margin: 0 auto 18px;
+      pointer-events: none;
+    }
+
+    .standby-moon {
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      transform: translateX(-50%);
+      width: 74px;
+      height: 74px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fef3c7;
+      background:
+        radial-gradient(circle at 36% 34%, rgba(255,255,255,.92), transparent 8px),
+        radial-gradient(circle at 62% 60%, rgba(255,255,255,.48), transparent 6px),
+        linear-gradient(145deg, #fde68a, #f59e0b);
+      box-shadow: 0 0 34px rgba(250, 204, 21, .42), 0 16px 42px rgba(15, 23, 42, .36);
+      font-size: 0;
+    }
+
+    .standby-moon::after {
+      content: "";
+      position: absolute;
+      right: -7px;
+      top: -4px;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #0f1b3d;
+      box-shadow: inset 10px 0 18px rgba(255,255,255,.03);
+    }
+
+    .standby-star {
+      position: absolute;
+      color: rgba(226, 232, 240, .92);
+      font-size: 16px;
+      text-shadow: 0 0 18px rgba(191, 219, 254, .8);
+      animation: starRest 2.4s ease-in-out infinite;
+    }
+
+    .standby-star.s1 { left: 22px; top: 22px; animation-delay: .1s; }
+    .standby-star.s2 { right: 28px; top: 15px; font-size: 12px; animation-delay: .6s; }
+    .standby-star.s3 { left: 74px; bottom: 12px; font-size: 11px; animation-delay: 1s; }
+    .standby-star.s4 { right: 76px; bottom: 22px; font-size: 10px; animation-delay: 1.4s; }
+
+    @keyframes starRest {
+      0%, 100% { opacity: .42; transform: translateY(0) scale(.92); }
+      50% { opacity: 1; transform: translateY(-3px) scale(1); }
+    }
+
+    .intro-backdrop.standby {
+      background:
+        radial-gradient(circle at 50% 14%, rgba(250, 204, 21, .18), transparent 18%),
+        radial-gradient(circle at 18% 24%, rgba(96, 165, 250, .18), transparent 28%),
+        radial-gradient(circle at 86% 18%, rgba(167, 139, 250, .16), transparent 30%),
+        radial-gradient(circle at 50% 110%, rgba(30, 41, 59, .98), transparent 46%),
+        linear-gradient(180deg, #071023 0%, #0f1b3d 46%, #172554 100%);
+    }
+
+    .intro-backdrop.standby .intro-modal {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(250, 204, 21, .10), transparent 24%),
+        radial-gradient(circle at 14% 80%, rgba(96, 165, 250, .12), transparent 32%),
+        linear-gradient(180deg, rgba(15, 23, 42, .08), rgba(15, 23, 42, .18));
+    }
+
+    .intro-backdrop.standby .intro-modal::before {
+      width: 280px;
+      height: 280px;
+      right: -92px;
+      top: -96px;
+      background: rgba(96, 165, 250, .10);
+    }
+
+    .intro-backdrop.standby .intro-modal::after {
+      width: 260px;
+      height: 260px;
+      left: -96px;
+      bottom: -120px;
+      background: rgba(167, 139, 250, .10);
+    }
+
+    .intro-backdrop.standby .standby-scene {
+      display: block;
+    }
+
+    .intro-backdrop.standby .standby-indicator {
+      display: inline-flex;
+      color: #dbeafe;
+      background: rgba(15, 23, 42, .46);
+      border-color: rgba(191, 219, 254, .22);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .18);
+    }
+
+    .intro-backdrop.standby .standby-dot {
+      background: #facc15;
+      box-shadow: 0 0 0 0 rgba(250, 204, 21, .38);
+    }
+
+    .intro-backdrop.standby .intro-kicker {
+      color: #fef3c7;
+      background: rgba(250, 204, 21, .08);
+      border-color: rgba(250, 204, 21, .20);
+    }
+
+    .intro-backdrop.standby .intro-modal h1,
+    .intro-backdrop.standby .intro-lead {
+      color: #f8fafc;
+    }
+
+    .intro-backdrop.standby .intro-modal p,
+    .intro-backdrop.standby .intro-footnote {
+      color: rgba(226, 232, 240, .78) !important;
+    }
+
+    .intro-backdrop.standby .intro-pill {
+      color: #e0f2fe;
+      background: rgba(30, 41, 59, .50);
+      border-color: rgba(147, 197, 253, .20);
+    }
+
+    .intro-backdrop.standby .intro-slider {
+      background: rgba(15, 23, 42, .70);
+      border-color: rgba(147, 197, 253, .24);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 20px 54px rgba(0, 0, 0, .24);
+    }
+
+    .intro-backdrop.standby .intro-slider-fill {
+      background: linear-gradient(90deg, rgba(96, 165, 250, .22), rgba(250, 204, 21, .22));
+    }
+
+    .intro-backdrop.standby .intro-slider-text {
+      color: rgba(226, 232, 240, .70);
+    }
+
+    .intro-backdrop.standby .intro-slider-handle {
+      color: #0f172a;
+      background: linear-gradient(135deg, #fef3c7, #facc15);
+      box-shadow: 0 14px 32px rgba(250, 204, 21, .22);
+    }
+
+    .edit-modal .modal-body,
+    .focus-modal .modal-body {
+      padding-top: 20px;
+    }
+
+    .focus-presets {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .focus-preset {
+      min-height: 34px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, .22);
+      background: var(--accent-soft);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 900;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+
+    .focus-preset:hover {
+      transform: translateY(-1px);
+      background: #fff7ed;
+      border-color: rgba(249, 115, 22, .42);
+    }
+
+    .emoji-picker {
+      position: fixed;
+      z-index: 450;
+      display: none;
+      width: min(340px, calc(100vw - 28px));
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .emoji-picker.open {
+      display: block;
+    }
+
+    .emoji-picker-title {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .emoji-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+    }
+
+    .emoji-option {
+      width: 32px;
+      height: 32px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: var(--card-soft);
+      border: 1px solid var(--line);
+      font-size: 18px;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+
+    .emoji-option:hover {
+      transform: translateY(-1px);
+      border-color: rgba(249, 115, 22, .42);
+      background: var(--accent-soft);
+    }
+
+    .emoji-input {
+      cursor: pointer;
+      text-align: center;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .phase-bottom-actions {
+      display: flex;
+      justify-content: center;
+      padding: 4px 2px 2px;
+    }
+
+    .phase-add-step-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 34px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, .24);
+      background: rgba(249, 115, 22, .10);
+      color: #c2410c;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: none;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease, color .16s ease;
+    }
+
+    .phase-add-step-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(249, 115, 22, .16);
+      border-color: rgba(249, 115, 22, .42);
+      color: #9a3412;
+    }
+
+    body.dark-mode .phase-add-step-btn {
+      background: rgba(249, 115, 22, .14);
+      border-color: rgba(249, 115, 22, .28);
+      color: #fdba74;
+    }
+
+    body.dark-mode .phase-add-step-btn:hover {
+      background: rgba(249, 115, 22, .22);
+      border-color: rgba(249, 115, 22, .44);
+      color: #fed7aa;
+    }
+
+    .empty-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .empty-title {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-weight: 950;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      margin-top: 22px;
+      line-height: 1.6;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 1120px) {
+      .layout { grid-template-columns: 1fr; }
+      .side-stack { position: static; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .hero-top { display: grid; }
+      .hero-actions { justify-content: flex-start; }
+      .toolbar, .stats-grid, .achievement-grid, .form-grid, .phase-edit-row, .seo-grid { grid-template-columns: 1fr; }
+      .span-2 { grid-column: span 1; }
+      .task { grid-template-columns: 34px 1fr; }
+      .task-actions { grid-column: 2; justify-content: flex-start; }
+      .panel-header { align-items: flex-start; flex-direction: column; }
+      .brand-row { align-items: stretch; }
+      .eyebrow, .focus-widget { width: 100%; justify-content: space-between; }
+      .focus-time { min-width: 0; flex: 1; }
+    }
+
+    @media print {
+      body { background: white; color: #111827; }
+      .hero-actions, .toolbar, .task-actions, .tabs, .btn, .modal-backdrop, .toast, .focus-widget { display: none !important; }
+      .hero, .panel, .phase-section, .task, .stat { box-shadow: none; background: white; border-color: #e5e7eb; color: #111827; }
+      .panel-subtitle, .phase-meta, .task p, .stat-note, .ach-desc, .footer-note { color: #4b5563; }
+      .layout { display: block; }
+      .side-stack { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1 class="sr-only">WorkXP: ferramenta de produtividade gamificada com cronômetro de foco, Pomodoro task manager e gestão de tarefas online</h1>
+    <section class="hero">
+      <div class="hero-top">
+        <div class="brand-row">
+          <button class="eyebrow editable-brand" id="brandEditBtn" type="button" title="Clique para editar sua marca" aria-label="Editar nome da sua marca no painel"><span id="brandText">@minhamarca · minhamarca.com</span></button>
+          <div class="focus-widget" id="focusWidget">
+            <button class="focus-time" id="focusTimeDisplay" type="button">definir tempo de foco</button>
+            <button class="focus-btn play" id="focusPlayBtn" type="button" title="Iniciar foco" aria-label="Iniciar foco">
+              <svg class="focus-icon focus-icon-play" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 4.8v14.4L18.6 12 7 4.8z"></path>
+              </svg>
+            </button>
+            <button class="focus-btn pause" id="focusPauseBtn" type="button" title="Pausar foco" aria-label="Pausar foco">
+              <svg class="focus-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="6.2" y="4.5" width="4.6" height="15" rx="1.1"></rect>
+                <rect x="13.2" y="4.5" width="4.6" height="15" rx="1.1"></rect>
+              </svg>
+            </button>
+            <button class="focus-btn stop" id="focusStopBtn" type="button" title="Parar foco" aria-label="Parar foco">
+              <svg class="focus-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="6" y="6" width="12" height="12" rx="1"></rect>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn primary" id="addPhaseBtn">+ Nova fase</button>
+          <button class="btn" id="addTaskBtn">+ Novo passo</button>
+          <button class="btn" id="exportBtn">Exportar</button>
+          <label class="btn" for="importFile">Importar</label>
+          <input class="hidden" id="importFile" type="file" accept="application/json" />
+          <button class="btn" id="themeToggleBtn" type="button">Tema escuro</button>
+          <button class="btn danger" id="resetBtn">Resetar</button>
+        </div>
+      </div>
+
+
+      <div class="stats-grid">
+        <div class="stat">
+          <div>
+            <div class="stat-label">Progresso geral</div>
+            <div class="stat-value"><span id="progressText">0</span>%</div>
+          </div>
+          <div>
+            <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+            <div class="stat-note" id="progressNote">Comece por uma tarefa simples.</div>
+          </div>
+        </div>
+
+        <div class="stat">
+          <div>
+            <div class="stat-label">XP acumulado</div>
+            <div class="stat-value"><span id="xpText">0</span></div>
+          </div>
+          <div class="stat-note">Cada passo concluído aumenta sua pontuação.</div>
+        </div>
+
+        <div class="stat">
+          <div>
+            <div class="stat-label">Nível atual</div>
+            <div class="stat-value" id="levelText">1</div>
+          </div>
+          <div class="stat-note" id="levelNote">Explorador iniciante</div>
+        </div>
+      </div>
+    </section>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="panel-header map-tabs-header">
+          <div class="tabs" id="tabs"></div>
+          <button class="phase-add-btn tabs-add-btn" id="tabAddPhaseBtn" type="button" title="Adicionar nova fase" aria-label="Adicionar nova fase">+</button>
+        </div>
+
+        <div class="panel-body">
+          <div class="toolbar">
+            <input class="input" id="searchInput" placeholder="Buscar por tarefa, fase ou prioridade..." />
+            <select class="select" id="statusFilter">
+              <option value="all">Todas</option>
+              <option value="open">Pendentes</option>
+              <option value="done">Concluídas</option>
+            </select>
+            <select class="select" id="priorityFilter">
+              <option value="all">Prioridade</option>
+              <option value="Alta">Alta</option>
+              <option value="Média">Média</option>
+              <option value="Baixa">Baixa</option>
+            </select>
+          </div>
+
+          <div id="phaseContainer"></div>
+        </div>
+      </section>
+
+      <aside class="side-stack">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Seu progresso</h2>
+              <p class="panel-subtitle">Você sobe de nível conforme avança.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="character">
+              <div class="avatar" id="avatarIcon" role="img" aria-label="Ícone de progresso do usuário">🐣</div>
+              <div>
+                <div class="stat-label">Status do projeto</div>
+                <div class="stat-value" style="font-size:22px;" id="missionStatus">Pronto para começar</div>
+                <p class="panel-subtitle" id="missionText">Dê forma à sua ideia: crie fases, adicione passos e transforme movimento em progresso visível.</p>
+              </div>
+            </div>
+
+            <div class="progress-wrap" style="margin-top:16px;"><div class="progress-bar" id="levelBar"></div></div>
+            <p class="panel-subtitle" id="nextLevelText" style="margin-top:8px;">Faltam 100 XP para o próximo nível.</p>
+          </div>
+        </section>
+
+        <section class="panel" id="achievementsPanel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Conquistas</h2>
+              <p class="panel-subtitle">Desbloqueie marcos importantes do seu projeto.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="achievement-grid" id="achievementGrid"></div>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <section class="seo-section" aria-labelledby="workxpSeoTitle">
+      <h2 id="workxpSeoTitle">WorkXP: ferramenta de produtividade gamificada com cronômetro de foco online</h2>
+      <p>O WorkXP é uma ferramenta gratuita de produtividade para quem procura gestão de tarefas online, gerenciador de tarefas com cronômetro de foco, timer Pomodoro com tarefas e missões de produtividade. Crie fases, organize tarefas diárias, semanais e mensais, planeje sessões de foco, acompanhe XP e mantenha controle de tempo e produtividade em um painel simples.</p>
+      <div class="seo-grid">
+        <article class="seo-card">
+          <h3>Pomodoro task manager e focus timer</h3>
+          <p>Use o WorkXP como Pomodoro task manager, focus timer, task timer, productivity timer, work session tracker e task-based focus timer para criar ciclos de foco total.</p>
+        </article>
+        <article class="seo-card">
+          <h3>Deep work planner e timeboxing</h3>
+          <p>Planeje blocos de trabalho com deep work planner, focus session planner, focus session manager, timeboxing app e timeboxed task manager sem perder a visão do projeto.</p>
+        </article>
+        <article class="seo-card">
+          <h3>Tarefas gamificadas salvas no navegador</h3>
+          <p>Transforme tarefas em missões, acompanhe progresso, níveis e XP. Seus dados ficam no navegador e podem ser exportados ou importados em JSON entre dispositivos.</p>
+        </article>
+      </div>
+    </section>
+
+    <p class="footer-note">
+      Dados salvos localmente neste navegador via localStorage. Para levar para outro computador, use Exportar/Importar.
+      Dica: publique este arquivo como <strong>index.html</strong> no GitHub Pages para usar online.
+    </p>
+  </div>
+
+
+
+  <div class="intro-backdrop" id="introBackdrop" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introDescription">
+    <section class="intro-modal" aria-label="Tela inicial do WorkXP">
+      <div class="intro-content">
+        <p class="intro-kicker">WorkXP · ferramenta de produtividade gamificada</p>
+        <div class="standby-indicator" aria-hidden="true"><span class="standby-dot"></span><span>modo descanso</span></div>
+        <div class="standby-scene" aria-hidden="true">
+          <span class="standby-moon"></span>
+          <span class="standby-star s1">✦</span>
+          <span class="standby-star s2">✧</span>
+          <span class="standby-star s3">✦</span>
+          <span class="standby-star s4">✧</span>
+        </div>
+        <h1 id="introTitle">Transforme tarefas em missões</h1>
+        <p class="intro-lead" id="introDescription">Organize seu dia, entre em foco e acompanhe seu progresso com clareza.</p>
+        <p>Crie fases, adicione tarefas, use o cronômetro de foco, ganhe XP e mantenha seu projeto salvo no navegador. Quando quiser continuar em outro lugar, exporte ou importe seus dados em poucos cliques.</p>
+        <div class="intro-pills" aria-label="Recursos e palavras-chave do WorkXP">
+          <span class="intro-pill">Focus timer</span>
+          <span class="intro-pill">Pomodoro task manager</span>
+          <span class="intro-pill">Timeboxing app</span>
+          <span class="intro-pill">Deep work planner</span>
+          <span class="intro-pill">Gestão de tarefas online</span>
+        </div>
+        <div class="intro-slider" id="introSlider" role="button" tabindex="0" aria-label="Deslize para continuar">
+          <div class="intro-slider-fill" id="introSliderFill" aria-hidden="true"></div>
+          <div class="intro-slider-text">deslize para entrar no WorkXP</div>
+          <div class="intro-slider-handle" id="introSliderHandle" aria-hidden="true"><span>continuar</span><span class="arrow">›</span></div>
+        </div>
+        <p class="intro-footnote">Se você ficar alguns minutos sem mexer, esta tela volta para proteger seu foco.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 class="panel-title" id="modalTitle">Novo passo</h2>
+          <p class="panel-subtitle">Edite qualquer detalhe da missão, inclusive a fase onde ela aparece.</p>
+        </div>
+        <button class="icon-btn" id="closeModalBtn" title="Fechar">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="taskId" />
+        <div class="form-grid">
+          <div class="field span-2">
+            <label>Título</label>
+            <input class="input" id="taskTitle" placeholder="Ex: organizar próxima sessão de foco" />
+          </div>
+
+          <div class="field span-2">
+            <label>Descrição</label>
+            <textarea class="textarea" id="taskDescription" placeholder="Explique o que precisa ser feito..."></textarea>
+          </div>
+
+          <div class="field span-2 phase-edit-box">
+            <label>Fase do passo</label>
+            <select class="select" id="taskPhase"></select>
+
+            <div class="phase-edit-row">
+              <div class="field">
+                <label>Emoji</label>
+                <input class="input" id="phaseIconInput" class="emoji-input" maxlength="4" placeholder="🎨" readonly aria-haspopup="dialog" />
+              </div>
+
+              <div class="field">
+                <label>Nome da fase selecionada</label>
+                <input class="input" id="phaseTitleInput" placeholder="Ex: Identidade visual e KV" />
+              </div>
+
+              <button class="btn small" id="applyPhaseNameBtn" type="button">Salvar fase</button>
+            </div>
+
+            <button class="btn small" id="createPhaseFromModalBtn" type="button">+ Criar nova fase com esse nome</button>
+          </div>
+
+          <div class="field">
+            <label>Prioridade</label>
+            <select class="select" id="taskPriority">
+              <option>Alta</option>
+              <option>Média</option>
+              <option>Baixa</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>XP</label>
+            <input class="input" id="taskXp" type="number" min="5" step="5" />
+          </div>
+
+          <div class="field span-2">
+            <label>Prazo</label>
+            <input class="input" id="taskDue" type="date" />
+          </div>
+
+          <input type="hidden" id="taskNotes" />
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn danger" id="deleteTaskBtn">Excluir</button>
+        <button class="btn" id="cancelModalBtn">Cancelar</button>
+        <button class="btn good" id="saveTaskBtn">Salvar passo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="phaseModalBackdrop" aria-hidden="true">
+    <div class="modal phase-modal" role="dialog" aria-modal="true" aria-labelledby="phaseModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 class="panel-title" id="phaseModalTitle">Nova fase</h2>
+          <p class="panel-subtitle">Crie uma fase antes de adicionar passos ao projeto.</p>
+        </div>
+        <button class="icon-btn" id="closePhaseModalBtn" title="Fechar">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="field">
+            <label>Emoji</label>
+            <input class="input emoji-input" id="newPhaseIconInput" maxlength="4" placeholder="📌" readonly aria-haspopup="dialog" />
+          </div>
+          <div class="field">
+            <label>Nome da fase</label>
+            <input class="input" id="newPhaseTitleInput" placeholder="Ex: Planejamento, Execução, Revisão..." />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="cancelPhaseModalBtn">Cancelar</button>
+        <button class="btn good" id="savePhaseModalBtn">Criar fase</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-backdrop" id="brandModalBackdrop" aria-hidden="true">
+    <div class="modal edit-modal" role="dialog" aria-modal="true" aria-labelledby="brandModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 class="panel-title" id="brandModalTitle">Editar marca do painel</h2>
+          <p class="panel-subtitle">Atualize o nome e o complemento que aparecem no topo do WorkXP.</p>
+        </div>
+        <button class="icon-btn" id="closeBrandModalBtn" title="Fechar">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="field">
+            <label>@ ou nome da marca</label>
+            <input class="input" id="brandHandleInput" placeholder="@minhamarca" />
+          </div>
+          <div class="field">
+            <label>Site, link ou complemento</label>
+            <input class="input" id="brandDomainInput" placeholder="minhamarca.com" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="cancelBrandModalBtn">Cancelar</button>
+        <button class="btn good" id="saveBrandModalBtn">Salvar marca</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="focusModalBackdrop" aria-hidden="true">
+    <div class="modal focus-modal" role="dialog" aria-modal="true" aria-labelledby="focusModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 class="panel-title" id="focusModalTitle">Definir tempo de foco</h2>
+          <p class="panel-subtitle">Informe o tempo em minutos ou no formato mm:ss.</p>
+        </div>
+        <button class="icon-btn" id="closeFocusModalBtn" title="Fechar">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label>Tempo de foco</label>
+          <input class="input" id="focusDurationInput" inputmode="decimal" placeholder="25 ou 25:00" />
+          <div class="focus-presets" aria-label="Sugestões de tempo de foco">
+            <button class="focus-preset" type="button" data-focus-preset="15">15 min</button>
+            <button class="focus-preset" type="button" data-focus-preset="25">25 min</button>
+            <button class="focus-preset" type="button" data-focus-preset="45">45 min</button>
+            <button class="focus-preset" type="button" data-focus-preset="60">60 min</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="cancelFocusModalBtn">Cancelar</button>
+        <button class="btn good" id="saveFocusModalBtn">Definir foco</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="emoji-picker" id="emojiPicker" role="dialog" aria-label="Escolha um emoji"></div>
+
+  <div class="toast" id="toast"></div>
+  <div class="confetti" id="confetti"></div>
+
+  <script>
+    const STORAGE_KEY = "workxp.state.v3";
+    const THEME_KEY = "workxp.theme";
+    const defaultPhases = [];
+
+    const defaultState = {
+      brand: {
+        handle: "@minhamarca",
+        domain: "minhamarca.com"
+      },
+      phases: defaultPhases,
+      tasks: [],
+      activePhase: "all",
+      collapsed: {}
+    };
+
+    let state = loadState();
+    let editingId = null;
+    let focusTotalSeconds = 0;
+    let focusRemainingSeconds = 0;
+    let focusInterval = null;
+    let focusAudioCtx = null;
+    let idleTimer = null;
+    const IDLE_LIMIT_MS = 180000;
+
+    const els = {
+      brandEditBtn: document.getElementById("brandEditBtn"),
+      brandText: document.getElementById("brandText"),
+      progressText: document.getElementById("progressText"),
+      progressBar: document.getElementById("progressBar"),
+      progressNote: document.getElementById("progressNote"),
+      xpText: document.getElementById("xpText"),
+      levelText: document.getElementById("levelText"),
+      levelNote: document.getElementById("levelNote"),
+      levelBar: document.getElementById("levelBar"),
+      nextLevelText: document.getElementById("nextLevelText"),
+      avatarIcon: document.getElementById("avatarIcon"),
+      missionStatus: document.getElementById("missionStatus"),
+      missionText: document.getElementById("missionText"),
+      tabs: document.getElementById("tabs"),
+      phaseContainer: document.getElementById("phaseContainer"),
+      searchInput: document.getElementById("searchInput"),
+      statusFilter: document.getElementById("statusFilter"),
+      priorityFilter: document.getElementById("priorityFilter"),
+      addTaskBtn: document.getElementById("addTaskBtn"),
+      addPhaseBtn: document.getElementById("addPhaseBtn"),
+      tabAddPhaseBtn: document.getElementById("tabAddPhaseBtn"),
+      exportBtn: document.getElementById("exportBtn"),
+      importFile: document.getElementById("importFile"),
+      themeToggleBtn: document.getElementById("themeToggleBtn"),
+      resetBtn: document.getElementById("resetBtn"),
+      achievementsPanel: document.getElementById("achievementsPanel"),
+      achievementGrid: document.getElementById("achievementGrid"),
+      introBackdrop: document.getElementById("introBackdrop"),
+      introSlider: document.getElementById("introSlider"),
+      introSliderHandle: document.getElementById("introSliderHandle"),
+      introSliderFill: document.getElementById("introSliderFill"),
+      modalBackdrop: document.getElementById("modalBackdrop"),
+      modalTitle: document.getElementById("modalTitle"),
+      closeModalBtn: document.getElementById("closeModalBtn"),
+      cancelModalBtn: document.getElementById("cancelModalBtn"),
+      saveTaskBtn: document.getElementById("saveTaskBtn"),
+      deleteTaskBtn: document.getElementById("deleteTaskBtn"),
+      taskId: document.getElementById("taskId"),
+      taskTitle: document.getElementById("taskTitle"),
+      taskDescription: document.getElementById("taskDescription"),
+      taskPhase: document.getElementById("taskPhase"),
+      phaseIconInput: document.getElementById("phaseIconInput"),
+      phaseTitleInput: document.getElementById("phaseTitleInput"),
+      applyPhaseNameBtn: document.getElementById("applyPhaseNameBtn"),
+      createPhaseFromModalBtn: document.getElementById("createPhaseFromModalBtn"),
+      taskPriority: document.getElementById("taskPriority"),
+      taskXp: document.getElementById("taskXp"),
+      taskDue: document.getElementById("taskDue"),
+      taskNotes: document.getElementById("taskNotes"),
+      phaseModalBackdrop: document.getElementById("phaseModalBackdrop"),
+      closePhaseModalBtn: document.getElementById("closePhaseModalBtn"),
+      cancelPhaseModalBtn: document.getElementById("cancelPhaseModalBtn"),
+      savePhaseModalBtn: document.getElementById("savePhaseModalBtn"),
+      newPhaseIconInput: document.getElementById("newPhaseIconInput"),
+      newPhaseTitleInput: document.getElementById("newPhaseTitleInput"),
+      brandModalBackdrop: document.getElementById("brandModalBackdrop"),
+      closeBrandModalBtn: document.getElementById("closeBrandModalBtn"),
+      cancelBrandModalBtn: document.getElementById("cancelBrandModalBtn"),
+      saveBrandModalBtn: document.getElementById("saveBrandModalBtn"),
+      brandHandleInput: document.getElementById("brandHandleInput"),
+      brandDomainInput: document.getElementById("brandDomainInput"),
+      focusModalBackdrop: document.getElementById("focusModalBackdrop"),
+      closeFocusModalBtn: document.getElementById("closeFocusModalBtn"),
+      cancelFocusModalBtn: document.getElementById("cancelFocusModalBtn"),
+      saveFocusModalBtn: document.getElementById("saveFocusModalBtn"),
+      focusDurationInput: document.getElementById("focusDurationInput"),
+      emojiPicker: document.getElementById("emojiPicker"),
+      toast: document.getElementById("toast"),
+      confetti: document.getElementById("confetti"),
+      focusWidget: document.getElementById("focusWidget"),
+      focusTimeDisplay: document.getElementById("focusTimeDisplay"),
+      focusPlayBtn: document.getElementById("focusPlayBtn"),
+      focusPauseBtn: document.getElementById("focusPauseBtn"),
+      focusStopBtn: document.getElementById("focusStopBtn")
+    };
+
+    init();
+
+    function init() {
+      applySavedTheme();
+      bindEvents();
+      renderAll();
+      initIntroPopup();
+      showToast("WorkXP carregado. Crie sua primeira fase e transforme tarefas em missões.");
+    }
+
+    function bindEvents() {
+      els.brandEditBtn.addEventListener("click", editBrand);
+      els.addTaskBtn.addEventListener("click", () => openTaskModal());
+      els.addPhaseBtn.addEventListener("click", () => createPhaseQuick());
+      els.tabAddPhaseBtn.addEventListener("click", () => createPhaseQuick());
+      setupIntroSlider();
+      setupIdleWatcher();
+      els.closeModalBtn.addEventListener("click", closeTaskModal);
+      els.cancelModalBtn.addEventListener("click", closeTaskModal);
+      els.saveTaskBtn.addEventListener("click", saveTaskFromModal);
+      els.deleteTaskBtn.addEventListener("click", deleteTaskFromModal);
+
+      els.modalBackdrop.addEventListener("click", (e) => {
+        if (e.target === els.modalBackdrop) closeTaskModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (els.modalBackdrop.classList.contains("open")) closeTaskModal();
+        if (els.phaseModalBackdrop && els.phaseModalBackdrop.classList.contains("open")) closePhaseModal();
+        if (els.brandModalBackdrop && els.brandModalBackdrop.classList.contains("open")) closeBrandModal();
+        if (els.focusModalBackdrop && els.focusModalBackdrop.classList.contains("open")) closeFocusModal();
+      });
+
+      els.searchInput.addEventListener("input", renderTasks);
+      els.statusFilter.addEventListener("change", renderTasks);
+      els.priorityFilter.addEventListener("change", renderTasks);
+
+      els.exportBtn.addEventListener("click", exportState);
+      els.importFile.addEventListener("change", importState);
+      els.themeToggleBtn.addEventListener("click", toggleTheme);
+      els.resetBtn.addEventListener("click", resetState);
+
+      els.taskPhase.addEventListener("change", syncPhaseFields);
+      els.applyPhaseNameBtn.addEventListener("click", applyPhaseNameFromModal);
+      els.createPhaseFromModalBtn.addEventListener("click", createPhaseFromModal);
+
+      setupPhaseModal();
+      setupBrandModal();
+      setupFocusModal();
+      setupEmojiPicker();
+
+      els.focusTimeDisplay.addEventListener("click", defineFocusTime);
+      els.focusPlayBtn.addEventListener("click", startFocusTimer);
+      els.focusPauseBtn.addEventListener("click", pauseFocusTimer);
+      els.focusStopBtn.addEventListener("click", stopFocusTimer);
+    }
+
+
+
+    function setupPhaseModal() {
+      if (!els.phaseModalBackdrop) return;
+
+      els.closePhaseModalBtn.addEventListener("click", closePhaseModal);
+      els.cancelPhaseModalBtn.addEventListener("click", closePhaseModal);
+      els.savePhaseModalBtn.addEventListener("click", savePhaseFromQuickModal);
+
+      els.phaseModalBackdrop.addEventListener("click", (event) => {
+        if (event.target === els.phaseModalBackdrop) closePhaseModal();
+      });
+
+      els.newPhaseTitleInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          savePhaseFromQuickModal();
+        }
+      });
+    }
+
+    function setupEmojiPicker() {
+      if (!els.emojiPicker) return;
+
+      const options = [
+        "📌", "💼", "🏢", "🤝", "📈", "📊", "💰", "🧾",
+        "✅", "🎯", "🚀", "⭐", "🏆", "🎉", "🔥", "💎",
+        "⏱️", "📅", "🔔", "🕒", "🧠", "💡", "🛠️", "🧭",
+        "🗂️", "🔍", "🔒", "⚠️", "🚦", "🟢", "🟡", "🔴"
+      ];
+
+      els.emojiPicker.innerHTML = `
+        <p class="emoji-picker-title">Escolha um emoji</p>
+        <div class="emoji-grid">
+          ${options.map(emoji => `<button class="emoji-option" type="button" data-emoji="${emoji}" aria-label="Usar ${emoji}">${emoji}</button>`).join("")}
+        </div>
+      `;
+
+      let activeInput = null;
+
+      const openPicker = (input) => {
+        activeInput = input;
+        const rect = input.getBoundingClientRect();
+        els.emojiPicker.classList.add("open");
+
+        const pickerWidth = Math.min(340, window.innerWidth - 28);
+        const left = Math.min(Math.max(14, rect.left), window.innerWidth - pickerWidth - 14);
+        const top = Math.min(rect.bottom + 8, window.innerHeight - els.emojiPicker.offsetHeight - 14);
+
+        els.emojiPicker.style.left = `${left}px`;
+        els.emojiPicker.style.top = `${Math.max(14, top)}px`;
+      };
+
+      [els.phaseIconInput, els.newPhaseIconInput].filter(Boolean).forEach(input => {
+        input.classList.add("emoji-input");
+        input.setAttribute("readonly", "readonly");
+        input.addEventListener("click", () => openPicker(input));
+        input.addEventListener("focus", () => openPicker(input));
+        input.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openPicker(input);
+          }
+        });
+      });
+
+      els.emojiPicker.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-emoji]");
+        if (!button || !activeInput) return;
+        activeInput.value = button.dataset.emoji;
+        activeInput.dispatchEvent(new Event("input", { bubbles: true }));
+        closeEmojiPicker();
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!els.emojiPicker.classList.contains("open")) return;
+        const clickedPicker = els.emojiPicker.contains(event.target);
+        const clickedEmojiInput = event.target === els.phaseIconInput || event.target === els.newPhaseIconInput;
+        if (!clickedPicker && !clickedEmojiInput) closeEmojiPicker();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeEmojiPicker();
+      });
+
+      window.addEventListener("resize", closeEmojiPicker);
+      window.addEventListener("scroll", closeEmojiPicker, { passive: true });
+    }
+
+    function closeEmojiPicker() {
+      if (!els.emojiPicker) return;
+      els.emojiPicker.classList.remove("open");
+    }
+
+    function openPhaseModal() {
+      if (!els.phaseModalBackdrop) return;
+      closeEmojiPicker();
+      els.newPhaseIconInput.value = "📌";
+      els.newPhaseTitleInput.value = "";
+      els.phaseModalBackdrop.classList.add("open");
+      els.phaseModalBackdrop.setAttribute("aria-hidden", "false");
+      setTimeout(() => els.newPhaseTitleInput.focus(), 40);
+    }
+
+    function closePhaseModal() {
+      if (!els.phaseModalBackdrop) return;
+      closeEmojiPicker();
+      els.phaseModalBackdrop.classList.remove("open");
+      els.phaseModalBackdrop.setAttribute("aria-hidden", "true");
+    }
+
+    function savePhaseFromQuickModal() {
+      const title = els.newPhaseTitleInput.value.trim();
+      const icon = els.newPhaseIconInput.value.trim() || "📌";
+
+      if (!title) {
+        showToast("Digite o nome da fase.");
+        els.newPhaseTitleInput.focus();
+        return;
+      }
+
+      const phase = {
+        id: slugify(title) + "-" + Date.now().toString(36),
+        title,
+        icon
+      };
+
+      state.phases.push(phase);
+      state.activePhase = phase.id;
+      persist();
+      closePhaseModal();
+      renderAll();
+      showToast("Nova fase criada.");
+    }
+
+    function initIntroPopup() {
+      openIntroPopup("start");
+    }
+
+    function openIntroPopup(reason = "start") {
+      if (!els.introBackdrop) return;
+      els.introBackdrop.classList.toggle("standby", reason === "idle");
+      els.introBackdrop.classList.remove("closed");
+      document.body.classList.add("intro-open");
+      resetIntroSlider();
+      clearTimeout(idleTimer);
+      if (reason === "idle") {
+        showToast("Standby ativado. Deslize para retomar o foco.");
+      }
+    }
+
+    function closeIntroPopup() {
+      if (!els.introBackdrop) return;
+      els.introBackdrop.classList.add("closed");
+      document.body.classList.remove("intro-open");
+      resetIntroSlider();
+      resetIdleTimer();
+    }
+
+    function setupIdleWatcher() {
+      const events = ["pointerdown", "keydown", "wheel", "touchstart", "mousemove", "scroll"];
+      events.forEach(eventName => {
+        window.addEventListener(eventName, () => {
+          if (!els.introBackdrop || els.introBackdrop.classList.contains("closed")) {
+            resetIdleTimer();
+          }
+        }, { passive: true });
+      });
+      resetIdleTimer();
+    }
+
+    function resetIdleTimer() {
+      clearTimeout(idleTimer);
+      if (els.introBackdrop && !els.introBackdrop.classList.contains("closed")) return;
+      idleTimer = setTimeout(() => openIntroPopup("idle"), IDLE_LIMIT_MS);
+    }
+
+    function setupIntroSlider() {
+      if (!els.introSlider || !els.introSliderHandle) return;
+
+      let dragging = false;
+      let startX = 0;
+      let currentX = 0;
+
+      const getMax = () => Math.max(1, els.introSlider.clientWidth - els.introSliderHandle.clientWidth - 12);
+
+      const getCurrentX = () => Number(els.introSliderHandle.dataset.x || 0);
+
+      const moveHandle = (value) => {
+        const max = getMax();
+        currentX = Math.max(0, Math.min(max, value));
+        els.introSliderHandle.dataset.x = String(currentX);
+        const ratio = currentX / max;
+        els.introSliderHandle.style.transform = `translateX(${currentX}px)`;
+        if (els.introSliderFill) els.introSliderFill.style.width = `${Math.round(ratio * 100)}%`;
+        return ratio;
+      };
+
+      const finishDrag = () => {
+        if (!dragging) return;
+        dragging = false;
+        const ratio = currentX / getMax();
+        if (ratio >= 0.82) {
+          moveHandle(getMax());
+          setTimeout(closeIntroPopup, 120);
+        } else {
+          resetIntroSlider();
+        }
+      };
+
+      els.introSliderHandle.addEventListener("pointerdown", (event) => {
+        dragging = true;
+        currentX = getCurrentX();
+        startX = event.clientX - currentX;
+        els.introSliderHandle.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      els.introSliderHandle.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        moveHandle(event.clientX - startX);
+        event.preventDefault();
+      });
+
+      els.introSliderHandle.addEventListener("pointerup", finishDrag);
+      els.introSliderHandle.addEventListener("pointercancel", finishDrag);
+
+      els.introSlider.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          closeIntroPopup();
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          currentX = getCurrentX();
+          const ratio = moveHandle(currentX + getMax() * 0.18);
+          if (ratio >= 0.82) setTimeout(closeIntroPopup, 120);
+        }
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          currentX = getCurrentX();
+          moveHandle(currentX - getMax() * 0.18);
+        }
+      });
+
+      window.addEventListener("resize", resetIntroSlider);
+    }
+
+    function resetIntroSlider() {
+      if (els.introSliderHandle) {
+        els.introSliderHandle.style.transform = "translateX(0)";
+        els.introSliderHandle.dataset.x = "0";
+      }
+      if (els.introSliderFill) els.introSliderFill.style.width = "0%";
+    }
+
+    function applySavedTheme() {
+      const isDark = false;
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem(THEME_KEY, "light");
+      updateThemeButton(isDark);
+    }
+
+    function toggleTheme() {
+      const isDark = !document.body.classList.contains("dark-mode");
+      document.body.classList.toggle("dark-mode", isDark);
+      localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+      updateThemeButton(isDark);
+      showToast(isDark ? "Tema escuro ativado." : "Tema claro ativado.");
+    }
+
+    function updateThemeButton(isDark) {
+      if (!els.themeToggleBtn) return;
+      els.themeToggleBtn.textContent = isDark ? "Tema claro" : "Tema escuro";
+      els.themeToggleBtn.setAttribute("aria-pressed", String(isDark));
+      els.themeToggleBtn.title = isDark ? "Mudar para tema claro" : "Mudar para tema escuro";
+    }
+
+    function renderAll() {
+      renderBrand();
+      hydratePhaseOptions();
+      renderTabs();
+      renderTasks();
+      renderStats();
+      renderAchievements();
+    }
+
+    function renderBrand() {
+      const brand = state.brand || defaultState.brand;
+      const handle = (brand.handle || "@minhamarca").trim();
+      const domain = (brand.domain || "minhamarca.com").trim();
+      els.brandText.textContent = `${handle} · ${domain}`;
+    }
+
+    function editBrand() {
+      openBrandModal();
+    }
+
+    function setupBrandModal() {
+      if (!els.brandModalBackdrop) return;
+
+      els.closeBrandModalBtn.addEventListener("click", closeBrandModal);
+      els.cancelBrandModalBtn.addEventListener("click", closeBrandModal);
+      els.saveBrandModalBtn.addEventListener("click", saveBrandFromModal);
+
+      els.brandModalBackdrop.addEventListener("click", (event) => {
+        if (event.target === els.brandModalBackdrop) closeBrandModal();
+      });
+
+      [els.brandHandleInput, els.brandDomainInput].forEach(input => {
+        input.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            saveBrandFromModal();
+          }
+        });
+      });
+    }
+
+    function openBrandModal() {
+      if (!els.brandModalBackdrop) return;
+      const brand = state.brand || defaultState.brand;
+      els.brandHandleInput.value = brand.handle || "@minhamarca";
+      els.brandDomainInput.value = brand.domain || "minhamarca.com";
+      els.brandModalBackdrop.classList.add("open");
+      els.brandModalBackdrop.setAttribute("aria-hidden", "false");
+      setTimeout(() => els.brandHandleInput.focus(), 40);
+    }
+
+    function closeBrandModal() {
+      if (!els.brandModalBackdrop) return;
+      els.brandModalBackdrop.classList.remove("open");
+      els.brandModalBackdrop.setAttribute("aria-hidden", "true");
+    }
+
+    function saveBrandFromModal() {
+      const handle = els.brandHandleInput.value.trim() || "@minhamarca";
+      const domain = els.brandDomainInput.value.trim() || "minhamarca.com";
+
+      state.brand = { handle, domain };
+      persist();
+      renderBrand();
+      closeBrandModal();
+      showToast("Marca do painel atualizada.");
+    }
+
+    function hydratePhaseOptions() {
+      els.taskPhase.innerHTML = state.phases.length
+        ? state.phases.map(p => `<option value="${p.id}">${escapeHtml(p.icon)} ${escapeHtml(p.title)}</option>`).join("")
+        : `<option value="">Crie uma fase primeiro</option>`;
+    }
+
+    function renderTabs() {
+      const total = state.tasks.length;
+      const done = state.tasks.filter(t => t.done).length;
+
+      const allTab = buttonTab("all", `Todos (${done}/${total})`);
+      const phaseTabs = state.phases.map(phase => {
+        const tasks = state.tasks.filter(t => t.phase === phase.id);
+        const completed = tasks.filter(t => t.done).length;
+        return buttonTab(phase.id, `${phase.icon} ${phase.title} (${completed}/${tasks.length})`);
+      }).join("");
+
+      els.tabs.innerHTML = allTab + phaseTabs;
+
+      els.tabs.querySelectorAll(".tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          state.activePhase = tab.dataset.phase;
+          if (state.activePhase !== "all") {
+            state.collapsed[state.activePhase] = false;
+          }
+          persist();
+          renderTabs();
+          renderTasks();
+        });
+      });
+
+      els.tabs.querySelectorAll("[data-delete-phase]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          deletePhase(btn.dataset.deletePhase);
+        });
+      });
+    }
+
+    function buttonTab(phaseId, label) {
+      const active = state.activePhase === phaseId ? "active" : "";
+      const canDelete = phaseId !== "all" && state.activePhase === phaseId;
+      const deleteButton = canDelete
+        ? `<button class="phase-delete-btn" data-delete-phase="${phaseId}" title="Excluir fase e passos" aria-label="Excluir fase e passos"></button>`
+        : "";
+      return `<span class="tab-wrap"><button class="tab ${active}" data-phase="${phaseId}">${escapeHtml(label)}</button>${deleteButton}</span>`;
+    }
+
+    function renderTasks() {
+      const search = normalize(els.searchInput.value);
+      const status = els.statusFilter.value;
+      const priority = els.priorityFilter.value;
+
+      let filtered = state.tasks.filter(task => {
+        const phase = getPhase(task.phase);
+        const haystack = normalize([
+          task.title,
+          task.description,
+          task.priority,
+          phase ? phase.title : ""
+        ].join(" "));
+
+        const matchesSearch = !search || haystack.includes(search);
+        const matchesStatus = status === "all" || (status === "done" && task.done) || (status === "open" && !task.done);
+        const matchesPriority = priority === "all" || task.priority === priority;
+        const matchesPhase = state.activePhase === "all" || task.phase === state.activePhase;
+
+        return matchesSearch && matchesStatus && matchesPriority && matchesPhase;
+      });
+
+      const html = state.phases.map((phase, index) => {
+        const tasks = filtered.filter(t => t.phase === phase.id);
+        if (!tasks.length && state.activePhase !== phase.id) return "";
+
+        const allPhaseTasks = state.tasks.filter(t => t.phase === phase.id);
+        const completed = allPhaseTasks.filter(t => t.done).length;
+        const collapsed = state.collapsed[phase.id] === true;
+
+        return `
+          <section class="phase-section" data-phase="${phase.id}">
+            <div class="phase-head" data-collapse="${phase.id}">
+              <div class="phase-left">
+                <div class="phase-badge" role="img" aria-label="Ícone da fase">${escapeHtml(phase.icon)}</div>
+                <div>
+                  <div class="phase-title">${index + 1}. ${escapeHtml(phase.title)}</div>
+                  <div class="phase-meta">${completed}/${allPhaseTasks.length} concluídos · ${phaseXp(phase.id)} XP disponível</div>
+                </div>
+              </div>
+              <div class="phase-actions">
+                <div class="phase-toggle">${collapsed ? "abrir ▾" : "fechar ▴"}</div>
+              </div>
+            </div>
+            <div class="task-list ${collapsed ? "hidden" : ""}">
+              ${tasks.length ? tasks.map(renderTask).join("") : renderEmptyPhaseMessage(phase, allPhaseTasks.length)}
+              ${renderPhaseAddStepButton(phase.id)}
+            </div>
+          </section>
+        `;
+      }).join("");
+
+      els.phaseContainer.innerHTML = state.phases.length
+        ? (html || `<div class="empty"><span class="empty-title">Nada encontrado com os filtros atuais.</span>Limpe a busca ou crie um novo passo para continuar.<div class="empty-actions"><button class="btn small" type="button" data-add-task-phase="${state.activePhase !== "all" ? state.activePhase : (state.phases[0] ? state.phases[0].id : "")}">Novo passo</button></div></div>`)
+        : `<div class="empty"><span class="empty-title">Seu painel está em branco.</span>Comece criando uma fase para organizar suas próximas missões.<div class="empty-actions"><button class="btn primary" type="button" data-create-first-phase>CRIE SUA PRIMEIRA FASE</button></div></div>`;
+
+      els.phaseContainer.querySelectorAll("[data-collapse]").forEach(head => {
+        head.addEventListener("click", () => {
+          const phaseId = head.dataset.collapse;
+          state.collapsed[phaseId] = !state.collapsed[phaseId];
+          persist();
+          renderTasks();
+        });
+      });
+
+      els.phaseContainer.querySelectorAll("[data-create-first-phase]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          createPhaseQuick();
+        });
+      });
+
+      els.phaseContainer.querySelectorAll("[data-add-task-phase]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openTaskModal(null, btn.dataset.addTaskPhase);
+        });
+      });
+
+      els.phaseContainer.querySelectorAll("[data-toggle]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          toggleTask(btn.dataset.toggle);
+        });
+      });
+
+      els.phaseContainer.querySelectorAll("[data-edit]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openTaskModal(btn.dataset.edit);
+        });
+      });
+
+      els.phaseContainer.querySelectorAll("[data-delete]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          deleteTask(btn.dataset.delete);
+        });
+      });
+    }
+
+
+
+    function renderEmptyPhaseMessage(phase, totalInPhase) {
+      const text = totalInPhase === 0
+        ? "Esta fase ainda não tem nenhum passo. Crie uma missão simples para começar."
+        : "Nenhum passo encontrado nessa fase com os filtros atuais.";
+
+      return `<div class="empty"><span class="empty-title">${escapeHtml(text)}</span>Use o botão abaixo para criar um passo dentro desta fase.</div>`;
+    }
+
+    function renderPhaseAddStepButton(phaseId) {
+      return `<div class="phase-bottom-actions"><button class="phase-add-step-btn" type="button" data-add-task-phase="${phaseId}">+ Adicionar novo passo</button></div>`;
+    }
+
+    function renderTask(task) {
+      const phase = getPhase(task.phase);
+      const priorityClass = task.priority === "Alta" ? "bad" : task.priority === "Média" ? "warn" : "good";
+      const dueText = task.due ? formatDate(task.due) : "sem prazo";
+
+      return `
+        <article class="task ${task.done ? "completed" : ""}">
+          <button class="check" data-toggle="${task.id}" title="Marcar/desmarcar">✓</button>
+          <div>
+            <h3>${escapeHtml(task.title)}</h3>
+            <p>${escapeHtml(task.description || "")}</p>
+            <div class="tags">
+              <span class="tag">${phase ? escapeHtml(phase.icon + " " + phase.title) : "Sem fase"}</span>
+              <span class="tag ${priorityClass}">${escapeHtml(task.priority)}</span>
+              <span class="tag">⭐ ${Number(task.xp || 0)} XP</span>
+              <span class="tag">📅 ${dueText}</span>
+
+            </div>
+          </div>
+          <div class="task-actions">
+            <button class="icon-btn" data-edit="${task.id}" title="Editar">✎</button>
+            <button class="icon-btn" data-delete="${task.id}" title="Excluir">🗑</button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderStats() {
+      const taskCount = state.tasks.length;
+      const total = taskCount || 1;
+      const done = state.tasks.filter(t => t.done).length;
+      const progress = taskCount ? Math.round((done / total) * 100) : 0;
+      const xp = state.tasks.filter(t => t.done).reduce((sum, t) => sum + Number(t.xp || 0), 0);
+      const levelInfo = getLevelInfo(xp);
+
+      els.progressText.textContent = progress;
+      els.progressBar.style.width = progress + "%";
+      els.progressNote.textContent = taskCount === 0
+        ? "Dê asas à sua imaginação: crie fases, adicione passos e transforme sua ideia em missões visíveis."
+        : done === 0
+          ? "Escolha um primeiro passo simples e comece a ganhar tração."
+          : done === taskCount
+            ? "Projeto completo. Agora revise, aprenda e planeje o próximo ciclo."
+            : `${taskCount - done} passos pendentes.`;
+
+      els.xpText.textContent = xp;
+      els.levelText.textContent = levelInfo.level;
+      els.levelNote.textContent = levelInfo.title;
+      els.levelBar.style.width = levelInfo.levelProgress + "%";
+      els.nextLevelText.textContent = taskCount === 0
+        ? "Crie sua primeira missão, avance no seu ritmo e veja seu projeto subir de nível com você."
+        : levelInfo.next
+          ? `Faltam ${levelInfo.next - xp} XP para o próximo nível.`
+          : "Nível máximo desbloqueado.";
+
+      els.avatarIcon.textContent = taskCount === 0 ? "✨" : levelInfo.icon;
+      els.missionStatus.textContent = taskCount === 0 ? "Sua aventura começa aqui" : levelInfo.title;
+      els.missionText.textContent = taskCount === 0
+        ? "Comece com uma fase, escreva um passo simples e deixe o WorkXP transformar intenção em progresso visível."
+        : levelInfo.message;
+    }
+
+    function renderAchievements() {
+      const hasUserTask = state.tasks.some(t => !t.isExample);
+      if (els.achievementsPanel) {
+        els.achievementsPanel.classList.toggle("hidden", !hasUserTask);
+      }
+      if (!hasUserTask) {
+        els.achievementGrid.innerHTML = "";
+        return;
+      }
+
+      const taskCount = state.tasks.length;
+      const total = taskCount || 1;
+      const done = state.tasks.filter(t => t.done).length;
+      const progress = taskCount ? Math.round((done / total) * 100) : 0;
+      const xp = state.tasks.filter(t => t.done).reduce((sum, t) => sum + Number(t.xp || 0), 0);
+      const completedPhases = state.phases.filter(phase => {
+        const phaseTasks = state.tasks.filter(t => t.phase === phase.id);
+        return phaseTasks.length > 0 && phaseTasks.every(t => t.done);
+      }).length;
+      const highDone = state.tasks.filter(t => t.priority === "Alta" && t.done).length;
+
+      const achievements = [
+        { icon: "🚦", title: "Primeiro passo", desc: "Concluir 1 tarefa.", unlocked: done >= 1 },
+        { icon: "🧱", title: "Base montada", desc: "Ter 3 fases no projeto.", unlocked: state.phases.length >= 3 },
+        { icon: "🗺️", title: "Mapa de ação", desc: "Ter 10 tarefas criadas.", unlocked: taskCount >= 10 },
+        { icon: "🔥", title: "Ritmo inicial", desc: "Concluir 5 tarefas.", unlocked: done >= 5 },
+        { icon: "🎯", title: "Prioridade vencida", desc: "Concluir 3 tarefas altas.", unlocked: highDone >= 3 },
+        { icon: "🏁", title: "Uma fase fechada", desc: "Finalizar qualquer fase.", unlocked: completedPhases >= 1 },
+        { icon: "🌗", title: "Metade do caminho", desc: "Chegar a 50% do plano.", unlocked: progress >= 50 },
+        { icon: "🚀", title: "Quase lá", desc: "Chegar a 75% do plano.", unlocked: progress >= 75 },
+        { icon: "⭐", title: "500 XP", desc: "Alcançar 500 XP.", unlocked: xp >= 500 },
+        { icon: "💎", title: "1.500 XP", desc: "Alcançar 1.500 XP.", unlocked: xp >= 1500 },
+        { icon: "🏆", title: "Projeto completo", desc: "100% do plano.", unlocked: taskCount > 0 && progress >= 100 },
+        { icon: "♾️", title: "Criador livre", desc: "Personalizar seu painel.", unlocked: Boolean(state.brand && (state.brand.handle !== "@minhamarca" || state.brand.domain !== "minhamarca.com")) }
+      ];
+
+      els.achievementGrid.innerHTML = achievements.map(a => `
+        <div class="ach ${a.unlocked ? "unlocked" : ""}">
+          <div class="ach-icon">${a.icon}</div>
+          <div class="ach-title">${escapeHtml(a.title)}</div>
+          <div class="ach-desc">${escapeHtml(a.desc)}</div>
+        </div>
+      `).join("");
+    }
+
+    function openTaskModal(id, presetPhaseId = null) {
+      editingId = id || null;
+
+      if (!editingId && state.phases.length === 0) {
+        showToast("Crie uma fase antes de adicionar o primeiro passo.");
+        return;
+      }
+
+      const fallbackPhase = state.phases[0] ? state.phases[0].id : "";
+      const chosenPhase = presetPhaseId && getPhase(presetPhaseId)
+        ? presetPhaseId
+        : (state.activePhase !== "all" && getPhase(state.activePhase) ? state.activePhase : fallbackPhase);
+
+      const task = editingId
+        ? state.tasks.find(t => t.id === editingId)
+        : {
+            id: "",
+            title: "",
+            description: "",
+            phase: chosenPhase,
+            priority: "Média",
+            xp: 50,
+            due: "",
+            notes: "",
+            done: false
+          };
+
+      if (!task) return;
+
+      hydratePhaseOptions();
+      els.modalTitle.textContent = editingId ? "Editar passo" : "Novo passo";
+      els.taskId.value = task.id;
+      els.taskTitle.value = task.title;
+      els.taskDescription.value = task.description;
+      els.taskPhase.value = task.phase;
+      els.taskPriority.value = task.priority;
+      els.taskXp.value = task.xp;
+      els.taskDue.value = task.due || "";
+      els.taskNotes.value = task.notes || "";
+      els.deleteTaskBtn.style.display = editingId ? "inline-flex" : "none";
+      syncPhaseFields();
+
+      els.modalBackdrop.classList.add("open");
+      els.modalBackdrop.setAttribute("aria-hidden", "false");
+      setTimeout(() => els.taskTitle.focus(), 40);
+    }
+
+    function closeTaskModal() {
+      els.modalBackdrop.classList.remove("open");
+      els.modalBackdrop.setAttribute("aria-hidden", "true");
+      editingId = null;
+    }
+
+    function saveTaskFromModal() {
+      applyPhaseNameFromModal(false);
+
+      const title = els.taskTitle.value.trim();
+      if (!title) {
+        showToast("Dê um título para o passo antes de salvar.");
+        els.taskTitle.focus();
+        return;
+      }
+
+      const data = {
+        title,
+        description: els.taskDescription.value.trim(),
+        phase: els.taskPhase.value,
+        priority: els.taskPriority.value,
+        xp: Math.max(5, Number(els.taskXp.value || 50)),
+        due: els.taskDue.value,
+        notes: els.taskNotes.value.trim()
+      };
+
+      if (editingId) {
+        const index = state.tasks.findIndex(t => t.id === editingId);
+        if (index >= 0) {
+          state.tasks[index] = { ...state.tasks[index], ...data };
+          showToast("Passo atualizado.");
+        }
+      } else {
+        state.tasks.push({ id: uid(), ...data, done: false });
+        showToast("Novo passo criado.");
+      }
+
+      persist();
+      closeTaskModal();
+      renderAll();
+    }
+
+    function deleteTaskFromModal() {
+      if (!editingId) return;
+      deleteTask(editingId);
+      closeTaskModal();
+    }
+
+    function deleteTask(id) {
+      const task = state.tasks.find(t => t.id === id);
+      if (!task) return;
+
+      const ok = confirm(`Excluir o passo "${task.title}"?`);
+      if (!ok) return;
+
+      state.tasks = state.tasks.filter(t => t.id !== id);
+      persist();
+      renderAll();
+      showToast("Passo excluído.");
+    }
+
+    function deletePhase(phaseId) {
+      const phase = getPhase(phaseId);
+      if (!phase) return;
+
+      const tasksInPhase = state.tasks.filter(t => t.phase === phaseId);
+      const message = `Deseja realmente excluir a fase "${phase.title}" e todos os ${tasksInPhase.length} passo(s) dentro dela? Essa ação não pode ser desfeita.`;
+      const ok = confirm(message);
+      if (!ok) return;
+
+      state.phases = state.phases.filter(p => p.id !== phaseId);
+      state.tasks = state.tasks.filter(t => t.phase !== phaseId);
+      delete state.collapsed[phaseId];
+
+      if (state.activePhase === phaseId) {
+        state.activePhase = "all";
+      }
+
+      persist();
+      renderAll();
+      showToast(`Fase "${phase.title}" excluída com ${tasksInPhase.length} passo(s).`);
+    }
+
+    function toggleTask(id) {
+      const task = state.tasks.find(t => t.id === id);
+      if (!task) return;
+
+      const wasDone = task.done;
+      task.done = !task.done;
+
+      persist();
+      renderAll();
+
+      if (!wasDone && task.done) {
+        showToast(`+${task.xp} XP · ${task.title}`);
+        burstConfetti();
+      } else {
+        showToast("Passo voltou para pendente.");
+      }
+    }
+
+    function syncPhaseFields() {
+      const phase = getPhase(els.taskPhase.value);
+      if (!phase) return;
+      els.phaseIconInput.value = phase.icon || "📌";
+      els.phaseTitleInput.value = phase.title || "";
+    }
+
+    function applyPhaseNameFromModal(showMessage = true) {
+      const phase = getPhase(els.taskPhase.value);
+      if (!phase) return;
+
+      const newTitle = els.phaseTitleInput.value.trim();
+      const newIcon = els.phaseIconInput.value.trim() || "📌";
+
+      if (!newTitle) {
+        if (showMessage) showToast("Digite um nome para a fase.");
+        return;
+      }
+
+      phase.title = newTitle;
+      phase.icon = newIcon;
+
+      persist();
+      hydratePhaseOptions();
+      els.taskPhase.value = phase.id;
+      renderTabs();
+      renderTasks();
+      renderAchievements();
+
+      if (showMessage) showToast("Nome da fase atualizado.");
+    }
+
+    function createPhaseQuick() {
+      openPhaseModal();
+      return null;
+    }
+
+    function createPhaseFromModal() {
+      const title = els.phaseTitleInput.value.trim();
+      const icon = els.phaseIconInput.value.trim() || "📌";
+
+      if (!title) {
+        showToast("Digite o nome da nova fase.");
+        els.phaseTitleInput.focus();
+        return;
+      }
+
+      const phase = {
+        id: slugify(title) + "-" + Date.now().toString(36),
+        title,
+        icon
+      };
+
+      state.phases.push(phase);
+      hydratePhaseOptions();
+      els.taskPhase.value = phase.id;
+      persist();
+      renderTabs();
+      renderTasks();
+      showToast("Nova fase criada e selecionada.");
+    }
+
+    function exportState() {
+      const payload = {
+        exportedAt: new Date().toISOString(),
+        app: "WorkXP",
+        version: 3,
+        state
+      };
+
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `meu-projeto-gamificado-${new Date().toISOString().slice(0,10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast("Backup exportado em JSON.");
+    }
+
+    function importState(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          const imported = parsed.state || parsed;
+
+          if (!imported.tasks || !Array.isArray(imported.tasks)) {
+            throw new Error("Arquivo inválido.");
+          }
+
+          state = mergeWithDefaults(imported);
+          persist();
+          renderAll();
+          showToast("Dados importados com sucesso.");
+        } catch (err) {
+          showToast("Não consegui importar este arquivo. Verifique se é um backup JSON válido.");
+        } finally {
+          event.target.value = "";
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function resetState() {
+      const ok = confirm("Resetar tudo para o plano inicial? Isso apaga edições salvas neste navegador.");
+      if (!ok) return;
+      localStorage.removeItem(STORAGE_KEY);
+      state = cloneDefaultState();
+      persist();
+      renderAll();
+      showToast("WorkXP resetado para um painel limpo.");
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return cloneDefaultState();
+        return mergeWithDefaults(JSON.parse(raw));
+      } catch (err) {
+        return cloneDefaultState();
+      }
+    }
+
+    function persist() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function mergeWithDefaults(incoming) {
+      const base = cloneDefaultState();
+      const incomingSafe = incoming && typeof incoming === "object" ? incoming : {};
+      const phases = Array.isArray(incomingSafe.phases)
+        ? incomingSafe.phases.map(p => ({ ...p }))
+        : base.phases;
+
+      return {
+        ...base,
+        ...incomingSafe,
+        brand: {
+          ...base.brand,
+          ...(incomingSafe.brand || {})
+        },
+        phases,
+        tasks: Array.isArray(incomingSafe.tasks) ? incomingSafe.tasks : base.tasks,
+        activePhase: incomingSafe.activePhase && (incomingSafe.activePhase === "all" || phases.some(p => p.id === incomingSafe.activePhase)) ? incomingSafe.activePhase : "all",
+        collapsed: incomingSafe.collapsed || {}
+      };
+    }
+
+    function cloneDefaultState() {
+      return JSON.parse(JSON.stringify(defaultState));
+    }
+
+    function getPhase(id) {
+      return state.phases.find(p => p.id === id);
+    }
+
+    function uid() {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      return "id-" + Math.random().toString(36).slice(2) + Date.now().toString(36);
+    }
+
+    function normalize(str) {
+      return String(str || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function slugify(str) {
+      return normalize(str)
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 40) || "fase";
+    }
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function formatDate(value) {
+      const [y, m, d] = value.split("-");
+      if (!y || !m || !d) return value;
+      return `${d}/${m}/${y}`;
+    }
+
+    function phaseXp(phaseId) {
+      return state.tasks
+        .filter(t => t.phase === phaseId)
+        .reduce((sum, t) => sum + Number(t.xp || 0), 0);
+    }
+
+    function getLevelInfo(xp) {
+      const levels = [
+        { level: 1, min: 0, next: 400, title: "Ideia em movimento", icon: "✨", message: "Todo projeto começa pequeno. Escolha uma tarefa clara e coloque energia no primeiro avanço." },
+        { level: 2, min: 400, next: 1000, title: "Planejador focado", icon: "🧭", message: "Você já saiu da intenção. Agora organize prioridades e transforme progresso em rotina." },
+        { level: 3, min: 1000, next: 1800, title: "Executor consistente", icon: "⚙️", message: "O projeto ganhou tração. Continue fechando ciclos curtos e removendo obstáculos." },
+        { level: 4, min: 1800, next: 2800, title: "Projeto ganhando forma", icon: "🚀", message: "As peças estão se conectando. Foque nas tarefas que liberam novos avanços." },
+        { level: 5, min: 2800, next: 4200, title: "Operação em ritmo forte", icon: "🔥", message: "Você está executando com consistência. Agora refine, simplifique e mantenha cadência." },
+        { level: 6, min: 4200, next: 6000, title: "Líder do projeto", icon: "🏆", message: "O plano está maduro. Use o que aprendeu para entregar melhor e preparar o próximo ciclo." },
+        { level: 7, min: 6000, next: null, title: "Mestre da execução", icon: "💎", message: "Você desbloqueou o nível máximo. Continue evoluindo o projeto com novos desafios." }
+      ];
+
+      let current = levels[0];
+      for (const level of levels) {
+        if (xp >= level.min) current = level;
+      }
+
+      let levelProgress = 100;
+      if (current.next) {
+        levelProgress = Math.round(((xp - current.min) / (current.next - current.min)) * 100);
+        levelProgress = Math.max(0, Math.min(100, levelProgress));
+      }
+
+      return { ...current, levelProgress };
+    }
+
+    function setupFocusModal() {
+      if (!els.focusModalBackdrop) return;
+
+      els.closeFocusModalBtn.addEventListener("click", closeFocusModal);
+      els.cancelFocusModalBtn.addEventListener("click", closeFocusModal);
+      els.saveFocusModalBtn.addEventListener("click", saveFocusFromModal);
+
+      els.focusModalBackdrop.addEventListener("click", (event) => {
+        if (event.target === els.focusModalBackdrop) closeFocusModal();
+      });
+
+      els.focusDurationInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          saveFocusFromModal();
+        }
+      });
+
+      els.focusModalBackdrop.querySelectorAll("[data-focus-preset]").forEach(button => {
+        button.addEventListener("click", () => {
+          els.focusDurationInput.value = button.dataset.focusPreset;
+          saveFocusFromModal();
+        });
+      });
+    }
+
+    function defineFocusTime() {
+      openFocusModal();
+    }
+
+    function openFocusModal() {
+      if (!els.focusModalBackdrop) return;
+      const current = focusTotalSeconds ? formatFocusTime(focusTotalSeconds) : "25";
+      els.focusDurationInput.value = current;
+      els.focusModalBackdrop.classList.add("open");
+      els.focusModalBackdrop.setAttribute("aria-hidden", "false");
+      setTimeout(() => els.focusDurationInput.focus(), 40);
+    }
+
+    function closeFocusModal() {
+      if (!els.focusModalBackdrop) return;
+      els.focusModalBackdrop.classList.remove("open");
+      els.focusModalBackdrop.setAttribute("aria-hidden", "true");
+    }
+
+    function saveFocusFromModal() {
+      const seconds = parseFocusInput(els.focusDurationInput.value);
+      if (!seconds || seconds <= 0) {
+        showToast("Defina um tempo de foco válido.");
+        els.focusDurationInput.focus();
+        return;
+      }
+
+      clearInterval(focusInterval);
+      focusInterval = null;
+      focusTotalSeconds = seconds;
+      focusRemainingSeconds = seconds;
+      updateFocusDisplay();
+      closeFocusModal();
+      showToast("Tempo de foco definido.");
+    }
+
+    function parseFocusInput(value) {
+      const raw = String(value || "").trim().replace(",", ".");
+      if (!raw) return 0;
+
+      if (raw.includes(":")) {
+        const parts = raw.split(":").map(part => Number(part.trim()));
+        if (parts.length !== 2 || parts.some(n => Number.isNaN(n))) return 0;
+        const [min, sec] = parts;
+        return Math.max(0, Math.round((min * 60) + sec));
+      }
+
+      const minutes = Number(raw);
+      if (Number.isNaN(minutes)) return 0;
+      return Math.max(0, Math.round(minutes * 60));
+    }
+
+    function startFocusTimer() {
+      if (!focusTotalSeconds && !focusRemainingSeconds) {
+        showToast("Defina o tempo de foco.");
+        return;
+      }
+
+      if (!focusRemainingSeconds) {
+        focusRemainingSeconds = focusTotalSeconds;
+      }
+
+      clearInterval(focusInterval);
+      updateFocusDisplay();
+
+      focusInterval = setInterval(() => {
+        focusRemainingSeconds -= 1;
+        updateFocusDisplay();
+
+        if (focusRemainingSeconds <= 0) {
+          clearInterval(focusInterval);
+          focusInterval = null;
+          focusRemainingSeconds = 0;
+          updateFocusDisplay();
+          showToast("Tempo de foco concluído.");
+          playFocusBell();
+          setTimeout(resetFocusTimer, 5200);
+        }
+      }, 1000);
+    }
+
+    function pauseFocusTimer() {
+      if (!focusTotalSeconds && !focusRemainingSeconds) {
+        showToast("Defina o tempo de foco.");
+        return;
+      }
+
+      if (focusInterval) {
+        clearInterval(focusInterval);
+        focusInterval = null;
+        showToast("Tempo de foco pausado.");
+      } else {
+        showToast("O cronômetro já está pausado.");
+      }
+    }
+
+    function stopFocusTimer() {
+      clearInterval(focusInterval);
+      focusInterval = null;
+      resetFocusTimer();
+    }
+
+    function resetFocusTimer() {
+      focusTotalSeconds = 0;
+      focusRemainingSeconds = 0;
+      els.focusTimeDisplay.textContent = "definir tempo de foco";
+      els.focusTimeDisplay.classList.remove("has-time", "urgent");
+      els.focusWidget.classList.remove("urgent");
+      els.focusWidget.style.backgroundColor = "";
+      els.focusWidget.style.borderColor = "";
+    }
+
+    function updateFocusDisplay() {
+      const remaining = Math.max(0, focusRemainingSeconds);
+      els.focusTimeDisplay.textContent = formatFocusTime(remaining);
+      els.focusTimeDisplay.classList.add("has-time");
+
+      const urgent = remaining <= 60 && remaining > 0;
+      els.focusTimeDisplay.classList.toggle("urgent", urgent);
+      els.focusWidget.classList.toggle("urgent", urgent);
+
+      if (urgent) {
+        const ratio = (60 - remaining) / 60;
+        const alpha = 0.06 + (ratio * 0.22);
+        els.focusWidget.style.backgroundColor = `rgba(229, 57, 53, ${alpha})`;
+        els.focusWidget.style.borderColor = `rgba(229, 57, 53, ${0.25 + ratio * 0.35})`;
+      } else {
+        els.focusWidget.style.backgroundColor = "";
+        els.focusWidget.style.borderColor = "";
+      }
+    }
+
+    function formatFocusTime(totalSeconds) {
+      const min = Math.floor(totalSeconds / 60);
+      const sec = totalSeconds % 60;
+      return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+    }
+
+    function playFocusBell() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+
+        focusAudioCtx = focusAudioCtx || new AudioContext();
+
+        const ring = () => {
+          const now = focusAudioCtx.currentTime;
+          const osc = focusAudioCtx.createOscillator();
+          const gain = focusAudioCtx.createGain();
+
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(880, now);
+          osc.frequency.exponentialRampToValueAtTime(1320, now + 0.08);
+          osc.frequency.exponentialRampToValueAtTime(660, now + 0.42);
+
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.exponentialRampToValueAtTime(0.18, now + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.6);
+
+          osc.connect(gain);
+          gain.connect(focusAudioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.65);
+        };
+
+        ring();
+        const bellInterval = setInterval(ring, 750);
+        setTimeout(() => clearInterval(bellInterval), 5000);
+      } catch (err) {
+        showToast("Tempo finalizado.");
+      }
+    }
+
+    function showToast(message) {
+      const item = document.createElement("div");
+      item.className = "toast-item";
+      item.textContent = message;
+      els.toast.appendChild(item);
+
+      setTimeout(() => {
+        item.style.opacity = "0";
+        item.style.transform = "translateY(10px)";
+        item.style.transition = "all .2s ease";
+      }, 2800);
+
+      setTimeout(() => item.remove(), 3200);
+    }
+
+    function burstConfetti() {
+      const colors = ["#ff4d4d", "#ffd166", "#26d07c", "#6ea8fe", "#b07cff", "#ffffff"];
+
+      for (let i = 0; i < 34; i++) {
+        const piece = document.createElement("span");
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = Math.random() * 180 + "ms";
+        piece.style.transform = `rotate(${Math.random() * 180}deg)`;
+        els.confetti.appendChild(piece);
+        setTimeout(() => piece.remove(), 1200);
+      }
+    }
+  </script>
+</body>
+</html>
