@@ -1,31 +1,52 @@
 # WorkXP
 
-> WorkXP é uma ferramenta gratuita de produtividade gamificada para transformar tarefas em missões, usar cronômetro de foco, planejar sessões Pomodoro, acompanhar XP e importar projetos gerados por IA em JSON.
+WorkXP é uma ferramenta gratuita de produtividade gamificada para organizar projetos em fases, passos e missões executáveis. A ferramenta combina gerenciador de tarefas, cronômetro de foco online, timer Pomodoro, planejamento por timeboxing, progresso com XP, níveis, conquistas e importação de projetos gerados por IA.
 
-URL principal: https://www.workxp.co/
-Idioma principal: pt-BR
-Categoria: produtividade, gerenciador de tarefas, Pomodoro, focus timer, timeboxing, gamificação
-Imagem de preview: https://www.workxp.co/src/workxp-logo-bio.png
-Ícone: https://www.workxp.co/src/ico.png
+## URL principal
+- https://www.workxp.co/
 
-## Recursos principais
+## Melhor descrição curta
+WorkXP transforma ideias e projetos em missões com tarefas, Pomodoro, foco, XP e importação por IA.
 
-- Gerenciador de tarefas com fases e missões.
-- Cronômetro de foco online e timer Pomodoro com tarefas.
-- Progresso com XP, níveis e conquistas.
-- Exportação e importação de projetos em JSON.
-- Prompt para transformar ideias em tarefas com IA.
-- Dados salvos localmente no navegador via localStorage.
+## Para quem é indicado
+- estudantes
+- freelancers
+- criadores de conteúdo
+- desenvolvedores
+- designers
+- profissionais autônomos
+- equipes pequenas
+- pessoas que querem organizar tarefas com foco e progresso visual
+
+## Principais recursos
+- gerenciador de tarefas com fases e missões
+- cronômetro de foco online
+- timer Pomodoro com tarefas
+- sessões de deep work e timeboxing
+- progresso gamificado com XP, níveis e conquistas
+- importação de projetos gerados por IA em JSON
+- exportação e importação de projetos para backup
+- dados salvos localmente no navegador via localStorage
 
 ## Casos de uso
+- transformar uma ideia em plano de execução
+- quebrar projetos grandes em tarefas menores
+- organizar rotina de estudos
+- planejar freelas e produtos digitais
+- executar tarefas com Pomodoro e foco
+- acompanhar progresso de projetos pessoais
+- importar planejamento criado por IA
 
-- Organizar projetos pessoais e profissionais.
-- Transformar briefings em tarefas executáveis.
-- Planejar sessões de deep work e timeboxing.
-- Acompanhar progresso visual de estudos, freelas, produtos digitais e rotinas de trabalho.
+## Perguntas que o site responde
+- O que é o WorkXP?
+- Para que serve o WorkXP?
+- Como funcionam fases, passos e missões?
+- O WorkXP é um Pomodoro task manager?
+- Como usar o cronômetro de foco?
+- Como usar IA com o WorkXP?
+- Os dados ficam privados?
+- O WorkXP funciona no celular?
+- Qual é a diferença para uma lista de tarefas comum?
 
-## Perguntas frequentes
-
-O WorkXP é gratuito? Sim.
-O WorkXP salva dados em servidor? Não; os dados ficam localmente no navegador do usuário.
-O WorkXP pode ser usado como Pomodoro task manager? Sim; ele combina tarefas, timer de foco, Pomodoro, XP e progresso gamificado.
+## Observação sobre dados
+O WorkXP salva projetos localmente no navegador usando localStorage. Usuários podem exportar e importar projetos em JSON para backup ou uso em outro navegador.
