@@ -7,6 +7,7 @@
   <meta name="description" content="Organize tarefas em missões, use timer de foco, acompanhe XP e importe projetos gerados por IA. WorkXP é uma ferramenta gratuita de produtividade gamificada." />
   <link rel="canonical" href="https://www.workxp.co/" />
   <link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/" />
+  <link rel="alternate" hreflang="en" href="https://www.workxp.co/?lang=en" />
   <link rel="alternate" hreflang="x-default" href="https://www.workxp.co/" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -27,6 +28,7 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:site_name" content="WorkXP" />
   <meta property="og:title" content="WorkXP: gerenciador de tarefas gamificado com Pomodoro e foco" />
   <meta property="og:description" content="Organize tarefas em missões, use timer de foco, acompanhe XP e importe projetos gerados por IA. WorkXP é uma ferramenta gratuita de produtividade gamificada." />
@@ -52,7 +54,7 @@
 
     gtag('config', 'G-53Q9K9Q301');
   </script>
-  <script type="application/ld+json">
+  <script id="structuredData" type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -2521,7 +2523,7 @@
     }
 
     body.focus-stage-active .focus-widget::before {
-      content: "FOCO ATIVO";
+      content: attr(data-focus-active-label);
       position: relative;
       z-index: 1;
       flex: 1 1 100%;
@@ -4546,6 +4548,62 @@
       display: none;
     }
 
+  
+
+    /* Idiomas PT/EN e ações superiores mais compactas */
+    .hero-actions {
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .hero-actions .btn,
+    .hero-actions label.btn {
+      min-height: 38px;
+      padding: 9px 11px;
+      border-radius: 12px;
+      font-size: 12.5px;
+    }
+
+    .hero-actions .bookmark-btn {
+      width: 39px;
+      min-width: 39px;
+      padding-inline: 0;
+    }
+
+    .language-toggle-btn {
+      min-width: 72px;
+      gap: 4px !important;
+      padding-inline: 10px !important;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .language-code {
+      opacity: .48;
+      transition: opacity .16s ease, color .16s ease, transform .16s ease;
+    }
+
+    .language-code.active {
+      opacity: 1;
+      color: var(--accent2);
+      transform: translateY(-1px);
+    }
+
+    .language-divider {
+      color: var(--muted-2);
+      font-weight: 800;
+    }
+
+    body.dark-mode .language-code.active {
+      color: #fff;
+    }
+
+    @media (max-width: 760px) {
+      .language-toggle-btn {
+        width: auto !important;
+        min-width: 68px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4589,7 +4647,7 @@
           <a class="brand-logo" id="brandLogo" href="/" aria-label="WorkXP - página inicial">
             <img src="/src/logotipo-workxp-task-time.png" alt="WorkXP" />
           </a>
-          <div class="focus-widget" id="focusWidget">
+          <div class="focus-widget" id="focusWidget" data-focus-active-label="FOCO ATIVO">
             <button class="focus-time" id="focusTimeDisplay" type="button">Definir tempo de foco</button>
             <button class="focus-btn play" id="focusPlayBtn" type="button" title="Iniciar foco" aria-label="Iniciar foco">
               <svg class="focus-icon focus-icon-play" viewBox="0 0 24 24" aria-hidden="true">
@@ -4612,6 +4670,11 @@
 
         <div class="hero-actions">
           <button class="btn primary" id="addPhaseBtn">+ Nova fase</button>
+          <button class="btn language-toggle-btn" id="languageToggleBtn" type="button" aria-label="Mudar idioma para inglês" title="Idioma atual: Português (Brasil)" data-language="pt-BR">
+            <span class="language-code active" data-language-code="pt-BR">PT</span>
+            <span class="language-divider" aria-hidden="true">/</span>
+            <span class="language-code" data-language-code="en">EN</span>
+          </button>
           <button class="btn" id="addTaskBtn">+ Novo passo</button>
           <button class="btn" id="exportBtn">Exportar</button>
           <label class="btn" for="importFile">Importar</label>
@@ -4839,7 +4902,7 @@
     </details>
 
     <p class="footer-note">
-      Dados salvos localmente neste navegador via localStorage. Para levar para outro computador ou trocar de projeto, use Exportar/Importar. Sempre que voltar aqui, seu projeto vai estar salvo localmente no seu computador.
+      Dados salvos localmente neste navegador via localStorage. Para levar para outro computador ou trocar de projeto, use Exportar/Importar.
     </p>
   </div>
 
@@ -4924,9 +4987,9 @@
           <div class="field">
             <label>Prioridade</label>
             <select class="select" id="taskPriority">
-              <option>Alta</option>
-              <option>Média</option>
-              <option>Baixa</option>
+              <option value="Alta">Alta</option>
+              <option value="Média">Média</option>
+              <option value="Baixa">Baixa</option>
             </select>
           </div>
 
@@ -5072,41 +5135,469 @@
     const STORAGE_KEY = "workxp.state.v3";
     const THEME_KEY = "workxp.theme";
     const FEATURES_KEY = "workxp.features.hidden";
-    const IMPORT_PROMPT = `!!!!!!!!!!!!! INSIRA AQUI A SUA IDEIA ! !!!!!!!!!!!!! 
-
-Você é uma IA especialista em organizar projetos complexos e vai analisar a ideia que será apresentada a cima e vai organizar tudo da melhor forma possível e vai transformar em tarefas para serem importadas para dentro de um gerenciador de tarefas. Vc vai resumir todos os passos que o nosso usuário precisar tomar atenção para resolver e criar esse arquivo, assim ele vai se guiar dentro de nosso site e resolver todas tarefas de forma gameficada e produtiva.
-
-Pegue o projeto, ideia, objetivo ou briefing a cima
-
-e transforme em um arquivo JSON para ser importado em uma ferramenta de tarefa online. Resuma o projeto em fases claras e tarefas práticas, com prioridade, XP e descrições curtas. Retorne apenas JSON válido, sem markdown e sem explicações.
-
-é estritamente importante essa resposta ser entregue apenas como um arquivo para download com titulo projeto_para_ser_importado_no_workxp
-
-
-Sempre entregue o arquivo para download e não exiba o código em caixa de visualização, se o usuário não enviar a ideia de primeira pede pra ele enviar no segundo chat. Sua resposta sempre vai ser um curta e direta apenas com o link para download do projeto exceto quanto usuário não enviar a ideia. 
-
-Use este formato exato:
-{
-  "app": "WorkXP",
-  "version": 3,
-  "state": {
-    "phases": [
-      { "id": "planejamento", "title": "Planejamento", "icon": "📌" }
-    ],
-    "tasks": [
-      { "id": "tarefa-1", "title": "Definir objetivo principal", "description": "Escrever o resultado esperado do projeto.", "phase": "planejamento", "priority": "Alta", "xp": 50, "due": "", "notes": "", "done": false }
-    ],
-    "activePhase": "all",
-    "collapsed": {}
-  }
-}
-
-Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em minúsculas sem acento; priority deve ser Alta, Média ou Baixa; xp deve ser múltiplo de 5 entre 25 e 150; due pode ficar vazio; done sempre false; cada tarefa precisa estar ligada ao id de uma fase existente. Agora transforme este projeto em JSON para ser importado na ferramenta online.`;
+    const LANGUAGE_KEY = "workxp.language";
+    const SITE_URL = "https://www.workxp.co/";
+    const IMPORT_PROMPTS = {
+      "pt-BR": "!!!!!!!!!!!!! INSIRA AQUI A SUA IDEIA ! !!!!!!!!!!!!! \n\nVocê é uma IA especialista em organizar projetos complexos e vai analisar a ideia que será apresentada a cima e vai organizar tudo da melhor forma possível e vai transformar em tarefas para serem importadas para dentro de um gerenciador de tarefas. Vc vai resumir todos os passos que o nosso usuário precisar tomar atenção para resolver e criar esse arquivo, assim ele vai se guiar dentro de nosso site e resolver todas tarefas de forma gameficada e produtiva.\n\nPegue o projeto, ideia, objetivo ou briefing a cima\n\ne transforme em um arquivo JSON para ser importado em uma ferramenta de tarefa online. Resuma o projeto em fases claras e tarefas práticas, com prioridade, XP e descrições curtas. Retorne apenas JSON válido, sem markdown e sem explicações.\n\né estritamente importante essa resposta ser entregue apenas como um arquivo para download com titulo projeto_para_ser_importado_no_workxp\n\n\nSempre entregue o arquivo para download e não exiba o código em caixa de visualização, se o usuário não enviar a ideia de primeira pede pra ele enviar no segundo chat. Sua resposta sempre vai ser um curta e direta apenas com o link para download do projeto exceto quanto usuário não enviar a ideia. \n\nUse este formato exato:\n{\n  \"app\": \"WorkXP\",\n  \"version\": 3,\n  \"state\": {\n    \"phases\": [\n      { \"id\": \"planejamento\", \"title\": \"Planejamento\", \"icon\": \"📌\" }\n    ],\n    \"tasks\": [\n      { \"id\": \"tarefa-1\", \"title\": \"Definir objetivo principal\", \"description\": \"Escrever o resultado esperado do projeto.\", \"phase\": \"planejamento\", \"priority\": \"Alta\", \"xp\": 50, \"due\": \"\", \"notes\": \"\", \"done\": false }\n    ],\n    \"activePhase\": \"all\",\n    \"collapsed\": {}\n  }\n}\n\nRegras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em minúsculas sem acento; priority deve ser Alta, Média ou Baixa; xp deve ser múltiplo de 5 entre 25 e 150; due pode ficar vazio; done sempre false; cada tarefa precisa estar ligada ao id de uma fase existente. Agora transforme este projeto em JSON para ser importado na ferramenta online.",
+      "en": "!!!!!!!!!!!!! INSERT YOUR IDEA HERE !!!!!!!!!!!!!\n\nYou are an AI expert in structuring complex projects. Analyze the idea above, organize it in the clearest possible way, and turn it into tasks that can be imported into a task manager. Summarize every important action the user needs to take so they can follow the plan inside WorkXP and complete the work in a gamified, productive way.\n\nTake the project, idea, goal, or brief above and transform it into a JSON file that can be imported into an online task-management tool. Summarize the project into clear phases and practical tasks with priorities, XP, and short descriptions. Return valid JSON only, with no Markdown and no explanations.\n\nIt is strictly important that the response be delivered only as a downloadable file named project_to_import_into_workxp.\n\nAlways provide the file as a download and do not display the code in a preview block. If the user did not include the idea in the first message, ask them to send it in the next message. Otherwise, your response must be brief and direct and contain only the project download link.\n\nUse this exact format:\n{\n  \"app\": \"WorkXP\",\n  \"version\": 3,\n  \"state\": {\n    \"phases\": [\n      { \"id\": \"planning\", \"title\": \"Planning\", \"icon\": \"📌\" }\n    ],\n    \"tasks\": [\n      { \"id\": \"task-1\", \"title\": \"Define the primary objective\", \"description\": \"Write the expected project outcome.\", \"phase\": \"planning\", \"priority\": \"High\", \"xp\": 50, \"due\": \"\", \"notes\": \"\", \"done\": false }\n    ],\n    \"activePhase\": \"all\",\n    \"collapsed\": {}\n  }\n}\n\nRules: create 3 to 7 phases; create 3 to 8 tasks per phase; use simple lowercase ASCII ids without accents; write phase titles, task titles, and descriptions in English unless the user's idea is clearly in another language; priority must be exactly High, Medium, or Low; xp must be a multiple of 5 between 25 and 150; due may be empty; done must always be false; every task must reference the id of an existing phase. Now transform this project into a JSON file that can be imported into the online tool."
+};
+    const STATIC_TRANSLATIONS_EN = {
+      "Dicas de uso": "Usage tips",
+      "Fechar": "Close",
+      "Transforme suas ideias em tarefas objetivas com IA": "Turn your ideas into clear tasks with AI",
+      "Cole sua ideia na IA e importe tudo pronto no WorkXP.": "Paste your idea into an AI tool and import the ready-made plan into WorkXP.",
+      "Prompt para gerar todas as tarefas": "Prompt to generate all tasks",
+      "Copiar": "Copy",
+      "Entre em modo foco total com timer de foco": "Enter full focus mode with the focus timer",
+      "Ative o cronômetro e resolva tarefas com clareza.": "Start the timer and complete tasks with clarity.",
+      "Próximo passo claro": "Clear next step",
+      "Progressos gameficados com visual e XP": "Gamified progress with visuals and XP",
+      "Conclua missões, desbloqueie progresso e mantenha o ritmo.": "Complete missions, unlock progress, and keep your momentum.",
+      "Progresso visível": "Visible progress",
+      "WorkXP: ferramenta de produtividade gamificada com cronômetro de foco, Pomodoro task manager, gestão de tarefas online e importação de projetos por IA.": "WorkXP: a gamified productivity tool with a focus timer, Pomodoro task manager, online task management, and AI project imports.",
+      "Definir tempo de foco": "Set focus time",
+      "+ Nova fase": "+ New phase",
+      "+ Novo passo": "+ New step",
+      "Exportar": "Export",
+      "Importar": "Import",
+      "Tema": "Theme",
+      "Resetar": "Reset",
+      "Adicionar aos favoritos": "Add to bookmarks",
+      "Progresso geral": "Overall progress",
+      "Comece por uma tarefa simples.": "Start with a simple task.",
+      "XP acumulado": "XP earned",
+      "Cada passo concluído aumenta sua pontuação.": "Every completed step increases your score.",
+      "Nível atual": "Current level",
+      "Explorador iniciante": "Beginner explorer",
+      "Todas": "All",
+      "Pendentes": "Pending",
+      "Concluídas": "Completed",
+      "Prioridade": "Priority",
+      "Alta": "High",
+      "Média": "Medium",
+      "Baixa": "Low",
+      "Seu progresso": "Your progress",
+      "Você sobe de nível conforme avança.": "You level up as you move forward.",
+      "Status do projeto": "Project status",
+      "Comece com uma fase, escreva um passo simples e deixe o WorkXP transformar intenção em progresso visível.": "Start with a phase, write one simple step, and let WorkXP turn intention into visible progress.",
+      "Crie sua primeira missão, avance no seu ritmo e veja seu projeto subir de nível com você.": "Create your first mission, move at your own pace, and watch your project level up with you.",
+      "Conquistas": "Achievements",
+      "Desbloqueie marcos importantes do seu projeto.": "Unlock important milestones in your project.",
+      "Sobre o WorkXP": "About WorkXP",
+      "guia rápido": "quick guide",
+      "Produtividade gamificada": "Gamified productivity",
+      "WorkXP: Pomodoro, tarefas, XP e IA no mesmo fluxo": "WorkXP: Pomodoro, tasks, XP, and AI in one workflow",
+      "O WorkXP é um gerenciador de tarefas gamificado para transformar projetos em fases, passos e missões executáveis. A ferramenta combina cronômetro de foco online, timer Pomodoro, planejamento por timeboxing, progresso com XP e importação de projetos gerados por IA.": "WorkXP is a gamified task manager that turns projects into phases, steps, and actionable missions. It combines an online focus timer, Pomodoro timer, timeboxing, XP-based progress, and AI-generated project imports.",
+      "Use o WorkXP para organizar ideias, quebrar objetivos grandes em tarefas menores, acompanhar o avanço visual do projeto e manter tudo salvo localmente no navegador.": "Use WorkXP to organize ideas, break large goals into smaller tasks, track visual project progress, and keep everything saved locally in your browser.",
+      "Timer de foco": "Focus timer",
+      "Missões com XP": "Missions with XP",
+      "Importação por IA": "AI import",
+      "Gerenciador de tarefas com missões": "Task manager with missions",
+      "Crie fases, organize passos por prioridade e transforme cada tarefa em uma missão clara para avançar no projeto sem perder o contexto.": "Create phases, organize steps by priority, and turn each task into a clear mission so you can move the project forward without losing context.",
+      "Timer de foco e Pomodoro": "Focus timer and Pomodoro",
+      "Defina sessões de foco de 15, 25, 45 ou 60 minutos, use o cronômetro de foco e aplique Pomodoro, deep work ou timeboxing no seu fluxo.": "Set 15, 25, 45, or 60-minute focus sessions and apply Pomodoro, deep work, or timeboxing to your workflow.",
+      "Produtividade gamificada com XP": "Gamified productivity with XP",
+      "Ganhe XP ao concluir tarefas, acompanhe níveis, desbloqueie conquistas e visualize o progresso geral do projeto em tempo real.": "Earn XP by completing tasks, track levels, unlock achievements, and see overall project progress in real time.",
+      "Como usar no dia a dia": "How to use it every day",
+      "Crie fases": "Create phases",
+      "para separar as etapas do projeto.": "to separate the stages of your project.",
+      "Adicione passos curtos": "Add short steps",
+      "com prioridade definida.": "with a defined priority.",
+      "Defina um tempo de foco": "Set a focus duration",
+      "e execute uma missão por vez.": "and complete one mission at a time.",
+      "Conclua tarefas": "Complete tasks",
+      "para ganhar XP e acompanhar seu avanço.": "to earn XP and track your progress.",
+      "Exporte em JSON": "Export as JSON",
+      "para backup ou uso em outro navegador.": "for backup or use in another browser.",
+      "Por que usar IA com o WorkXP?": "Why use AI with WorkXP?",
+      "O WorkXP inclui um prompt para transformar uma ideia, briefing ou objetivo em um arquivo JSON com fases e tarefas. Isso permite sair de uma ideia solta para um plano importável, organizado e pronto para execução.": "WorkXP includes a prompt that turns an idea, brief, or goal into a JSON file with phases and tasks. This takes you from a loose idea to an organized, importable plan that is ready to execute.",
+      "Esse fluxo é ideal para projetos pessoais, estudos, freelas, produtos digitais, conteúdo, lançamentos, rotinas de deep work e listas de tarefas com foco em execução.": "This workflow is ideal for personal projects, studying, freelance work, digital products, content, launches, deep-work routines, and execution-focused task lists.",
+      "Perguntas frequentes sobre o WorkXP": "Frequently asked questions about WorkXP",
+      "Respostas rápidas para entender como o WorkXP une tarefas, Pomodoro, foco, XP e IA em um fluxo simples de execução.": "Quick answers explaining how WorkXP combines tasks, Pomodoro, focus, XP, and AI in a simple execution workflow.",
+      "O que é o WorkXP?": "What is WorkXP?",
+      "WorkXP é uma ferramenta gratuita de produtividade gamificada que transforma projetos em fases, passos e missões. Ela combina gerenciador de tarefas, cronômetro de foco, timer Pomodoro, XP, níveis, conquistas e importação de projetos gerados por IA.": "WorkXP is a free gamified productivity tool that turns projects into phases, steps, and missions. It combines task management, a focus timer, a Pomodoro timer, XP, levels, achievements, and AI-generated project imports.",
+      "Para que serve o WorkXP?": "What is WorkXP for?",
+      "O WorkXP serve para tirar uma ideia do papel e transformar objetivos grandes em tarefas menores, organizadas por fase e prioridade. Ele ajuda a planejar, executar uma missão por vez, acompanhar progresso visual e manter o projeto salvo no navegador.": "WorkXP helps you turn an idea into action by breaking large goals into smaller tasks organized by phase and priority. It supports planning, one-mission-at-a-time execution, visual progress tracking, and local browser storage.",
+      "Como funcionam fases, passos e missões?": "How do phases, steps, and missions work?",
+      "As fases representam etapas do projeto, os passos são as tarefas práticas dentro de cada etapa e as missões são a forma gamificada de executar cada tarefa com clareza, prioridade, XP e progresso visível.": "Phases represent project stages, steps are the practical tasks within each stage, and missions are the gamified way to execute each task with clarity, priority, XP, and visible progress.",
+      "O WorkXP é um Pomodoro task manager?": "Is WorkXP a Pomodoro task manager?",
+      "Sim. O WorkXP funciona como um Pomodoro task manager porque une timer Pomodoro, lista de tarefas, sessões de foco, deep work, timeboxing e acompanhamento de progresso em uma única ferramenta.": "Yes. WorkXP works as a Pomodoro task manager by combining a Pomodoro timer, task list, focus sessions, deep work, timeboxing, and progress tracking in one tool.",
+      "Como usar o cronômetro de foco do WorkXP?": "How do I use WorkXP's focus timer?",
+      "Defina uma sessão de foco de 15, 25, 45 ou 60 minutos, escolha uma missão prioritária e execute apenas aquela tarefa até o timer terminar. Esse fluxo reduz troca de contexto e melhora a execução diária.": "Set a 15, 25, 45, or 60-minute focus session, choose a priority mission, and work only on that task until the timer ends. This reduces context switching and improves daily execution.",
+      "Como usar IA com o WorkXP?": "How do I use AI with WorkXP?",
+      "Copie o prompt do WorkXP, cole sua ideia, briefing ou objetivo em uma ferramenta de IA, gere um JSON com fases e tarefas e importe esse arquivo no WorkXP para começar com um plano estruturado.": "Copy the WorkXP prompt, paste your idea, brief, or goal into an AI tool, generate a JSON file with phases and tasks, and import it into WorkXP to start with a structured plan.",
+      "O WorkXP salva minhas tarefas?": "Does WorkXP save my tasks?",
+      "Sim. O WorkXP salva fases, tarefas, progresso, tema e configurações localmente no navegador usando localStorage. Você também pode exportar e importar seus projetos em JSON para backup ou para continuar em outro navegador.": "Yes. WorkXP saves phases, tasks, progress, theme, and settings locally in the browser using localStorage. You can also export and import projects as JSON for backup or to continue in another browser.",
+      "Meus dados ficam privados?": "Is my data private?",
+      "Os dados do projeto ficam salvos localmente no navegador do usuário. Isso significa que tarefas e progresso não precisam ser enviados para um servidor do WorkXP para a ferramenta funcionar.": "Project data is stored locally in the user's browser. Tasks and progress do not need to be sent to a WorkXP server for the tool to work.",
+      "O WorkXP funciona no celular?": "Does WorkXP work on mobile?",
+      "Sim. O WorkXP pode ser acessado pelo celular para visualizar, organizar e editar tarefas. A experiência mais confortável continua sendo em telas maiores, especialmente para planejar projetos com muitas fases.": "Yes. You can use WorkXP on a phone to view, organize, and edit tasks. Larger screens remain more comfortable, especially when planning projects with many phases.",
+      "O WorkXP é gratuito?": "Is WorkXP free?",
+      "Sim. O WorkXP é uma ferramenta gratuita de produtividade online para organizar tarefas, planejar sessões de foco, acompanhar XP e manter projetos salvos no navegador.": "Yes. WorkXP is a free online productivity tool for organizing tasks, planning focus sessions, tracking XP, and keeping projects saved in the browser.",
+      "Para quem o WorkXP é indicado?": "Who is WorkXP for?",
+      "O WorkXP é indicado para estudantes, freelancers, criadores de conteúdo, desenvolvedores, designers, profissionais autônomos, equipes pequenas e qualquer pessoa que queira transformar projetos em passos práticos com foco e progresso visual.": "WorkXP is designed for students, freelancers, content creators, developers, designers, independent professionals, small teams, and anyone who wants to turn projects into practical steps with focus and visible progress.",
+      "Qual é a diferença entre o WorkXP e uma lista de tarefas comum?": "How is WorkXP different from a regular task list?",
+      "Uma lista comum só registra tarefas. O WorkXP organiza tarefas por fases, adiciona prioridade e XP, usa cronômetro de foco, mostra progresso em tempo real e permite importar um plano criado por IA.": "A regular list only records tasks. WorkXP organizes tasks into phases, adds priority and XP, uses a focus timer, shows real-time progress, and lets you import an AI-generated plan.",
+      "Dados salvos localmente neste navegador via localStorage. Para levar para outro computador ou trocar de projeto, use Exportar/Importar.": "Data is saved locally in this browser via localStorage. To move it to another computer or switch projects, use Export/Import.",
+      "WorkXP · ferramenta de produtividade gamificada": "WorkXP · gamified productivity tool",
+      "modo descanso": "rest mode",
+      "Organize seu dia, entre em foco e acompanhe seu progresso com clareza.": "Organize your day, enter focus mode, and track your progress clearly.",
+      "Crie fases, adicione tarefas, use o cronômetro de foco, ganhe XP e mantenha seu projeto salvo no navegador. Quando quiser continuar em outro lugar, exporte ou importe seus dados em poucos cliques.": "Create phases, add tasks, use the focus timer, earn XP, and keep your project saved in the browser. When you need to continue elsewhere, export or import your data in a few clicks.",
+      "Gestão de tarefas online": "Online task management",
+      "deslize para entrar no WorkXP": "slide to enter WorkXP",
+      "continuar": "continue",
+      "Se você ficar alguns minutos sem mexer, esta tela volta para proteger seu foco.": "After a few minutes of inactivity, this screen returns to protect your focus.",
+      "Novo passo": "New step",
+      "Edite qualquer detalhe da missão, inclusive a fase onde ela aparece.": "Edit any mission detail, including the phase where it appears.",
+      "Título": "Title",
+      "Descrição": "Description",
+      "Fase do passo": "Step phase",
+      "Emoji": "Emoji",
+      "Nome da fase selecionada": "Selected phase name",
+      "Salvar fase": "Save phase",
+      "+ Criar nova fase com esse nome": "+ Create a new phase with this name",
+      "XP": "XP",
+      "Prazo": "Due date",
+      "Excluir": "Delete",
+      "Cancelar": "Cancel",
+      "Salvar passo": "Save step",
+      "Nova fase": "New phase",
+      "Crie uma fase antes de adicionar passos ao projeto.": "Create a phase before adding steps to the project.",
+      "Nome da fase": "Phase name",
+      "Criar fase": "Create phase",
+      "Editar marca do painel": "Edit dashboard brand",
+      "Atualize o nome e o complemento que aparecem no topo do WorkXP.": "Update the name and supporting text shown at the top of WorkXP.",
+      "@ ou nome da marca": "@ handle or brand name",
+      "Site, link ou complemento": "Website, link, or supporting text",
+      "Salvar marca": "Save brand",
+      "Informe o tempo em minutos ou no formato mm:ss.": "Enter the duration in minutes or in mm:ss format.",
+      "Tempo de foco": "Focus time",
+      "Definir foco": "Set focus",
+      "Escolha o tema": "Choose a theme",
+      "Escolha um tema": "Choose a theme",
+      "Melhor em tela grande": "Best on a larger screen",
+      "O WorkXP funciona melhor na web em telas maiores, principalmente para planejar fases e revisar muitos passos. Mesmo assim, você pode acessar pelo celular, fechar este aviso e usar a ferramenta normalmente.": "WorkXP works best on larger screens, especially for planning phases and reviewing many steps. You can still use it on your phone: close this notice and continue normally.",
+      "Fechar e continuar": "Close and continue",
+      "Dicas de uso do WorkXP": "WorkXP usage tips",
+      "Fechar dicas de uso": "Close usage tips",
+      "WorkXP - página inicial": "WorkXP - home page",
+      "Iniciar foco": "Start focus",
+      "Pausar foco": "Pause focus",
+      "Parar foco": "Stop focus",
+      "Adicionar esta página aos favoritos": "Add this page to bookmarks",
+      "Adicionar nova fase": "Add new phase",
+      "Buscar por tarefa, fase ou prioridade...": "Search by task, phase, or priority...",
+      "Abrir informações sobre o WorkXP": "Open information about WorkXP",
+      "Recursos principais do WorkXP": "Main WorkXP features",
+      "Principais recursos do WorkXP": "Key WorkXP features",
+      "Tela inicial do WorkXP": "WorkXP welcome screen",
+      "Recursos e palavras-chave do WorkXP": "WorkXP features and keywords",
+      "Deslize para continuar": "Slide to continue",
+      "Ex: organizar próxima sessão de foco": "Example: organize the next focus session",
+      "Explique o que precisa ser feito...": "Explain what needs to be done...",
+      "Ex: Identidade visual e KV": "Example: Visual identity and key visual",
+      "Ex: Planejamento, Execução, Revisão...": "Example: Planning, Execution, Review...",
+      "@minhamarca": "@mybrand",
+      "minhamarca.com": "mybrand.com",
+      "25 ou 25:00": "25 or 25:00",
+      "Sugestões de tempo de foco": "Focus-time suggestions",
+      "Fechar seleção de tema": "Close theme selection",
+      "Escolha um emoji": "Choose an emoji",
+      "Fechar aviso mobile": "Close mobile notice",
+      "Editar": "Edit",
+      "FOCO ATIVO": "FOCUS ACTIVE"
+};
+    const DYNAMIC_TRANSLATIONS_EN = {
+      "WorkXP carregado. Crie sua primeira fase e transforme sua ideia em tarefas objetivas com IA.": "WorkXP loaded. Create your first phase and turn your idea into clear tasks with AI.",
+      "Usar {emoji}": "Use {emoji}",
+      "Digite o nome da fase.": "Enter a phase name.",
+      "Nova fase criada.": "New phase created.",
+      "Standby ativado. Deslize para retomar o foco.": "Standby mode activated. Slide to resume your focus.",
+      "Tema {theme} aplicado.": "{theme} theme applied.",
+      "Tema atual: {theme}": "Current theme: {theme}",
+      "Escolher tema. Tema atual: {theme}": "Choose a theme. Current theme: {theme}",
+      "Prompt copiado. Cole em qualquer IA, gere o JSON e importe no WorkXP.": "Prompt copied. Paste it into any AI tool, generate the JSON file, and import it into WorkXP.",
+      "Não consegui copiar automaticamente. Selecione e copie o prompt manualmente.": "Automatic copying was not available. Select and copy the prompt manually.",
+      "A janela de favoritos foi aberta. Salve o WorkXP na barra de favoritos para voltar depois.": "The bookmarks window was opened. Save WorkXP to your bookmarks bar so you can return later.",
+      "Salve o WorkXP na barra de favoritos para voltar depois. Use {shortcut} no navegador.": "Save WorkXP to your bookmarks bar so you can return later. Use {shortcut} in your browser.",
+      "Marca do painel atualizada.": "Dashboard brand updated.",
+      "Crie uma fase primeiro": "Create a phase first",
+      "Todos ({done}/{total})": "All ({done}/{total})",
+      "Excluir fase e passos": "Delete phase and steps",
+      "Ícone da fase": "Phase icon",
+      "{completed}/{total} concluídos · {xp} XP disponível": "{completed}/{total} completed · {xp} XP available",
+      "abrir ▾": "open ▾",
+      "fechar ▴": "close ▴",
+      "Nada encontrado com os filtros atuais.": "Nothing matched the current filters.",
+      "Limpe a busca ou crie um novo passo para continuar.": "Clear the search or create a new step to continue.",
+      "Seu painel está em branco.": "Your dashboard is empty.",
+      "Crie uma fase para organizar tarefas e missões, ou copie o prompt das dicas do topo e peça para sua IA montar tudo.": "Create a phase to organize tasks and missions, or copy the prompt from the tips above and ask your AI tool to build the plan.",
+      "CRIE SUA PRIMEIRA FASE": "CREATE YOUR FIRST PHASE",
+      "Esta fase ainda não tem nenhum passo. Crie uma missão simples para começar.": "This phase has no steps yet. Create one simple mission to get started.",
+      "Nenhum passo encontrado nessa fase com os filtros atuais.": "No steps in this phase matched the current filters.",
+      "Use o botão abaixo para criar um passo dentro desta fase.": "Use the button below to create a step in this phase.",
+      "+ Adicionar novo passo": "+ Add new step",
+      "Marcar/desmarcar": "Mark/unmark",
+      "Sem fase": "No phase",
+      "sem prazo": "no due date",
+      "Dê asas à sua imaginação: crie fases, adicione passos e transforme sua ideias em tarefas objetivas com IA.": "Give your ideas room to grow: create phases, add steps, and turn your ideas into clear tasks with AI.",
+      "Escolha um primeiro passo simples e comece a ganhar tração.": "Choose one simple first step and start building momentum.",
+      "Projeto completo. Agora revise, aprenda e planeje o próximo ciclo.": "Project complete. Review what you learned and plan the next cycle.",
+      "{count} passo pendente.": "{count} pending step.",
+      "{count} passos pendentes.": "{count} pending steps.",
+      "Faltam {xp} XP para o próximo nível.": "{xp} XP to the next level.",
+      "Nível máximo desbloqueado.": "Maximum level unlocked.",
+      "Status do projeto no nível {level}": "Project status at level {level}",
+      "Primeiro passo": "First step",
+      "Concluir 1 tarefa.": "Complete 1 task.",
+      "Base montada": "Foundation built",
+      "Ter 3 fases no projeto.": "Have 3 phases in the project.",
+      "Mapa de ação": "Action map",
+      "Ter 10 tarefas criadas.": "Create 10 tasks.",
+      "Ritmo inicial": "Early momentum",
+      "Concluir 5 tarefas.": "Complete 5 tasks.",
+      "Prioridade vencida": "Priority conquered",
+      "Concluir 3 tarefas altas.": "Complete 3 high-priority tasks.",
+      "Uma fase fechada": "One phase complete",
+      "Finalizar qualquer fase.": "Complete any phase.",
+      "Metade do caminho": "Halfway there",
+      "Chegar a 50% do plano.": "Reach 50% of the plan.",
+      "Quase lá": "Almost there",
+      "Chegar a 75% do plano.": "Reach 75% of the plan.",
+      "Alcançar 500 XP.": "Reach 500 XP.",
+      "Alcançar 1.500 XP.": "Reach 1,500 XP.",
+      "Projeto completo": "Project complete",
+      "100% do plano.": "Complete 100% of the plan.",
+      "Visual escolhido": "Theme selected",
+      "Trocar o tema do painel.": "Change the dashboard theme.",
+      "Crie uma fase antes de adicionar o primeiro passo.": "Create a phase before adding the first step.",
+      "Editar passo": "Edit step",
+      "Dê um título para o passo antes de salvar.": "Add a title before saving the step.",
+      "Passo atualizado.": "Step updated.",
+      "Novo passo criado.": "New step created.",
+      "Excluir o passo \"{title}\"?": "Delete the step \"{title}\"?",
+      "Passo excluído.": "Step deleted.",
+      "Deseja realmente excluir a fase \"{title}\" e todos os {count} passo(s) dentro dela? Essa ação não pode ser desfeita.": "Delete the phase \"{title}\" and all {count} step(s) inside it? This action cannot be undone.",
+      "Fase \"{title}\" excluída com {count} passo(s).": "Phase \"{title}\" deleted with {count} step(s).",
+      "Passo voltou para pendente.": "Step returned to pending.",
+      "Digite um nome para a fase.": "Enter a name for the phase.",
+      "Nome da fase atualizado.": "Phase name updated.",
+      "Digite o nome da nova fase.": "Enter the new phase name.",
+      "Nova fase criada e selecionada.": "New phase created and selected.",
+      "Backup exportado em JSON.": "JSON backup exported.",
+      "Dados importados com sucesso.": "Data imported successfully.",
+      "Não consegui importar este arquivo. Verifique se é um backup JSON válido.": "This file could not be imported. Check that it is a valid JSON backup.",
+      "Resetar tudo para o plano inicial? Isso apaga edições salvas neste navegador.": "Reset everything to the initial plan? This deletes edits saved in this browser.",
+      "WorkXP resetado para um painel limpo.": "WorkXP was reset to a clean dashboard.",
+      "Ideia em movimento": "Idea in motion",
+      "Todo projeto começa pequeno. Escolha uma tarefa clara e coloque energia no primeiro avanço.": "Every project starts small. Choose one clear task and put your energy into the first move.",
+      "Planejador focado": "Focused planner",
+      "Você já saiu da intenção. Agora organize prioridades e transforme progresso em rotina.": "You have moved beyond intention. Organize priorities and turn progress into a routine.",
+      "Executor consistente": "Consistent executor",
+      "O projeto ganhou tração. Continue fechando ciclos curtos e removendo obstáculos.": "The project has momentum. Keep closing short cycles and removing obstacles.",
+      "Projeto ganhando forma": "Project taking shape",
+      "As peças estão se conectando. Foque nas tarefas que liberam novos avanços.": "The pieces are connecting. Focus on the tasks that unlock the next advances.",
+      "Operação em ritmo forte": "Strong execution rhythm",
+      "Você está executando com consistência. Agora refine, simplifique e mantenha cadência.": "You are executing consistently. Refine, simplify, and maintain your cadence.",
+      "Líder do projeto": "Project leader",
+      "O plano está maduro. Use o que aprendeu para entregar melhor e preparar o próximo ciclo.": "The plan is mature. Use what you learned to deliver better and prepare the next cycle.",
+      "Mestre da execução": "Master of execution",
+      "Você desbloqueou o nível máximo. Continue evoluindo o projeto com novos desafios.": "You unlocked the maximum level. Keep evolving the project with new challenges.",
+      "Defina um tempo de foco válido.": "Set a valid focus duration.",
+      "Tempo de foco iniciado.": "Focus timer started.",
+      "Defina o tempo de foco.": "Set the focus duration.",
+      "Tempo de foco pausado.": "Focus timer paused.",
+      "O cronômetro já está pausado.": "The timer is already paused.",
+      "Fase de foco concluída. Missão vencida!": "Focus session complete. Mission accomplished!",
+      "Tempo finalizado.": "Time is up.",
+      "Fechar notificação": "Close notification",
+      "Mudar idioma para inglês": "Switch language to English",
+      "Mudar idioma para português do Brasil": "Switch language to Brazilian Portuguese",
+      "Idioma atual: Português (Brasil)": "Current language: Brazilian Portuguese",
+      "Idioma atual: Inglês": "Current language: English"
+};
+    const SEO_CONTENT = {
+      "pt-BR": {
+            "title": "WorkXP: gerenciador de tarefas gamificado com Pomodoro e foco",
+            "description": "Organize tarefas em missões, use timer de foco, acompanhe XP e importe projetos gerados por IA. WorkXP é uma ferramenta gratuita de produtividade gamificada.",
+            "locale": "pt_BR",
+            "inLanguage": "pt-BR",
+            "classification": "Produtividade, gerenciador de tarefas, cronômetro de foco, Pomodoro, gamificação",
+            "subject": "Ferramenta gratuita de produtividade gamificada, gestão de tarefas online, cronômetro de foco, Pomodoro task manager e importação de tarefas por IA",
+            "imageAlt": "WorkXP - ferramenta de produtividade gamificada com tarefas, foco, Pomodoro e XP",
+            "logoCaption": "Ícone do WorkXP",
+            "alternateNames": [
+                  "WorkXP Focus Timer",
+                  "WorkXP Pomodoro Task Manager",
+                  "Gerenciador de tarefas gamificado WorkXP"
+            ],
+            "applicationSubCategory": "Gestão de tarefas, Pomodoro, cronômetro de foco, timeboxing e gamificação",
+            "browserRequirements": "Requer JavaScript e localStorage habilitados.",
+            "featureList": [
+                  "Gerenciador de tarefas com fases e missões",
+                  "Cronômetro de foco online e timer Pomodoro com tarefas",
+                  "Planejamento de sessões de foco, timeboxing e deep work",
+                  "XP, níveis, conquistas e progresso gamificado",
+                  "Importação de projetos gerados por IA em JSON",
+                  "Exportação e importação de projetos em JSON",
+                  "Dados salvos localmente no navegador com localStorage",
+                  "Organizador de tarefas diário, semanal e mensal"
+            ],
+            "keywords": [
+                  "ferramenta de produtividade gamificada",
+                  "gerenciador de tarefas com cronômetro de foco",
+                  "Pomodoro task manager",
+                  "timer Pomodoro com tarefas",
+                  "cronômetro de foco online",
+                  "timeboxing app",
+                  "deep work planner",
+                  "transformar ideias em tarefas com IA"
+            ],
+            "faq": [
+                  [
+                        "O que é o WorkXP?",
+                        "WorkXP é uma ferramenta gratuita de produtividade gamificada que transforma projetos em fases, passos e missões. Ela combina gerenciador de tarefas, cronômetro de foco, timer Pomodoro, XP, níveis, conquistas e importação de projetos gerados por IA."
+                  ],
+                  [
+                        "Para que serve o WorkXP?",
+                        "O WorkXP serve para tirar uma ideia do papel e transformar objetivos grandes em tarefas menores, organizadas por fase e prioridade. Ele ajuda a planejar, executar uma missão por vez, acompanhar progresso visual e manter o projeto salvo no navegador."
+                  ],
+                  [
+                        "Como funcionam fases, passos e missões?",
+                        "As fases representam etapas do projeto, os passos são as tarefas práticas dentro de cada etapa e as missões são a forma gamificada de executar cada tarefa com clareza, prioridade, XP e progresso visível."
+                  ],
+                  [
+                        "O WorkXP é um Pomodoro task manager?",
+                        "Sim. O WorkXP funciona como um Pomodoro task manager porque une timer Pomodoro, lista de tarefas, sessões de foco, deep work, timeboxing e acompanhamento de progresso em uma única ferramenta."
+                  ],
+                  [
+                        "Como usar o cronômetro de foco do WorkXP?",
+                        "Defina uma sessão de foco de 15, 25, 45 ou 60 minutos, escolha uma missão prioritária e execute apenas aquela tarefa até o timer terminar. Esse fluxo reduz troca de contexto e melhora a execução diária."
+                  ],
+                  [
+                        "Como usar IA com o WorkXP?",
+                        "Copie o prompt do WorkXP, cole sua ideia, briefing ou objetivo em uma ferramenta de IA, gere um JSON com fases e tarefas e importe esse arquivo no WorkXP para começar com um plano estruturado."
+                  ],
+                  [
+                        "O WorkXP salva minhas tarefas?",
+                        "Sim. O WorkXP salva fases, tarefas, progresso, tema e configurações localmente no navegador usando localStorage. Você também pode exportar e importar seus projetos em JSON para backup ou para continuar em outro navegador."
+                  ],
+                  [
+                        "Meus dados ficam privados?",
+                        "Os dados do projeto ficam salvos localmente no navegador do usuário. Isso significa que tarefas e progresso não precisam ser enviados para um servidor do WorkXP para a ferramenta funcionar."
+                  ],
+                  [
+                        "O WorkXP funciona no celular?",
+                        "Sim. O WorkXP pode ser acessado pelo celular para visualizar, organizar e editar tarefas. A experiência mais confortável continua sendo em telas maiores, especialmente para planejar projetos com muitas fases."
+                  ],
+                  [
+                        "O WorkXP é gratuito?",
+                        "Sim. O WorkXP é uma ferramenta gratuita de produtividade online para organizar tarefas, planejar sessões de foco, acompanhar XP e manter projetos salvos no navegador."
+                  ],
+                  [
+                        "Para quem o WorkXP é indicado?",
+                        "O WorkXP é indicado para estudantes, freelancers, criadores de conteúdo, desenvolvedores, designers, profissionais autônomos, equipes pequenas e qualquer pessoa que queira transformar projetos em passos práticos com foco e progresso visual."
+                  ],
+                  [
+                        "Qual é a diferença entre o WorkXP e uma lista de tarefas comum?",
+                        "Uma lista comum só registra tarefas. O WorkXP organiza tarefas por fases, adiciona prioridade e XP, usa cronômetro de foco, mostra progresso em tempo real e permite importar um plano criado por IA."
+                  ]
+            ]
+      },
+      "en": {
+            "title": "WorkXP: gamified task manager with Pomodoro and focus timer",
+            "description": "Organize tasks into missions, use a focus timer, track XP, and import AI-generated projects. WorkXP is a free gamified productivity tool.",
+            "locale": "en_US",
+            "inLanguage": "en",
+            "classification": "Productivity, task manager, focus timer, Pomodoro, gamification",
+            "subject": "Free gamified productivity tool, online task management, focus timer, Pomodoro task manager, and AI task imports",
+            "imageAlt": "WorkXP - gamified productivity with tasks, focus, Pomodoro, and XP",
+            "logoCaption": "WorkXP icon",
+            "alternateNames": [
+                  "WorkXP Focus Timer",
+                  "WorkXP Pomodoro Task Manager",
+                  "WorkXP Gamified Task Manager"
+            ],
+            "applicationSubCategory": "Task management, Pomodoro, focus timer, timeboxing, and gamification",
+            "browserRequirements": "Requires JavaScript and localStorage to be enabled.",
+            "featureList": [
+                  "Task manager with phases and missions",
+                  "Online focus timer and Pomodoro timer with tasks",
+                  "Focus-session planning, timeboxing, and deep work",
+                  "XP, levels, achievements, and gamified progress",
+                  "AI-generated project imports in JSON",
+                  "Project export and import in JSON",
+                  "Local browser storage with localStorage",
+                  "Daily, weekly, and monthly task organization"
+            ],
+            "keywords": [
+                  "gamified productivity tool",
+                  "task manager with focus timer",
+                  "Pomodoro task manager",
+                  "Pomodoro timer with tasks",
+                  "online focus timer",
+                  "timeboxing app",
+                  "deep work planner",
+                  "turn ideas into tasks with AI"
+            ],
+            "faq": [
+                  [
+                        "What is WorkXP?",
+                        "WorkXP is a free gamified productivity tool that turns projects into phases, steps, and missions. It combines task management, a focus timer, a Pomodoro timer, XP, levels, achievements, and AI-generated project imports."
+                  ],
+                  [
+                        "What is WorkXP for?",
+                        "WorkXP helps you turn an idea into action by breaking large goals into smaller tasks organized by phase and priority. It supports planning, one-mission-at-a-time execution, visual progress tracking, and local browser storage."
+                  ],
+                  [
+                        "How do phases, steps, and missions work?",
+                        "Phases represent project stages, steps are the practical tasks within each stage, and missions are the gamified way to execute each task with clarity, priority, XP, and visible progress."
+                  ],
+                  [
+                        "Is WorkXP a Pomodoro task manager?",
+                        "Yes. WorkXP works as a Pomodoro task manager by combining a Pomodoro timer, task list, focus sessions, deep work, timeboxing, and progress tracking in one tool."
+                  ],
+                  [
+                        "How do I use WorkXP's focus timer?",
+                        "Set a 15, 25, 45, or 60-minute focus session, choose a priority mission, and work only on that task until the timer ends. This reduces context switching and improves daily execution."
+                  ],
+                  [
+                        "How do I use AI with WorkXP?",
+                        "Copy the WorkXP prompt, paste your idea, brief, or goal into an AI tool, generate a JSON file with phases and tasks, and import it into WorkXP to start with a structured plan."
+                  ],
+                  [
+                        "Does WorkXP save my tasks?",
+                        "Yes. WorkXP saves phases, tasks, progress, theme, and settings locally in the browser using localStorage. You can also export and import projects as JSON for backup or to continue in another browser."
+                  ],
+                  [
+                        "Is my data private?",
+                        "Project data is stored locally in the user's browser. Tasks and progress do not need to be sent to a WorkXP server for the tool to work."
+                  ],
+                  [
+                        "Does WorkXP work on mobile?",
+                        "Yes. You can use WorkXP on a phone to view, organize, and edit tasks. Larger screens remain more comfortable, especially when planning projects with many phases."
+                  ],
+                  [
+                        "Is WorkXP free?",
+                        "Yes. WorkXP is a free online productivity tool for organizing tasks, planning focus sessions, tracking XP, and keeping projects saved in the browser."
+                  ],
+                  [
+                        "Who is WorkXP for?",
+                        "WorkXP is designed for students, freelancers, content creators, developers, designers, independent professionals, small teams, and anyone who wants to turn projects into practical steps with focus and visible progress."
+                  ],
+                  [
+                        "How is WorkXP different from a regular task list?",
+                        "A regular list only records tasks. WorkXP organizes tasks into phases, adds priority and XP, uses a focus timer, shows real-time progress, and lets you import an AI-generated plan."
+                  ]
+            ]
+      }
+};
     const themePalettes = [
       {
         id: "clean",
         name: "Clean XP",
         style: "Clean claro",
+        styleEn: "Clean light",
         mode: "light",
         swatches: ["#ffffff", "#f97316"],
         vars: {
@@ -5117,6 +5608,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         id: "blueprint",
         name: "Blueprint",
         style: "Azul tech",
+        styleEn: "Tech blue",
         mode: "light",
         swatches: ["#eff6ff", "#2563eb"],
         vars: {
@@ -5127,6 +5619,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         id: "mint",
         name: "Mint Flow",
         style: "Verde SaaS",
+        styleEn: "SaaS green",
         mode: "light",
         swatches: ["#ecfdf5", "#14b8a6"],
         vars: {
@@ -5137,6 +5630,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         id: "violet",
         name: "Violet SaaS",
         style: "Gradiente moderno",
+        styleEn: "Modern gradient",
         mode: "light",
         swatches: ["#f5f3ff", "#8b5cf6"],
         vars: {
@@ -5147,6 +5641,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         id: "coral",
         name: "Coral Launch",
         style: "Quente vivo",
+        styleEn: "Vibrant warm",
         mode: "light",
         swatches: ["#fff7ed", "#fb7185"],
         vars: {
@@ -5157,6 +5652,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         id: "amber",
         name: "Amber Bold",
         style: "Chapado premium",
+        styleEn: "Premium solid",
         mode: "light",
         swatches: ["#fffbeb", "#f59e0b"],
         vars: {
@@ -5167,6 +5663,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         id: "graphite",
         name: "Graphite",
         style: "Dark minimal",
+        styleEn: "Minimal dark",
         mode: "dark",
         swatches: ["#020617", "#64748b"],
         vars: {
@@ -5177,6 +5674,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         id: "ocean",
         name: "Ocean Neon",
         style: "Dark azul",
+        styleEn: "Dark blue",
         mode: "dark",
         swatches: ["#020617", "#06b6d4"],
         vars: {
@@ -5187,6 +5685,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         id: "cyber",
         name: "Cyber Glow",
         style: "Super moderno",
+        styleEn: "Ultra modern",
         mode: "dark",
         swatches: ["#111827", "#a855f7"],
         vars: {
@@ -5197,6 +5696,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         id: "matrix",
         name: "Neo Matrix",
         style: "Neon verde",
+        styleEn: "Neon green",
         mode: "dark",
         swatches: ["#020617", "#22c55e"],
         vars: {
@@ -5215,6 +5715,9 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
     };
 
     let state = loadState();
+    let currentLanguage = "pt-BR";
+    const staticTextBindings = [];
+    const staticAttributeBindings = [];
     let editingId = null;
     let focusTotalSeconds = 0;
     let focusRemainingSeconds = 0;
@@ -5248,6 +5751,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       priorityFilter: document.getElementById("priorityFilter"),
       addTaskBtn: document.getElementById("addTaskBtn"),
       addPhaseBtn: document.getElementById("addPhaseBtn"),
+      languageToggleBtn: document.getElementById("languageToggleBtn"),
       tabAddPhaseBtn: document.getElementById("tabAddPhaseBtn"),
       exportBtn: document.getElementById("exportBtn"),
       importFile: document.getElementById("importFile"),
@@ -5312,16 +5816,325 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       mobileNoticeAction: document.getElementById("mobileNoticeAction")
     };
 
+
+
+    function normalizeLanguage(language) {
+      return /^pt(?:-|$)/i.test(String(language || "")) ? "pt-BR" : "en";
+    }
+
+    function detectInitialLanguage() {
+      try {
+        const queryLanguage = new URL(window.location.href).searchParams.get("lang");
+        if (queryLanguage) return normalizeLanguage(queryLanguage);
+      } catch (error) {}
+
+      try {
+        const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
+        if (savedLanguage) return normalizeLanguage(savedLanguage);
+      } catch (error) {}
+
+      const browserLanguage = (navigator.languages && navigator.languages[0]) || navigator.language || "";
+      return normalizeLanguage(browserLanguage);
+    }
+
+    function interpolate(template, values = {}) {
+      return String(template).replace(/\{([a-zA-Z0-9_]+)\}/g, (match, key) => {
+        return Object.prototype.hasOwnProperty.call(values, key) ? String(values[key]) : match;
+      });
+    }
+
+    function tr(portugueseText, values = {}) {
+      const template = currentLanguage === "en"
+        ? (DYNAMIC_TRANSLATIONS_EN[portugueseText] || STATIC_TRANSLATIONS_EN[portugueseText] || portugueseText)
+        : portugueseText;
+      return interpolate(template, values);
+    }
+
+    function isStaticTranslationExcluded(element) {
+      if (!element || typeof element.closest !== "function") return true;
+      return Boolean(element.closest([
+        "#tabs",
+        "#phaseContainer",
+        "#achievementGrid",
+        "#themeGrid",
+        "#toast",
+        "#confetti",
+        "#progressNote",
+        "#levelNote",
+        "#missionText",
+        "#nextLevelText",
+        "#avatarIcon",
+        "#focusTimeDisplay",
+        "#modalTitle",
+        "#themeToggleBtn",
+        "#languageToggleBtn"
+      ].join(",")));
+    }
+
+    function captureStaticTranslations() {
+      if (staticTextBindings.length || staticAttributeBindings.length) return;
+
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      let node;
+      while ((node = walker.nextNode())) {
+        const parent = node.parentElement;
+        if (!parent || isStaticTranslationExcluded(parent)) continue;
+        const raw = node.nodeValue || "";
+        const source = raw.trim();
+        if (!source || !Object.prototype.hasOwnProperty.call(STATIC_TRANSLATIONS_EN, source)) continue;
+        staticTextBindings.push({
+          node,
+          pt: source,
+          en: STATIC_TRANSLATIONS_EN[source],
+          leading: (raw.match(/^\s*/) || [""])[0],
+          trailing: (raw.match(/\s*$/) || [""])[0]
+        });
+      }
+
+      const attributes = ["placeholder", "title", "aria-label", "data-tooltip"];
+      document.body.querySelectorAll(attributes.map(attribute => `[${attribute}]`).join(",")).forEach(element => {
+        if (isStaticTranslationExcluded(element)) return;
+        attributes.forEach(attribute => {
+          if (!element.hasAttribute(attribute)) return;
+          const source = element.getAttribute(attribute);
+          if (!Object.prototype.hasOwnProperty.call(STATIC_TRANSLATIONS_EN, source)) return;
+          staticAttributeBindings.push({ element, attribute, pt: source, en: STATIC_TRANSLATIONS_EN[source] });
+        });
+      });
+    }
+
+    function applyStaticTranslations() {
+      staticTextBindings.forEach(binding => {
+        const value = currentLanguage === "en" ? binding.en : binding.pt;
+        binding.node.nodeValue = `${binding.leading}${value}${binding.trailing}`;
+      });
+
+      staticAttributeBindings.forEach(binding => {
+        binding.element.setAttribute(binding.attribute, currentLanguage === "en" ? binding.en : binding.pt);
+      });
+    }
+
+    function setMetaContent(selector, value) {
+      const element = document.querySelector(selector);
+      if (element) element.setAttribute("content", value);
+    }
+
+    function buildStructuredData(seo, canonicalUrl) {
+      return {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": `${SITE_URL}#organization`,
+            "name": "WorkXP",
+            "url": SITE_URL,
+            "logo": {
+              "@type": "ImageObject",
+              "@id": `${SITE_URL}#logo`,
+              "url": `${SITE_URL}src/ico.png`,
+              "contentUrl": `${SITE_URL}src/ico.png`,
+              "width": 200,
+              "height": 200,
+              "caption": seo.logoCaption
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": `${SITE_URL}#website`,
+            "url": canonicalUrl,
+            "name": "WorkXP",
+            "description": seo.description,
+            "inLanguage": seo.inLanguage,
+            "publisher": { "@id": `${SITE_URL}#organization` }
+          },
+          {
+            "@type": ["WebApplication", "SoftwareApplication"],
+            "@id": `${SITE_URL}#app`,
+            "name": "WorkXP",
+            "alternateName": seo.alternateNames,
+            "url": canonicalUrl,
+            "mainEntityOfPage": canonicalUrl,
+            "image": `${SITE_URL}src/workxp-logo-bio.png`,
+            "screenshot": `${SITE_URL}src/workxp-logo-bio.png`,
+            "thumbnailUrl": `${SITE_URL}src/workxp-logo-bio.png`,
+            "applicationCategory": "ProductivityApplication",
+            "applicationSubCategory": seo.applicationSubCategory,
+            "operatingSystem": "Web browser",
+            "browserRequirements": seo.browserRequirements,
+            "softwareVersion": "3",
+            "isAccessibleForFree": true,
+            "inLanguage": seo.inLanguage,
+            "description": seo.description,
+            "creator": { "@id": `${SITE_URL}#organization` },
+            "publisher": { "@id": `${SITE_URL}#organization` },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "BRL",
+              "availability": "https://schema.org/InStock",
+              "url": canonicalUrl
+            },
+            "featureList": seo.featureList,
+            "keywords": seo.keywords
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": `${SITE_URL}#breadcrumb`,
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "WorkXP", "item": canonicalUrl }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": `${SITE_URL}#faq`,
+            "mainEntity": seo.faq.map(([question, answer]) => ({
+              "@type": "Question",
+              "name": question,
+              "acceptedAnswer": { "@type": "Answer", "text": answer }
+            }))
+          }
+        ]
+      };
+    }
+
+    function updateSeoMetadata() {
+      const seo = SEO_CONTENT[currentLanguage] || SEO_CONTENT["pt-BR"];
+      const canonicalUrl = currentLanguage === "en" ? `${SITE_URL}?lang=en` : SITE_URL;
+
+      document.documentElement.lang = seo.inLanguage;
+      document.title = seo.title;
+      setMetaContent('meta[name="description"]', seo.description);
+      setMetaContent('meta[name="classification"]', seo.classification);
+      setMetaContent('meta[name="subject"]', seo.subject);
+      setMetaContent('meta[property="og:locale"]', seo.locale);
+      setMetaContent('meta[property="og:locale:alternate"]', currentLanguage === "en" ? "pt_BR" : "en_US");
+      setMetaContent('meta[property="og:title"]', seo.title);
+      setMetaContent('meta[property="og:description"]', seo.description);
+      setMetaContent('meta[property="og:url"]', canonicalUrl);
+      setMetaContent('meta[property="og:image:alt"]', seo.imageAlt);
+      setMetaContent('meta[name="twitter:title"]', seo.title);
+      setMetaContent('meta[name="twitter:description"]', seo.description);
+      setMetaContent('meta[name="twitter:image:alt"]', seo.imageAlt);
+      setMetaContent('meta[name="twitter:url"]', canonicalUrl);
+
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.href = canonicalUrl;
+      const ptAlternate = document.querySelector('link[rel="alternate"][hreflang="pt-BR"]');
+      if (ptAlternate) ptAlternate.href = SITE_URL;
+      const enAlternate = document.querySelector('link[rel="alternate"][hreflang="en"]');
+      if (enAlternate) enAlternate.href = `${SITE_URL}?lang=en`;
+      const defaultAlternate = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
+      if (defaultAlternate) defaultAlternate.href = SITE_URL;
+
+      const structuredData = document.getElementById("structuredData");
+      if (structuredData) structuredData.textContent = JSON.stringify(buildStructuredData(seo, canonicalUrl), null, 2);
+    }
+
+    function syncLanguageUrl() {
+      try {
+        const url = new URL(window.location.href);
+        if (currentLanguage === "en") url.searchParams.set("lang", "en");
+        else url.searchParams.delete("lang");
+        history.replaceState(history.state, "", `${url.pathname}${url.search}${url.hash}`);
+      } catch (error) {}
+    }
+
+    function updateLanguageButton() {
+      if (!els.languageToggleBtn) return;
+      els.languageToggleBtn.dataset.language = currentLanguage;
+      els.languageToggleBtn.querySelectorAll("[data-language-code]").forEach(code => {
+        code.classList.toggle("active", code.dataset.languageCode === currentLanguage);
+      });
+
+      const isPortuguese = currentLanguage === "pt-BR";
+      const actionLabel = isPortuguese ? "Mudar idioma para inglês" : "Mudar idioma para português do Brasil";
+      const currentLabel = isPortuguese ? "Idioma atual: Português (Brasil)" : "Idioma atual: Inglês";
+      els.languageToggleBtn.setAttribute("aria-label", tr(actionLabel));
+      els.languageToggleBtn.title = tr(currentLabel);
+    }
+
+    function updateEmojiPickerLanguage() {
+      if (!els.emojiPicker) return;
+      const title = els.emojiPicker.querySelector(".emoji-picker-title");
+      if (title) title.textContent = tr("Escolha um emoji");
+      els.emojiPicker.querySelectorAll("[data-emoji]").forEach(button => {
+        button.setAttribute("aria-label", tr("Usar {emoji}", { emoji: button.dataset.emoji }));
+      });
+    }
+
+    function refreshDynamicLanguage() {
+      if (els.focusWidget) els.focusWidget.dataset.focusActiveLabel = tr("FOCO ATIVO");
+      if (!focusTotalSeconds && !focusRemainingSeconds && els.focusTimeDisplay) {
+        els.focusTimeDisplay.textContent = tr("Definir tempo de foco");
+      }
+      if (els.modalTitle) {
+        els.modalTitle.textContent = editingId ? tr("Editar passo") : tr("Novo passo");
+      }
+      updateEmojiPickerLanguage();
+    }
+
+    function applyLanguage(language, options = {}) {
+      const { persistPreference = true, updateUrl = true, announce = false, render = true } = options;
+      currentLanguage = normalizeLanguage(language);
+
+      if (persistPreference) {
+        try { localStorage.setItem(LANGUAGE_KEY, currentLanguage); } catch (error) {}
+      }
+
+      applyStaticTranslations();
+      updateSeoMetadata();
+      updateLanguageButton();
+      if (updateUrl) syncLanguageUrl();
+
+      if (render) {
+        renderThemeOptions();
+        renderAll();
+        refreshDynamicLanguage();
+      }
+
+      if (announce) {
+        showToast(currentLanguage === "pt-BR" ? "Idioma alterado para Português (Brasil)." : "Language changed to English.");
+      }
+    }
+
+    function toggleLanguage() {
+      applyLanguage(currentLanguage === "pt-BR" ? "en" : "pt-BR", {
+        persistPreference: true,
+        updateUrl: true,
+        announce: true,
+        render: true
+      });
+    }
+
+    function canonicalPriority(value) {
+      const normalized = normalize(value);
+      if (normalized === "alta" || normalized === "high") return "Alta";
+      if (normalized === "media" || normalized === "medium") return "Média";
+      if (normalized === "baixa" || normalized === "low") return "Baixa";
+      return String(value || "");
+    }
+
+    function priorityLabel(value) {
+      const canonical = canonicalPriority(value);
+      if (canonical === "Alta" || canonical === "Média" || canonical === "Baixa") return tr(canonical);
+      return String(value || "");
+    }
+
+
     init();
 
     function init() {
+      currentLanguage = detectInitialLanguage();
+      captureStaticTranslations();
+      applyLanguage(currentLanguage, { persistPreference: false, updateUrl: true, announce: false, render: false });
       applySavedTheme();
       bindEvents();
       renderAll();
+      refreshDynamicLanguage();
       initIntroPopup();
       initMobileNotice();
       initFAQAccordion();
-      showToast("WorkXP carregado. Crie sua primeira fase e transforme sua ideia em tarefas objetivas com IA.");
+      showToast(tr("WorkXP carregado. Crie sua primeira fase e transforme sua ideia em tarefas objetivas com IA."));
     }
 
     function bindEvents() {
@@ -5330,6 +6143,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       window.addEventListener("resize", syncEmptyProgressHeight);
       els.addTaskBtn.addEventListener("click", () => openTaskModal());
       els.addPhaseBtn.addEventListener("click", () => createPhaseQuick());
+      if (els.languageToggleBtn) els.languageToggleBtn.addEventListener("click", toggleLanguage);
       els.tabAddPhaseBtn.addEventListener("click", () => createPhaseQuick());
       setupIntroSlider();
       setupIdleWatcher();
@@ -5407,9 +6221,9 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       ];
 
       els.emojiPicker.innerHTML = `
-        <p class="emoji-picker-title">Escolha um emoji</p>
+        <p class="emoji-picker-title">${escapeHtml(tr("Escolha um emoji"))}</p>
         <div class="emoji-grid">
-          ${options.map(emoji => `<button class="emoji-option" type="button" data-emoji="${emoji}" aria-label="Usar ${emoji}">${emoji}</button>`).join("")}
+          ${options.map(emoji => `<button class="emoji-option" type="button" data-emoji="${emoji}" aria-label="${escapeHtml(tr("Usar {emoji}", { emoji }))}">${emoji}</button>`).join("")}
         </div>
       `;
 
@@ -5491,7 +6305,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       const icon = els.newPhaseIconInput.value.trim() || "📌";
 
       if (!title) {
-        showToast("Digite o nome da fase.");
+        showToast(tr("Digite o nome da fase."));
         els.newPhaseTitleInput.focus();
         return;
       }
@@ -5507,7 +6321,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       persist();
       closePhaseModal();
       renderAll();
-      showToast("Nova fase criada.");
+      showToast(tr("Nova fase criada."));
     }
 
     function initIntroPopup() {
@@ -5522,7 +6336,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       resetIntroSlider();
       clearTimeout(idleTimer);
       if (reason === "idle") {
-        showToast("Standby ativado. Deslize para retomar o foco.");
+        showToast(tr("Standby ativado. Deslize para retomar o foco."));
       }
     }
 
@@ -5664,7 +6478,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
           <span class="theme-swatch" aria-hidden="true"></span>
           <span>
             <span class="theme-name">${escapeHtml(theme.name)}</span>
-            <span class="theme-style">${escapeHtml(theme.style)}</span>
+            <span class="theme-style">${escapeHtml(currentLanguage === "en" ? (theme.styleEn || theme.style) : theme.style)}</span>
           </span>
         </button>
       `).join("");
@@ -5691,7 +6505,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
 
       updateThemeButton(theme);
       renderThemeOptions();
-      if (showMessage) showToast(`Tema ${theme.name} aplicado.`);
+      if (showMessage) showToast(tr("Tema {theme} aplicado.", { theme: theme.name }));
     }
 
     function toggleThemePicker() {
@@ -5711,12 +6525,10 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
 
     function updateThemeButton(theme) {
       if (!els.themeToggleBtn) return;
-      els.themeToggleBtn.textContent = "Tema";
-      els.themeToggleBtn.title = `Tema atual: ${theme.name}`;
-      els.themeToggleBtn.setAttribute("aria-label", `Escolher tema. Tema atual: ${theme.name}`);
+      els.themeToggleBtn.textContent = tr("Tema");
+      els.themeToggleBtn.title = tr("Tema atual: {theme}", { theme: theme.name });
+      els.themeToggleBtn.setAttribute("aria-label", tr("Escolher tema. Tema atual: {theme}", { theme: theme.name }));
     }
-
-
 
     function initFAQAccordion() {
       const faqGrid = document.querySelector(".seo-faq-grid");
@@ -5771,17 +6583,18 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
     }
 
     function copyImportPrompt() {
-      const done = () => showToast("Prompt copiado. Cole em qualquer IA, gere o JSON e importe no WorkXP.");
+      const prompt = IMPORT_PROMPTS[currentLanguage] || IMPORT_PROMPTS["pt-BR"];
+      const done = () => showToast(tr("Prompt copiado. Cole em qualquer IA, gere o JSON e importe no WorkXP."));
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(IMPORT_PROMPT).then(done).catch(() => copyImportPromptFallback(done));
+        navigator.clipboard.writeText(prompt).then(done).catch(() => copyImportPromptFallback(done, prompt));
         return;
       }
-      copyImportPromptFallback(done);
+      copyImportPromptFallback(done, prompt);
     }
 
-    function copyImportPromptFallback(done) {
+    function copyImportPromptFallback(done, prompt = IMPORT_PROMPTS[currentLanguage] || IMPORT_PROMPTS["pt-BR"]) {
       const temp = document.createElement("textarea");
-      temp.value = IMPORT_PROMPT;
+      temp.value = prompt;
       temp.setAttribute("readonly", "readonly");
       temp.style.position = "fixed";
       temp.style.left = "-9999px";
@@ -5791,7 +6604,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         document.execCommand("copy");
         done();
       } catch (err) {
-        showToast("Não consegui copiar automaticamente. Selecione e copie o prompt manualmente.");
+        showToast(tr("Não consegui copiar automaticamente. Selecione e copie o prompt manualmente."));
       } finally {
         temp.remove();
       }
@@ -5806,19 +6619,19 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       try {
         if (window.external && typeof window.external.AddFavorite === "function") {
           window.external.AddFavorite(url, title);
-          showToast("A janela de favoritos foi aberta. Salve o WorkXP na barra de favoritos para voltar depois.");
+          showToast(tr("A janela de favoritos foi aberta. Salve o WorkXP na barra de favoritos para voltar depois."));
           return;
         }
         if (window.sidebar && typeof window.sidebar.addPanel === "function") {
           window.sidebar.addPanel(title, url, "");
-          showToast("A janela de favoritos foi aberta. Salve o WorkXP na barra de favoritos para voltar depois.");
+          showToast(tr("A janela de favoritos foi aberta. Salve o WorkXP na barra de favoritos para voltar depois."));
           return;
         }
       } catch (err) {
         // Navegadores modernos bloqueiam favorito automático; mostramos o atalho padrão.
       }
 
-      showToast(`Salve o WorkXP na barra de favoritos para voltar depois. Use ${shortcut} no navegador.`);
+      showToast(tr("Salve o WorkXP na barra de favoritos para voltar depois. Use {shortcut} no navegador.", { shortcut }));
     }
 
     function renderAll() {
@@ -5899,20 +6712,20 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       persist();
       renderBrand();
       closeBrandModal();
-      showToast("Marca do painel atualizada.");
+      showToast(tr("Marca do painel atualizada."));
     }
 
     function hydratePhaseOptions() {
       els.taskPhase.innerHTML = state.phases.length
         ? state.phases.map(p => `<option value="${p.id}">${escapeHtml(p.icon)} ${escapeHtml(p.title)}</option>`).join("")
-        : `<option value="">Crie uma fase primeiro</option>`;
+        : `<option value="">${escapeHtml(tr("Crie uma fase primeiro"))}</option>`;
     }
 
     function renderTabs() {
       const total = state.tasks.length;
       const done = state.tasks.filter(t => t.done).length;
 
-      const allTab = buttonTab("all", `Todos (${done}/${total})`);
+      const allTab = buttonTab("all", tr("Todos ({done}/{total})", { done, total }));
       const phaseTabs = state.phases.map(phase => {
         const tasks = state.tasks.filter(t => t.phase === phase.id);
         const completed = tasks.filter(t => t.done).length;
@@ -5944,8 +6757,9 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
     function buttonTab(phaseId, label) {
       const active = state.activePhase === phaseId ? "active" : "";
       const canDelete = phaseId !== "all" && state.activePhase === phaseId;
+      const deleteLabel = tr("Excluir fase e passos");
       const deleteButton = canDelete
-        ? `<button class="phase-delete-btn" data-delete-phase="${phaseId}" title="Excluir fase e passos" aria-label="Excluir fase e passos"></button>`
+        ? `<button class="phase-delete-btn" data-delete-phase="${phaseId}" title="${escapeHtml(deleteLabel)}" aria-label="${escapeHtml(deleteLabel)}"></button>`
         : "";
       return `<span class="tab-wrap"><button class="tab ${active}" data-phase="${phaseId}">${escapeHtml(label)}</button>${deleteButton}</span>`;
     }
@@ -5961,12 +6775,13 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
           task.title,
           task.description,
           task.priority,
+          priorityLabel(task.priority),
           phase ? phase.title : ""
         ].join(" "));
 
         const matchesSearch = !search || haystack.includes(search);
         const matchesStatus = status === "all" || (status === "done" && task.done) || (status === "open" && !task.done);
-        const matchesPriority = priority === "all" || task.priority === priority;
+        const matchesPriority = priority === "all" || canonicalPriority(task.priority) === priority;
         const matchesPhase = state.activePhase === "all" || task.phase === state.activePhase;
 
         return matchesSearch && matchesStatus && matchesPriority && matchesPhase;
@@ -5984,14 +6799,14 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
           <section class="phase-section" data-phase="${phase.id}">
             <div class="phase-head" data-collapse="${phase.id}">
               <div class="phase-left">
-                <div class="phase-badge" role="img" aria-label="Ícone da fase">${escapeHtml(phase.icon)}</div>
+                <div class="phase-badge" role="img" aria-label="${escapeHtml(tr("Ícone da fase"))}">${escapeHtml(phase.icon)}</div>
                 <div>
                   <div class="phase-title">${index + 1}. ${escapeHtml(phase.title)}</div>
-                  <div class="phase-meta">${completed}/${allPhaseTasks.length} concluídos · ${phaseXp(phase.id)} XP disponível</div>
+                  <div class="phase-meta">${escapeHtml(tr("{completed}/{total} concluídos · {xp} XP disponível", { completed, total: allPhaseTasks.length, xp: phaseXp(phase.id) }))}</div>
                 </div>
               </div>
               <div class="phase-actions">
-                <div class="phase-toggle">${collapsed ? "abrir ▾" : "fechar ▴"}</div>
+                <div class="phase-toggle">${escapeHtml(collapsed ? tr("abrir ▾") : tr("fechar ▴"))}</div>
               </div>
             </div>
             <div class="task-list ${collapsed ? "hidden" : ""}">
@@ -6002,9 +6817,10 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         `;
       }).join("");
 
+      const targetPhaseId = state.activePhase !== "all" ? state.activePhase : (state.phases[0] ? state.phases[0].id : "");
       els.phaseContainer.innerHTML = state.phases.length
-        ? (html || `<div class="empty"><span class="empty-title">Nada encontrado com os filtros atuais.</span>Limpe a busca ou crie um novo passo para continuar.<div class="empty-actions"><button class="btn small" type="button" data-add-task-phase="${state.activePhase !== "all" ? state.activePhase : (state.phases[0] ? state.phases[0].id : "")}">Novo passo</button></div></div>`)
-        : `<div class="empty"><span class="empty-title">Seu painel está em branco.</span>Crie uma fase para organizar tarefas e missões, ou copie o prompt das dicas do topo e peça para sua IA montar tudo.<div class="empty-actions"><button class="btn primary" type="button" data-create-first-phase>CRIE SUA PRIMEIRA FASE</button></div></div>`;
+        ? (html || `<div class="empty"><span class="empty-title">${escapeHtml(tr("Nada encontrado com os filtros atuais."))}</span>${escapeHtml(tr("Limpe a busca ou crie um novo passo para continuar."))}<div class="empty-actions"><button class="btn small" type="button" data-add-task-phase="${targetPhaseId}">${escapeHtml(tr("Novo passo"))}</button></div></div>`)
+        : `<div class="empty"><span class="empty-title">${escapeHtml(tr("Seu painel está em branco."))}</span>${escapeHtml(tr("Crie uma fase para organizar tarefas e missões, ou copie o prompt das dicas do topo e peça para sua IA montar tudo."))}<div class="empty-actions"><button class="btn primary" type="button" data-create-first-phase>${escapeHtml(tr("CRIE SUA PRIMEIRA FASE"))}</button></div></div>`;
 
       els.phaseContainer.querySelectorAll("[data-collapse]").forEach(head => {
         head.addEventListener("click", () => {
@@ -6053,42 +6869,40 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       syncEmptyProgressHeight();
     }
 
-
-
     function renderEmptyPhaseMessage(phase, totalInPhase) {
-      const text = totalInPhase === 0
-        ? "Esta fase ainda não tem nenhum passo. Crie uma missão simples para começar."
-        : "Nenhum passo encontrado nessa fase com os filtros atuais.";
+      const message = totalInPhase === 0
+        ? tr("Esta fase ainda não tem nenhum passo. Crie uma missão simples para começar.")
+        : tr("Nenhum passo encontrado nessa fase com os filtros atuais.");
 
-      return `<div class="empty"><span class="empty-title">${escapeHtml(text)}</span>Use o botão abaixo para criar um passo dentro desta fase.</div>`;
+      return `<div class="empty"><span class="empty-title">${escapeHtml(message)}</span>${escapeHtml(tr("Use o botão abaixo para criar um passo dentro desta fase."))}</div>`;
     }
 
     function renderPhaseAddStepButton(phaseId) {
-      return `<div class="phase-bottom-actions"><button class="phase-add-step-btn" type="button" data-add-task-phase="${phaseId}">+ Adicionar novo passo</button></div>`;
+      return `<div class="phase-bottom-actions"><button class="phase-add-step-btn" type="button" data-add-task-phase="${phaseId}">${escapeHtml(tr("+ Adicionar novo passo"))}</button></div>`;
     }
 
     function renderTask(task) {
       const phase = getPhase(task.phase);
-      const priorityClass = task.priority === "Alta" ? "bad" : task.priority === "Média" ? "warn" : "good";
-      const dueText = task.due ? formatDate(task.due) : "sem prazo";
+      const canonical = canonicalPriority(task.priority);
+      const priorityClass = canonical === "Alta" ? "bad" : canonical === "Média" ? "warn" : "good";
+      const dueText = task.due ? formatDate(task.due) : tr("sem prazo");
 
       return `
         <article class="task ${task.done ? "completed" : ""}">
-          <button class="check" data-toggle="${task.id}" title="Marcar/desmarcar">✓</button>
+          <button class="check" data-toggle="${task.id}" title="${escapeHtml(tr("Marcar/desmarcar"))}">✓</button>
           <div>
             <h3>${escapeHtml(task.title)}</h3>
             <p>${escapeHtml(task.description || "")}</p>
             <div class="tags">
-              <span class="tag">${phase ? escapeHtml(phase.icon + " " + phase.title) : "Sem fase"}</span>
-              <span class="tag ${priorityClass}">${escapeHtml(task.priority)}</span>
+              <span class="tag">${phase ? escapeHtml(phase.icon + " " + phase.title) : escapeHtml(tr("Sem fase"))}</span>
+              <span class="tag ${priorityClass}">${escapeHtml(priorityLabel(task.priority))}</span>
               <span class="tag">⭐ ${Number(task.xp || 0)} XP</span>
-              <span class="tag">📅 ${dueText}</span>
-
+              <span class="tag">📅 ${escapeHtml(dueText)}</span>
             </div>
           </div>
           <div class="task-actions">
-            <button class="icon-btn" data-edit="${task.id}" title="Editar">✎</button>
-            <button class="icon-btn" data-delete="${task.id}" title="Excluir">🗑</button>
+            <button class="icon-btn" data-edit="${task.id}" title="${escapeHtml(tr("Editar"))}">✎</button>
+            <button class="icon-btn" data-delete="${task.id}" title="${escapeHtml(tr("Excluir"))}">🗑</button>
           </div>
         </article>
       `;
@@ -6101,33 +6915,34 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       const progress = taskCount ? Math.round((done / total) * 100) : 0;
       const xp = state.tasks.filter(t => t.done).reduce((sum, t) => sum + Number(t.xp || 0), 0);
       const levelInfo = getLevelInfo(xp);
+      const pending = taskCount - done;
 
       els.progressText.textContent = progress;
       els.progressBar.style.width = progress + "%";
       els.progressNote.textContent = taskCount === 0
-        ? "Dê asas à sua imaginação: crie fases, adicione passos e transforme sua ideias em tarefas objetivas com IA."
+        ? tr("Dê asas à sua imaginação: crie fases, adicione passos e transforme sua ideias em tarefas objetivas com IA.")
         : done === 0
-          ? "Escolha um primeiro passo simples e comece a ganhar tração."
+          ? tr("Escolha um primeiro passo simples e comece a ganhar tração.")
           : done === taskCount
-            ? "Projeto completo. Agora revise, aprenda e planeje o próximo ciclo."
-            : `${taskCount - done} passos pendentes.`;
+            ? tr("Projeto completo. Agora revise, aprenda e planeje o próximo ciclo.")
+            : tr(pending === 1 ? "{count} passo pendente." : "{count} passos pendentes.", { count: pending });
 
       els.xpText.textContent = xp;
       els.levelText.textContent = levelInfo.level;
       els.levelNote.textContent = levelInfo.title;
       els.levelBar.style.width = levelInfo.levelProgress + "%";
       els.nextLevelText.textContent = taskCount === 0
-        ? "Crie sua primeira missão, avance no seu ritmo e veja seu projeto subir de nível com você."
+        ? tr("Crie sua primeira missão, avance no seu ritmo e veja seu projeto subir de nível com você.")
         : levelInfo.next
-          ? `Faltam ${levelInfo.next - xp} XP para o próximo nível.`
-          : "Nível máximo desbloqueado.";
+          ? tr("Faltam {xp} XP para o próximo nível.", { xp: levelInfo.next - xp })
+          : tr("Nível máximo desbloqueado.");
 
       if (els.avatarIcon) {
         els.avatarIcon.textContent = taskCount === 0 ? "✨" : levelInfo.icon;
-        els.avatarIcon.setAttribute("aria-label", `Status do projeto no nível ${levelInfo.level}`);
+        els.avatarIcon.setAttribute("aria-label", tr("Status do projeto no nível {level}", { level: levelInfo.level }));
       }
       els.missionText.textContent = taskCount === 0
-        ? "Comece com uma fase, escreva um passo simples e deixe o WorkXP transformar intenção em progresso visível."
+        ? tr("Comece com uma fase, escreva um passo simples e deixe o WorkXP transformar intenção em progresso visível.")
         : levelInfo.message;
     }
 
@@ -6150,21 +6965,21 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         const phaseTasks = state.tasks.filter(t => t.phase === phase.id);
         return phaseTasks.length > 0 && phaseTasks.every(t => t.done);
       }).length;
-      const highDone = state.tasks.filter(t => t.priority === "Alta" && t.done).length;
+      const highDone = state.tasks.filter(t => canonicalPriority(t.priority) === "Alta" && t.done).length;
 
       const achievements = [
-        { icon: "🚦", title: "Primeiro passo", desc: "Concluir 1 tarefa.", unlocked: done >= 1 },
-        { icon: "🧱", title: "Base montada", desc: "Ter 3 fases no projeto.", unlocked: state.phases.length >= 3 },
-        { icon: "🗺️", title: "Mapa de ação", desc: "Ter 10 tarefas criadas.", unlocked: taskCount >= 10 },
-        { icon: "🔥", title: "Ritmo inicial", desc: "Concluir 5 tarefas.", unlocked: done >= 5 },
-        { icon: "🎯", title: "Prioridade vencida", desc: "Concluir 3 tarefas altas.", unlocked: highDone >= 3 },
-        { icon: "🏁", title: "Uma fase fechada", desc: "Finalizar qualquer fase.", unlocked: completedPhases >= 1 },
-        { icon: "🌗", title: "Metade do caminho", desc: "Chegar a 50% do plano.", unlocked: progress >= 50 },
-        { icon: "🚀", title: "Quase lá", desc: "Chegar a 75% do plano.", unlocked: progress >= 75 },
-        { icon: "⭐", title: "500 XP", desc: "Alcançar 500 XP.", unlocked: xp >= 500 },
-        { icon: "💎", title: "1.500 XP", desc: "Alcançar 1.500 XP.", unlocked: xp >= 1500 },
-        { icon: "🏆", title: "Projeto completo", desc: "100% do plano.", unlocked: taskCount > 0 && progress >= 100 },
-        { icon: "🎨", title: "Visual escolhido", desc: "Trocar o tema do painel.", unlocked: (localStorage.getItem(THEME_KEY) || "clean") !== "clean" }
+        { icon: "🚦", title: tr("Primeiro passo"), desc: tr("Concluir 1 tarefa."), unlocked: done >= 1 },
+        { icon: "🧱", title: tr("Base montada"), desc: tr("Ter 3 fases no projeto."), unlocked: state.phases.length >= 3 },
+        { icon: "🗺️", title: tr("Mapa de ação"), desc: tr("Ter 10 tarefas criadas."), unlocked: taskCount >= 10 },
+        { icon: "🔥", title: tr("Ritmo inicial"), desc: tr("Concluir 5 tarefas."), unlocked: done >= 5 },
+        { icon: "🎯", title: tr("Prioridade vencida"), desc: tr("Concluir 3 tarefas altas."), unlocked: highDone >= 3 },
+        { icon: "🏁", title: tr("Uma fase fechada"), desc: tr("Finalizar qualquer fase."), unlocked: completedPhases >= 1 },
+        { icon: "🌗", title: tr("Metade do caminho"), desc: tr("Chegar a 50% do plano."), unlocked: progress >= 50 },
+        { icon: "🚀", title: tr("Quase lá"), desc: tr("Chegar a 75% do plano."), unlocked: progress >= 75 },
+        { icon: "⭐", title: "500 XP", desc: tr("Alcançar 500 XP."), unlocked: xp >= 500 },
+        { icon: "💎", title: currentLanguage === "en" ? "1,500 XP" : "1.500 XP", desc: tr("Alcançar 1.500 XP."), unlocked: xp >= 1500 },
+        { icon: "🏆", title: tr("Projeto completo"), desc: tr("100% do plano."), unlocked: taskCount > 0 && progress >= 100 },
+        { icon: "🎨", title: tr("Visual escolhido"), desc: tr("Trocar o tema do painel."), unlocked: (localStorage.getItem(THEME_KEY) || "clean") !== "clean" }
       ];
 
       els.achievementGrid.innerHTML = achievements.map(a => `
@@ -6180,7 +6995,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       editingId = id || null;
 
       if (!editingId && state.phases.length === 0) {
-        showToast("Crie uma fase antes de adicionar o primeiro passo.");
+        showToast(tr("Crie uma fase antes de adicionar o primeiro passo."));
         return;
       }
 
@@ -6206,12 +7021,12 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       if (!task) return;
 
       hydratePhaseOptions();
-      els.modalTitle.textContent = editingId ? "Editar passo" : "Novo passo";
+      els.modalTitle.textContent = editingId ? tr("Editar passo") : tr("Novo passo");
       els.taskId.value = task.id;
       els.taskTitle.value = task.title;
       els.taskDescription.value = task.description;
       els.taskPhase.value = task.phase;
-      els.taskPriority.value = task.priority;
+      els.taskPriority.value = canonicalPriority(task.priority) || "Média";
       els.taskXp.value = task.xp;
       els.taskDue.value = task.due || "";
       els.taskNotes.value = task.notes || "";
@@ -6234,7 +7049,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
 
       const title = els.taskTitle.value.trim();
       if (!title) {
-        showToast("Dê um título para o passo antes de salvar.");
+        showToast(tr("Dê um título para o passo antes de salvar."));
         els.taskTitle.focus();
         return;
       }
@@ -6253,11 +7068,11 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         const index = state.tasks.findIndex(t => t.id === editingId);
         if (index >= 0) {
           state.tasks[index] = { ...state.tasks[index], ...data };
-          showToast("Passo atualizado.");
+          showToast(tr("Passo atualizado."));
         }
       } else {
         state.tasks.push({ id: uid(), ...data, done: false });
-        showToast("Novo passo criado.");
+        showToast(tr("Novo passo criado."));
       }
 
       persist();
@@ -6275,13 +7090,13 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       const task = state.tasks.find(t => t.id === id);
       if (!task) return;
 
-      const ok = confirm(`Excluir o passo "${task.title}"?`);
+      const ok = confirm(tr("Excluir o passo \"{title}\"?", { title: task.title }));
       if (!ok) return;
 
       state.tasks = state.tasks.filter(t => t.id !== id);
       persist();
       renderAll();
-      showToast("Passo excluído.");
+      showToast(tr("Passo excluído."));
     }
 
     function deletePhase(phaseId) {
@@ -6289,7 +7104,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       if (!phase) return;
 
       const tasksInPhase = state.tasks.filter(t => t.phase === phaseId);
-      const message = `Deseja realmente excluir a fase "${phase.title}" e todos os ${tasksInPhase.length} passo(s) dentro dela? Essa ação não pode ser desfeita.`;
+      const message = tr("Deseja realmente excluir a fase \"{title}\" e todos os {count} passo(s) dentro dela? Essa ação não pode ser desfeita.", { title: phase.title, count: tasksInPhase.length });
       const ok = confirm(message);
       if (!ok) return;
 
@@ -6303,7 +7118,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
 
       persist();
       renderAll();
-      showToast(`Fase "${phase.title}" excluída com ${tasksInPhase.length} passo(s).`);
+      showToast(tr("Fase \"{title}\" excluída com {count} passo(s).", { title: phase.title, count: tasksInPhase.length }));
     }
 
     function toggleTask(id) {
@@ -6320,7 +7135,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
         showToast(`+${task.xp} XP · ${task.title}`);
         burstConfetti();
       } else {
-        showToast("Passo voltou para pendente.");
+        showToast(tr("Passo voltou para pendente."));
       }
     }
 
@@ -6339,7 +7154,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       const newIcon = els.phaseIconInput.value.trim() || "📌";
 
       if (!newTitle) {
-        if (showMessage) showToast("Digite um nome para a fase.");
+        if (showMessage) showToast(tr("Digite um nome para a fase."));
         return;
       }
 
@@ -6353,7 +7168,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       renderTasks();
       renderAchievements();
 
-      if (showMessage) showToast("Nome da fase atualizado.");
+      if (showMessage) showToast(tr("Nome da fase atualizado."));
     }
 
     function createPhaseQuick() {
@@ -6366,7 +7181,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       const icon = els.phaseIconInput.value.trim() || "📌";
 
       if (!title) {
-        showToast("Digite o nome da nova fase.");
+        showToast(tr("Digite o nome da nova fase."));
         els.phaseTitleInput.focus();
         return;
       }
@@ -6383,7 +7198,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       persist();
       renderTabs();
       renderTasks();
-      showToast("Nova fase criada e selecionada.");
+      showToast(tr("Nova fase criada e selecionada."));
     }
 
     function exportState() {
@@ -6401,12 +7216,12 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `meu-projeto-gamificado-${new Date().toISOString().slice(0,10)}.json`;
+      a.download = `${currentLanguage === "en" ? "my-gamified-project" : "meu-projeto-gamificado"}-${new Date().toISOString().slice(0,10)}.json`;
       document.body.appendChild(a);
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
-      showToast("Backup exportado em JSON.");
+      showToast(tr("Backup exportado em JSON."));
     }
 
     function importState(event) {
@@ -6426,9 +7241,9 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
           state = mergeWithDefaults(imported);
           persist();
           renderAll();
-          showToast("Dados importados com sucesso.");
+          showToast(tr("Dados importados com sucesso."));
         } catch (err) {
-          showToast("Não consegui importar este arquivo. Verifique se é um backup JSON válido.");
+          showToast(tr("Não consegui importar este arquivo. Verifique se é um backup JSON válido."));
         } finally {
           event.target.value = "";
         }
@@ -6437,13 +7252,13 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
     }
 
     function resetState() {
-      const ok = confirm("Resetar tudo para o plano inicial? Isso apaga edições salvas neste navegador.");
+      const ok = confirm(tr("Resetar tudo para o plano inicial? Isso apaga edições salvas neste navegador."));
       if (!ok) return;
       localStorage.removeItem(STORAGE_KEY);
       state = cloneDefaultState();
       persist();
       renderAll();
-      showToast("WorkXP resetado para um painel limpo.");
+      showToast(tr("WorkXP resetado para um painel limpo."));
     }
 
     function loadState() {
@@ -6514,9 +7329,14 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
     }
 
     function formatDate(value) {
-      const [y, m, d] = value.split("-");
+      const [y, m, d] = String(value || "").split("-").map(Number);
       if (!y || !m || !d) return value;
-      return `${d}/${m}/${y}`;
+      try {
+        const date = new Date(Date.UTC(y, m - 1, d));
+        return new Intl.DateTimeFormat(currentLanguage === "pt-BR" ? "pt-BR" : "en-US", { timeZone: "UTC" }).format(date);
+      } catch (error) {
+        return currentLanguage === "pt-BR" ? `${String(d).padStart(2, "0")}/${String(m).padStart(2, "0")}/${y}` : `${String(m).padStart(2, "0")}/${String(d).padStart(2, "0")}/${y}`;
+      }
     }
 
     function phaseXp(phaseId) {
@@ -6527,13 +7347,13 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
 
     function getLevelInfo(xp) {
       const levels = [
-        { level: 1, min: 0, next: 400, title: "Ideia em movimento", icon: "✨", message: "Todo projeto começa pequeno. Escolha uma tarefa clara e coloque energia no primeiro avanço." },
-        { level: 2, min: 400, next: 1000, title: "Planejador focado", icon: "🧭", message: "Você já saiu da intenção. Agora organize prioridades e transforme progresso em rotina." },
-        { level: 3, min: 1000, next: 1800, title: "Executor consistente", icon: "⚙️", message: "O projeto ganhou tração. Continue fechando ciclos curtos e removendo obstáculos." },
-        { level: 4, min: 1800, next: 2800, title: "Projeto ganhando forma", icon: "🚀", message: "As peças estão se conectando. Foque nas tarefas que liberam novos avanços." },
-        { level: 5, min: 2800, next: 4200, title: "Operação em ritmo forte", icon: "🔥", message: "Você está executando com consistência. Agora refine, simplifique e mantenha cadência." },
-        { level: 6, min: 4200, next: 6000, title: "Líder do projeto", icon: "🏆", message: "O plano está maduro. Use o que aprendeu para entregar melhor e preparar o próximo ciclo." },
-        { level: 7, min: 6000, next: null, title: "Mestre da execução", icon: "💎", message: "Você desbloqueou o nível máximo. Continue evoluindo o projeto com novos desafios." }
+        { level: 1, min: 0, next: 400, title: tr("Ideia em movimento"), icon: "✨", message: tr("Todo projeto começa pequeno. Escolha uma tarefa clara e coloque energia no primeiro avanço.") },
+        { level: 2, min: 400, next: 1000, title: tr("Planejador focado"), icon: "🧭", message: tr("Você já saiu da intenção. Agora organize prioridades e transforme progresso em rotina.") },
+        { level: 3, min: 1000, next: 1800, title: tr("Executor consistente"), icon: "⚙️", message: tr("O projeto ganhou tração. Continue fechando ciclos curtos e removendo obstáculos.") },
+        { level: 4, min: 1800, next: 2800, title: tr("Projeto ganhando forma"), icon: "🚀", message: tr("As peças estão se conectando. Foque nas tarefas que liberam novos avanços.") },
+        { level: 5, min: 2800, next: 4200, title: tr("Operação em ritmo forte"), icon: "🔥", message: tr("Você está executando com consistência. Agora refine, simplifique e mantenha cadência.") },
+        { level: 6, min: 4200, next: 6000, title: tr("Líder do projeto"), icon: "🏆", message: tr("O plano está maduro. Use o que aprendeu para entregar melhor e preparar o próximo ciclo.") },
+        { level: 7, min: 6000, next: null, title: tr("Mestre da execução"), icon: "💎", message: tr("Você desbloqueou o nível máximo. Continue evoluindo o projeto com novos desafios.") }
       ];
 
       let current = levels[0];
@@ -6598,7 +7418,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
     function saveFocusFromModal() {
       const seconds = parseFocusInput(els.focusDurationInput.value);
       if (!seconds || seconds <= 0) {
-        showToast("Defina um tempo de foco válido.");
+        showToast(tr("Defina um tempo de foco válido."));
         els.focusDurationInput.focus();
         return;
       }
@@ -6610,7 +7430,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       updateFocusDisplay();
       closeFocusModal();
       startFocusTimer();
-      showToast("Tempo de foco iniciado.");
+      showToast(tr("Tempo de foco iniciado."));
     }
 
     function parseFocusInput(value) {
@@ -6631,7 +7451,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
 
     function startFocusTimer() {
       if (!focusTotalSeconds && !focusRemainingSeconds) {
-        showToast("Defina o tempo de foco.");
+        showToast(tr("Defina o tempo de foco."));
         return;
       }
 
@@ -6655,16 +7475,16 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
 
     function pauseFocusTimer() {
       if (!focusTotalSeconds && !focusRemainingSeconds) {
-        showToast("Defina o tempo de foco.");
+        showToast(tr("Defina o tempo de foco."));
         return;
       }
 
       if (focusInterval) {
         clearInterval(focusInterval);
         focusInterval = null;
-        showToast("Tempo de foco pausado.");
+        showToast(tr("Tempo de foco pausado."));
       } else {
-        showToast("O cronômetro já está pausado.");
+        showToast(tr("O cronômetro já está pausado."));
       }
     }
 
@@ -6715,7 +7535,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       focusRemainingSeconds = 0;
       updateFocusDisplay();
       closeFocusStage();
-      showToast("Fase de foco concluída. Missão vencida!");
+      showToast(tr("Fase de foco concluída. Missão vencida!"));
       playFocusBell();
       burstConfetti();
       setTimeout(resetFocusTimer, 900);
@@ -6725,7 +7545,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       closeFocusStage();
       focusTotalSeconds = 0;
       focusRemainingSeconds = 0;
-      els.focusTimeDisplay.textContent = "Definir tempo de foco";
+      els.focusTimeDisplay.textContent = tr("Definir tempo de foco");
       els.focusTimeDisplay.classList.remove("has-time", "urgent");
       els.focusWidget.classList.remove("urgent");
       els.focusWidget.style.backgroundColor = "";
@@ -6791,7 +7611,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
           osc.stop(start + 0.48);
         });
       } catch (err) {
-        showToast("Tempo finalizado.");
+        showToast(tr("Tempo finalizado."));
       }
     }
 
@@ -6806,7 +7626,7 @@ Regras: crie de 3 a 7 fases; crie de 3 a 8 tarefas por fase; use ids simples em 
       const closeBtn = document.createElement("button");
       closeBtn.className = "toast-close";
       closeBtn.type = "button";
-      closeBtn.setAttribute("aria-label", "Fechar notificação");
+      closeBtn.setAttribute("aria-label", tr("Fechar notificação"));
       closeBtn.textContent = "×";
 
       item.appendChild(messageEl);
