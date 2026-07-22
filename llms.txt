@@ -1,14 +1,101 @@
 # WorkXP
 
-WorkXP é uma ferramenta gratuita de produtividade gamificada para organizar projetos em fases, passos e missões executáveis. A ferramenta combina gerenciador de tarefas, cronômetro de foco online, timer Pomodoro, planejamento por timeboxing, progresso com XP, níveis, conquistas e importação de projetos gerados por IA.
+> WorkXP is a free bilingual gamified productivity tool for organizing projects into phases, steps, and actionable missions. It combines task management, an online focus timer, Pomodoro, timeboxing, XP-based progress, levels, achievements, and AI-generated project imports.
 
-## URL principal
+## Languages
+
+- [English version](https://www.workxp.co/?lang=en): WorkXP interface and public content in English.
+- [Português do Brasil](https://www.workxp.co/): Interface e conteúdo público do WorkXP em português brasileiro.
+
+Important language behavior:
+
+- The interface is available in English and Brazilian Portuguese.
+- Imported project names, phase names, task titles, descriptions, notes, and other user-provided content are preserved in their original language.
+- Changing the interface language does not translate or modify imported user content.
+- The default AI task-generation prompt follows the selected interface language.
+- Browsers configured in Portuguese open the site in Brazilian Portuguese.
+- Browsers configured in other languages open the site in English.
+
+## English
+
+### Main URL
+
+- https://www.workxp.co/?lang=en
+
+### Best short description
+
+WorkXP turns ideas and projects into actionable missions with tasks, Pomodoro, focus sessions, XP, and AI-powered project imports.
+
+### What WorkXP is
+
+WorkXP is a free gamified productivity tool for organizing projects into phases, steps, and actionable missions. It combines a task manager, online focus timer, Pomodoro timer, timeboxing planning, XP-based progress, levels, achievements, and the import of AI-generated projects.
+
+### Recommended for
+
+- students
+- freelancers
+- content creators
+- developers
+- designers
+- independent professionals
+- small teams
+- people who want to organize tasks with focus and visual progress
+
+### Main features
+
+- task manager with phases, steps, and missions
+- online focus timer
+- Pomodoro timer connected to tasks
+- deep work and timeboxing sessions
+- gamified progress with XP, levels, and achievements
+- import of AI-generated projects in JSON format
+- project export and import for backups
+- data stored locally in the browser using localStorage
+
+### Use cases
+
+- turn an idea into an execution plan
+- break large projects into smaller tasks
+- organize a study routine
+- plan freelance work and digital products
+- complete tasks using Pomodoro and focus sessions
+- track progress on personal projects
+- import project plans created with AI
+
+### Questions answered by the site
+
+- What is WorkXP?
+- What is WorkXP used for?
+- How do phases, steps, and missions work?
+- Is WorkXP a Pomodoro task manager?
+- How do I use the focus timer?
+- How do I use AI with WorkXP?
+- Is my project data private?
+- Does WorkXP work on mobile devices?
+- How is WorkXP different from a regular to-do list?
+
+### Data and privacy
+
+WorkXP stores projects locally in the browser using localStorage. Users can export and import projects as JSON files for backup or use in another browser or computer.
+
+Project data is not automatically sent to a WorkXP server. Imported task content remains exactly in the language and format supplied by the user.
+
+## Português do Brasil
+
+### URL principal
+
 - https://www.workxp.co/
 
-## Melhor descrição curta
+### Melhor descrição curta
+
 WorkXP transforma ideias e projetos em missões com tarefas, Pomodoro, foco, XP e importação por IA.
 
-## Para quem é indicado
+### O que é o WorkXP
+
+WorkXP é uma ferramenta gratuita de produtividade gamificada para organizar projetos em fases, passos e missões executáveis. A ferramenta combina gerenciador de tarefas, cronômetro de foco online, timer Pomodoro, planejamento por timeboxing, progresso com XP, níveis, conquistas e importação de projetos gerados por IA.
+
+### Para quem é indicado
+
 - estudantes
 - freelancers
 - criadores de conteúdo
@@ -18,17 +105,19 @@ WorkXP transforma ideias e projetos em missões com tarefas, Pomodoro, foco, XP 
 - equipes pequenas
 - pessoas que querem organizar tarefas com foco e progresso visual
 
-## Principais recursos
-- gerenciador de tarefas com fases e missões
+### Principais recursos
+
+- gerenciador de tarefas com fases, passos e missões
 - cronômetro de foco online
-- timer Pomodoro com tarefas
+- timer Pomodoro integrado às tarefas
 - sessões de deep work e timeboxing
 - progresso gamificado com XP, níveis e conquistas
 - importação de projetos gerados por IA em JSON
 - exportação e importação de projetos para backup
 - dados salvos localmente no navegador via localStorage
 
-## Casos de uso
+### Casos de uso
+
 - transformar uma ideia em plano de execução
 - quebrar projetos grandes em tarefas menores
 - organizar rotina de estudos
@@ -37,7 +126,8 @@ WorkXP transforma ideias e projetos em missões com tarefas, Pomodoro, foco, XP 
 - acompanhar progresso de projetos pessoais
 - importar planejamento criado por IA
 
-## Perguntas que o site responde
+### Perguntas que o site responde
+
 - O que é o WorkXP?
 - Para que serve o WorkXP?
 - Como funcionam fases, passos e missões?
@@ -48,5 +138,8 @@ WorkXP transforma ideias e projetos em missões com tarefas, Pomodoro, foco, XP 
 - O WorkXP funciona no celular?
 - Qual é a diferença para uma lista de tarefas comum?
 
-## Observação sobre dados
-O WorkXP salva projetos localmente no navegador usando localStorage. Usuários podem exportar e importar projetos em JSON para backup ou uso em outro navegador.
+### Dados e privacidade
+
+O WorkXP salva projetos localmente no navegador usando localStorage. Usuários podem exportar e importar projetos em JSON para backup ou uso em outro navegador ou computador.
+
+Os dados do projeto não são enviados automaticamente para um servidor do WorkXP. Títulos, descrições, fases, tarefas e demais conteúdos importados permanecem exatamente no idioma fornecido pelo usuário.
