@@ -1,9 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.workxp.co/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://www.workxp.co/ai-project-planner/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/ai-project-planner/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/ai-project-planner/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/ai-project-planner/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/ai-project-planner/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/ai-project-planner/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/ai-project-planner/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/ai-project-planner/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/focus-timer/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/focus-timer/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/focus-timer/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/focus-timer/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/focus-timer/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/focus-timer/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/focus-timer/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/focus-timer/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/gamified-task-manager/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/gamified-task-manager/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/gamified-task-manager/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/gamified-task-manager/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/gamified-task-manager/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/gamified-task-manager/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/gamified-task-manager/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/gamified-task-manager/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/pomodoro-online/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/pomodoro-online/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/pomodoro-online/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/pomodoro-online/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/pomodoro-online/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/pomodoro-online/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/pomodoro-online/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/pomodoro-online/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/productivity-tool/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/productivity-tool/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/productivity-tool/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/productivity-tool/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/productivity-tool/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/productivity-tool/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/productivity-tool/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/productivity-tool/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/timeboxing/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/timeboxing/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/timeboxing/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/timeboxing/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.workxp.co/timeboxing/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.workxp.co/timeboxing/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.workxp.co/timeboxing/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.workxp.co/timeboxing/?lang=en" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
