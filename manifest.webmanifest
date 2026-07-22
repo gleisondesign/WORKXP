@@ -1,9 +1,9 @@
 {
-  "name": "WorkXP - Produtividade gamificada",
+  "name": "WorkXP - Gamified Productivity",
   "short_name": "WorkXP",
-  "description": "Organize tarefas em missões, use timer de foco, acompanhe XP e importe projetos gerados por IA. WorkXP é uma ferramenta gratuita de produtividade gamificada.",
-  "lang": "pt-BR",
-  "start_url": "/",
+  "description": "Organize tasks into missions, use a focus timer, track XP, and import AI-generated projects.",
+  "lang": "en",
+  "start_url": "/?lang=en",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
